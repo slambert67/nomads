@@ -17,8 +17,20 @@ header, footer, nav, div {
   background: #ccc;
   }
 
+.content {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-area: content;
+    grid-template-rows: 50px 50px;
+}
+
 article {
-    background: #444
+    display: grid;
+    grid-template-columns: 25% 50% 25%;
+    grid-template-areas: ". content .";
+    grid-gap: 10px;
+    background: #e20808;
+
 }
 #pageHeader {
   grid-area: header;
@@ -31,10 +43,23 @@ article {
   }
 #mainNav { 
   grid-area: nav; 
+  display: grid;
+  grid-gap: 20px;
   }
 #siteAds { 
   grid-area: ads; 
   } 
+
+.box {
+  background-color: #661;
+  color: #fff;
+  border-radius: 5px;
+  padding: 20px;
+  font-size: 150%;
+}
+
+
+
 /* Stack the layout on small devices/viewports. */
 @media all and (max-width: 575px) {
   body { 
