@@ -26,18 +26,21 @@ body > div {
     grid-row-start: 2;
     grid-row-end: 4;
     display: grid;
-    grid-row-gap: 20px;
-    grid-column-gap: 20px;
+    grid-gap: 20px;
     background-color: #7c7c7c;
 }
-
+#n-nav > div {
+    border: 2px solid #ffa94d;
+    margin: 10px;
+}
 #n-main {
     grid-column-start: 2;
     grid-column-end: 4;
     grid-row-start: 2;
     grid-row-end: 3;
     display: grid;
-    grid-template-columns: 1fr 3fr 1fr;
+    /*grid-template-columns: 1fr 3fr 1fr;*/
+    grid-template-columns: 4fr 2fr 12fr 2fr 4fr;
     background-color: #7c7c7c;
 }
 
@@ -58,8 +61,20 @@ body > div {
 }
 
 #n-ladder {
+    grid-column-start: 3;
+    grid-column-end: 4;  
+}
+
+#n-pos {
     grid-column-start: 2;
-    grid-column-end: 3;  
+    grid-column-end: 3;
+    background-color: #ffa94d;  
+}
+
+#n-rating {
+    grid-column-start: 4;
+    grid-column-end: 5;
+    background-color: #ffa94d;  
 }
 
 .box {
