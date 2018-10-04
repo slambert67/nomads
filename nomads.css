@@ -62,29 +62,42 @@ body > div {
 
 #n-ladder {
     grid-column-start: 3;
-    grid-column-end: 4;  
+    grid-column-end: 4; 
+    background-color: #ffa94d; 
 }
 
 #n-pos {
     grid-column-start: 2;
     grid-column-end: 3;
-    background-color: #ffa94d;  
+    background-color: #ffa94d; 
 }
 
 #n-rating {
     grid-column-start: 4;
     grid-column-end: 5;
-    background-color: #ffa94d;  
+    background-color: #ffa94d; 
 }
 
 .box {
   background-color: #661;
   color: #fff;
   border-radius: 5px;
-  padding: 20px;
+  padding: 1px;
   font-size: 150%;
 }
 
-.box:hover {
+.box2:hover {
     background-color: #cf5c36;
+}
+
+.box2 {
+  background-color: #661;
+  color: #fff;
+  border-radius: 5px;
+  padding: 20px;
+  margin: 5px;
+  font-size: 100%;
+  display:flex;
+  align-items: center;
+  justify-content: center;
 }
