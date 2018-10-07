@@ -29,19 +29,21 @@
                 <div class="box2">Position</div>
                 <div class="box2">1</div>
                 <div class="box2">2</div>
-                <div class="box2">3</div>
             </div>
             <div id="n-ladder" class="box">
                 <div class="box2">Name</div>
                 <div class="box2">Steve Lambert</div>
                 <div class="box2">Wayne Cunningham</div>
-                <div class="box2">Andrew Lark</div>
             </div>
             <div id="n-rating" class="box">
                 <div class="box2">Rating</div>
-                <div class="box2">4000</div>
-                <div class="box2">3000</div>
-                <div class="box2">2000</div>
+                <div class="box2">1000</div>
+                <div class="box2">1000</div>
+            </div>
+            <div id="n-match" class="box">
+                <div id="n-title" class="box">New Graded Game</div>
+                <div id="n-winners" class="box">Winners</div>
+                <div id="n-losers" class="box">Losers</div>
             </div>
         </div>
         <div id="n-ads">ads</div>
@@ -53,6 +55,8 @@
             </div>		  
         </script>
 
+
+
         <script>
             var theData = [
                 {"pos":"4", "name":"Edwin Mak", "rating":"1000"},
@@ -63,7 +67,11 @@
                 {"pos":"9", "name":"Chris Graves", "rating":"250"},
                 {"pos":"10", "name":"Edwin Mak", "rating":"1000"},
                 {"pos":"11", "name":"Daniel White", "rating":"500"},
-                {"pos":"12", "name":"Chris Graves", "rating":"250"}
+                {"pos":"12", "name":"Chris Graves", "rating":"250"},
+                { "pos": "13", "name": "Chris Graves", "rating": "250" },
+                { "pos": "14", "name": "Edwin Mak", "rating": "1000" },
+                { "pos": "15", "name": "Daniel White", "rating": "500" },
+                { "pos": "16", "name": "Chris Graves", "rating": "250" }
             ];
 
             var theTemplateScript = $("#name-template").html();
@@ -74,13 +82,9 @@
                 $("#n-ladder").append( theTemplate({"theText":element.name}) );
                 $("#n-rating").append( theTemplate({"theText":element.rating}) );              
             });
-            /*var theData = {"theText":"4"};
-            $("#n-pos").append( theTemplate(theData.pos) );
-            theData = {"theText":"Edwin Mak"};
-            $("#n-ladder").append( theTemplate(theData.name) );
-            theData = {"theText":"1000"};
-            $("#n-rating").append( theTemplate(theData.rating) );    */        
+       
         </script>
+    
     </body>
 </html>
 

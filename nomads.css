@@ -40,8 +40,11 @@ body > div {
     grid-row-end: 3;
     display: grid;
     /*grid-template-columns: 1fr 3fr 1fr;*/
-    grid-template-columns: 4fr 2fr 8fr 2fr 4fr;
+    /*grid-template-columns: 4fr 2fr 8fr 2fr 4fr;*/
+    grid-template-columns: 10% 30% 10% 5% 40% 5%;
     background-color: #7c7c7c;
+    height: 1fr;
+    overflow-y: scroll;
 }
 
 #n-ads {
@@ -60,22 +63,46 @@ body > div {
     background-color: #7c7c7c; 
 }
 
-#n-ladder {
-    grid-column-start: 3;
-    grid-column-end: 4; 
+#n-pos {
+    grid-column-start: 1;
+    grid-column-end: 2;
     background-color: #ffa94d; 
 }
 
-#n-pos {
+#n-ladder {
     grid-column-start: 2;
-    grid-column-end: 3;
+    grid-column-end: 3; 
     background-color: #ffa94d; 
 }
 
 #n-rating {
-    grid-column-start: 4;
-    grid-column-end: 5;
+    grid-column-start: 3;
+    grid-column-end: 4;
     background-color: #ffa94d; 
+}
+
+#n-match {
+    grid-column-start: 5;
+    grid-column-end: 6;
+    background-color: #ffa94d;
+    display:grid;
+    grid-template-columns: repeat(5,20%);
+    grid-template-rows: repeat(4,25%); 
+}
+
+#n-title {
+    grid-column-start: 2;
+    grid-column-end: 5;
+}
+
+#n-winners {
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+
+#n-losers {
+    grid-column-start: 4;
+    grid-column-end: 6;
 }
 
 .box {
@@ -86,7 +113,7 @@ body > div {
   font-size: 150%;
 }
 
-.box2:hover {
+/*.box2:hover {
     background-color: #cf5c36;
 }
 
@@ -100,4 +127,34 @@ body > div {
   display:flex;
   align-items: center;
   justify-content: center;
+}*/
+
+.box2 {
+  font-size: 18px;
+  width: auto;
+  padding: 0.5em 2em;
+  color: #fff;
+  background: rgb(240,120,14);
+  border: 1px solid hsla(30,100%,50%,0.8);
+  border-radius: 5px;
+  box-shadow: 1px 2px 3px rgba(0,0,0,0.5);
+  text-shadow: -1px 0 0 rgba(0,0,0,0.3), 
+               0 -1px 0 rgba(0,0,0,0.3),
+			   0 1px 0 rgba(255,255,255,0.5),
+               -1px -1px 0 rgba(250,151,3,0.5);
+  display:flex;
+    align-items: center;
+  justify-content: center;
+  margin: 5px;
+}
+
+.box2:hover {
+  position: relative;
+  top: 1px;
+  cursor: pointer;
+  box-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+  text-shadow: -1px 0 0 rgba(0,0,0,0.3),
+               0 1px 0 rgba(0,0,0,0.3),
+			   0 0 0 rgba(255,255,255,0.5),
+			   -1px 1px 0 rgba(250,151,3,0.5);
 }
