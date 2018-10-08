@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="index.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.12/handlebars.min.js"></script>
+    <script src="index.js"></script>
 </head>
 
 <body>
@@ -24,7 +25,7 @@
             <div class="btn">Home</div>
         </div>
         <div>
-            <div class="btn">Ladder</div>
+            <div class="btn" id="ladderBtn">Ladder</div>
         </div>
         <div>
             <div class="btn">Unused</div>
@@ -37,14 +38,11 @@
         </div>
     </div>
     <div id="main">
-        <script type='text/javascript'>
-            $(document).ready(function () {
-                $("#main").load("test.html");
-            });
-        </script>
+        <div id="sq" class="not">squoinky</div>
     </div>
     <div id="misc">misc</div>
     <div id="ftr">footer</div>
+    
 </body>
 
 </html>

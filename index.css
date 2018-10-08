@@ -107,5 +107,9 @@ body > div {
                -1px 1px 0 rgba(250,151,3,0.5);
     width: 60%;
     height: 60%;
+    background-color: #393939;
 }
 
+.not {
+	display:none;	
+}
