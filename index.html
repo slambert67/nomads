@@ -1,88 +1,51 @@
 <!DOCTYPE html>
-<html lang="en"> <!-- help for scren readers -->
+<html lang="en">
 
-    <head>
-        <meta charset="UTF8">
-        
-        <meta name="description" content="nomads badminton club">
-        <meta name="keywords" content="meta">
-        <meta name="author" content="Steve Lambert">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+    <meta charset="UTF8">
+    <meta name="description" content="nomads badminton club">
+    <meta name="keywords" content="meta">
+    <meta name="author" content="Steve Lambert">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <title>Nomads</title>
-        <link rel="stylesheet" href="nomads.css" />
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.12/handlebars.min.js"></script>
-    </head>
+    <title>Nomads Badminton Club</title>
+    <link rel="stylesheet" href="index.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.12/handlebars.min.js"></script>
+</head>
 
-    <body>
-        <div id="n-header">header</div>
-        <div id="n-nav" class="box">
-            <div class="box2">Men's Doubles</div>
-            <div class="box2">Women's Doubles</div>
-            <div class="box2">Mixed Doubles</div>
-            <div class="box2">Men's Singles</div>
-            <div class="box2">Women's Singles</div>
+<body>
+
+    <div id="hdr">
+        <div>Nomads Badminton Club</div>            
+    </div>
+    <div id="nav">
+        <div>
+            <div class="btn">Home</div>
         </div>
-        <div id="n-main">
-            <div id="n-pos" class="box">
-                <div class="box2">Position</div>
-                <div class="box2">1</div>
-                <div class="box2">2</div>
-                <div class="box2">3</div>
-            </div>
-            <div id="n-ladder" class="box">
-                <div class="box2">Name</div>
-                <div class="box2">Steve Lambert</div>
-                <div class="box2">Wayne Cunningham</div>
-                <div class="box2">Andrew Lark</div>
-            </div>
-            <div id="n-rating" class="box">
-                <div class="box2">Rating</div>
-                <div class="box2">4000</div>
-                <div class="box2">3000</div>
-                <div class="box2">2000</div>
-            </div>
+        <div>
+            <div class="btn">Ladder</div>
         </div>
-        <div id="n-ads">ads</div>
-        <div id="n-footer">footer</div>
-
-        <script id="name-template" type="text/x-handlebars-template">	  
-            <div class="box2">
-                {{theText}}
-            </div>		  
-        </script>
-
-        <script>
-            var theData = [
-                {"pos":"4", "name":"Edwin Mak", "rating":"1000"},
-                {"pos":"5", "name":"Daniel White", "rating":"500"},
-                {"pos":"6", "name":"Chris Graves", "rating":"250"},
-                {"pos":"7", "name":"Edwin Mak", "rating":"1000"},
-                {"pos":"8", "name":"Daniel White", "rating":"500"},
-                {"pos":"9", "name":"Chris Graves", "rating":"250"},
-                {"pos":"10", "name":"Edwin Mak", "rating":"1000"},
-                {"pos":"11", "name":"Daniel White", "rating":"500"},
-                {"pos":"12", "name":"Chris Graves", "rating":"250"}
-            ];
-
-            var theTemplateScript = $("#name-template").html();
-            var theTemplate = Handlebars.compile(theTemplateScript);
-
-            theData.forEach ( function(element) {
-                $("#n-pos").append( theTemplate({"theText":element.pos}) ); 
-                $("#n-ladder").append( theTemplate({"theText":element.name}) );
-                $("#n-rating").append( theTemplate({"theText":element.rating}) );              
+        <div>
+            <div class="btn">Unused</div>
+        </div>
+        <div>
+            <div class="btn">Unused</div>
+        </div>
+        <div>
+            <div class="btn">Unused</div>
+        </div>
+    </div>
+    <div id="main">
+        <script type='text/javascript'>
+            $(document).ready(function () {
+                $("#main").load("test.html");
             });
-            /*var theData = {"theText":"4"};
-            $("#n-pos").append( theTemplate(theData.pos) );
-            theData = {"theText":"Edwin Mak"};
-            $("#n-ladder").append( theTemplate(theData.name) );
-            theData = {"theText":"1000"};
-            $("#n-rating").append( theTemplate(theData.rating) );    */        
         </script>
-    </body>
+    </div>
+    <div id="misc">misc</div>
+    <div id="ftr">footer</div>
+</body>
+
 </html>
-
-
 
