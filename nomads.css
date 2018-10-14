@@ -1,93 +1,144 @@
 body {
-    display: grid;
-    grid-template-columns: 15% 1fr 15%;
-    grid-template-rows: 1fr 7fr 1fr 1fr;
-    grid-row-gap: 10px;
-    grid-column-gap: 10px;
-    background-color: #7c7c7c;
+    background-color: #393939;
     height: 100vh;
-    margin: 0;
+    display: grid;
+    grid-template-columns: 1fr 15fr 83fr 1fr;
+    grid-template-rows: 1fr 16fr 62fr 10fr 10fr 1fr;
+    grid-row-gap: 20px;
+    grid-column-gap: 5px;     
 }
 
 body > div {
-    border: 2px solid #ffa94d;
-}
-#n-header {
-    grid-column-start: 1;
-    grid-column-end: 4;
-    grid-row-start: 1;
-    grid-row-end: 2;
-    background-color: #7c7c7c;
+    background-color: #CCD6DD;
 }
 
-#n-nav {
-    grid-column-start: 1;
-    grid-column-end: 2;
-    grid-row-start: 2;
-    grid-row-end: 4;
-    display: grid;
-    grid-gap: 20px;
-    background-color: #7c7c7c;
-}
-#n-nav > div {
-    border: 2px solid #ffa94d;
-    margin: 10px;
-}
-#n-main {
+/* grid item of body */
+#hdr {
     grid-column-start: 2;
     grid-column-end: 4;
     grid-row-start: 2;
     grid-row-end: 3;
-    display: grid;
-    /*grid-template-columns: 1fr 3fr 1fr;*/
-    grid-template-columns: 4fr 2fr 8fr 2fr 4fr;
-    background-color: #7c7c7c;
 }
 
-#n-ads {
+#hdr > div {
+    display:flex;
+    align-items: center;
+    justify-content: center; 
+}
+
+/* grid item of body */
+#nav {
     grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 3;
+    grid-row-end: 5;   
+    display: grid;
+    grid-template-rows: repeat(5,1fr);
+}
+
+#nav > div {
+    display:flex;
+    align-items: center;
+    justify-content: center; 
+}
+
+/* grid item of body */
+#main {
+    grid-column-start: 3;
     grid-column-end: 4;
     grid-row-start: 3;
-    grid-row-end: 4;   
-    background-color: #7c7c7c; 
+    grid-row-end: 4;  
+    background-color: #55ACEE;
 }
 
-#n-footer {
-    grid-column-start: 1;
+/* grid item of body */
+#misc {
+    grid-column-start: 3;
     grid-column-end: 4;
     grid-row-start: 4;
     grid-row-end: 5;   
-    background-color: #7c7c7c; 
+    background-color: #66757F;
 }
 
-#n-ladder {
-    grid-column-start: 3;
-    grid-column-end: 4; 
-    background-color: #ffa94d; 
-}
-
-#n-pos {
+/* grid item of body */
+#ftr {
     grid-column-start: 2;
-    grid-column-end: 3;
-    background-color: #ffa94d; 
+    grid-column-end: 4;
+    grid-row-start: 5;
+    grid-row-end: 6;   
 }
 
-#n-rating {
-    grid-column-start: 4;
-    grid-column-end: 5;
-    background-color: #ffa94d; 
+.btn {
+  width: 50%;
+  height: 50%;
+  padding: 0.5em 2em;
+  background: #66757F;
+  color: white;
+  border: 3px solid #55ACEE;
+  border-radius: 10px;
+  box-shadow: 1px 2px 3px rgba(0,0,0,0.5);
+  text-shadow: -1px 0 0 rgba(0,0,0,0.3), 
+               0 -1px 0 rgba(0,0,0,0.3),
+			   0 1px 0 rgba(255,255,255,0.5),
+               -1px -1px 0 #b9b0b0;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  margin: 5px;
 }
 
-.box {
-  background-color: #661;
-  color: #fff;
-  border-radius: 20px;
-  padding: 1px;
-  font-size: 150%;
+.btn:hover {
+  position: relative;
+  top: 1px;
+  cursor: pointer;
+  box-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+  text-shadow: -1px 0 0 rgba(0,0,0,0.3),
+               0 1px 0 rgba(0,0,0,0.3),
+			   0 0 0 rgba(255,255,255,0.5),
+               -1px 1px 0 rgba(250,151,3,0.5);
+    width: 60%;
+    height: 60%;
+    background-color: #393939;
 }
 
-.box2:hover {
-    background-color: #cf5c36;
+/* grid item of main */
+#ladder {
+  display: grid;
+  grid-template-columns: 20% 40% 40%;
+  background-color: red;
+  height: 100%;
+  grid-gap: 5px;
+}
+
+#ladderNav {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  background-color: yellow;
+  grid-column-gap: 5px;
+  display: grid;
+  grid-template-rows: repeat(5,1fr);
+}
+
+#ladderNav > div {
+    font-size: small;
+    display:flex;
+    align-items: center;
+    justify-content: center; 
+}
+
+#ladderMain {
+  grid-colum-start:2;
+  grid-column-end: 3;
+  background-color: orange;
+  display: grid;
+  grid-template-columns: 10% 70% 20%;
+  grid-gap: 5px;
+}
+
+#ladderMatch {
+  grid-colum-start:3;
+  grid-column-end: 4;
+  background-color: pink;
 }
 
 .box2 {
