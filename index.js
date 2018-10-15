@@ -4,7 +4,7 @@ $(document).ready(function () {
     $("#ladderBtn").bind( "click",
                           function (event) {
                             console.log("hello");
-                            $("#main").load("http://192.168.56.1:8080/ladder.html", function(){
+                            $("#main").load("http://192.168.0.19:8080/ladder.html", function(){
                               var theTemplateScript = $("#name-template").html();
                               theTemplate = Handlebars.compile(theTemplateScript);
                             });
@@ -26,11 +26,24 @@ $(document).ready(function () {
 
     $("#main").on( "click",
                           function (event) {
-                            var filename = "http://192.168.56.1:8080/" + event.target.id + ".html";
-                            console.log("file = ", event.target.id);
+                            var filename = "http://192.168.0.19:8080/" + event.target.id + ".html";
                             $("#ladderMain").load(filename, function() {
-                              $("#" + event.target.id + "Ladder").append( theTemplate({"theText":event.target.id}) );
+                                $("#" + event.target.id + "Ladder").append(theTemplate({ "theContext": { pos: 1, name: "Steve Lambert", rating: 1400 }}) );
+                                $("#" + event.target.id + "Ladder").append(theTemplate({ "theContext": { pos: 2, name: "Wayne Cunningham", rating: 1300 } }));
+                                $("#" + event.target.id + "Ladder").append(theTemplate({ "theContext": { pos: 3, name: "Andrew lark", rating: 1200 } }));
+                                $("#" + event.target.id + "Ladder").append(theTemplate({ "theContext": { pos: 1, name: "Steve Lambert", rating: 1400 } }));
+                                $("#" + event.target.id + "Ladder").append(theTemplate({ "theContext": { pos: 2, name: "Wayne Cunningham", rating: 1300 } }));
+                                $("#" + event.target.id + "Ladder").append(theTemplate({ "theContext": { pos: 3, name: "Andrew lark", rating: 1200 } }));
+                                $("#" + event.target.id + "Ladder").append(theTemplate({ "theContext": { pos: 1, name: "Steve Lambert", rating: 1400 } }));
+                                $("#" + event.target.id + "Ladder").append(theTemplate({ "theContext": { pos: 2, name: "Wayne Cunningham", rating: 1300 } }));
+                                $("#" + event.target.id + "Ladder").append(theTemplate({ "theContext": { pos: 3, name: "Andrew lark", rating: 1200 } }));
+                                $("#" + event.target.id + "Ladder").append(theTemplate({ "theContext": { pos: 2, name: "Wayne Cunningham", rating: 1300 } }));
+                                $("#" + event.target.id + "Ladder").append(theTemplate({ "theContext": { pos: 3, name: "Andrew lark", rating: 1200 } }));
+                                $("#" + event.target.id + "Ladder").append(theTemplate({ "theContext": { pos: 1, name: "Steve Lambert", rating: 1400 } }));
+                                $("#" + event.target.id + "Ladder").append(theTemplate({ "theContext": { pos: 2, name: "Wayne Cunningham", rating: 1300 } }));
+                                $("#" + event.target.id + "Ladder").append(theTemplate({ "theContext": { pos: 3, name: "Andrew lark", rating: 1200 } }));
                             });
+                            
                           });
 	  
 
