@@ -42,6 +42,17 @@ $(document).ready(function () {
                                 $("#" + event.target.id + "Ladder").append(theTemplate({ "theContext": { pos: 1, name: "Steve Lambert", rating: 1400 } }));
                                 $("#" + event.target.id + "Ladder").append(theTemplate({ "theContext": { pos: 2, name: "Wayne Cunningham", rating: 1300 } }));
                                 $("#" + event.target.id + "Ladder").append(theTemplate({ "theContext": { pos: 3, name: "Andrew lark", rating: 1200 } }));
+                                                               $("#" + event.target.id + "Ladder").append(theTemplate({ "theContext": { pos: 1, name: "Steve Lambert", rating: 1400 } }));
+                                $("#" + event.target.id + "Ladder").append(theTemplate({ "theContext": { pos: 2, name: "Wayne Cunningham", rating: 1300 } }));
+                                $("#" + event.target.id + "Ladder").append(theTemplate({ "theContext": { pos: 3, name: "Andrew lark", rating: 1200 } }));
+                                                                $("#" + event.target.id + "Ladder").append(theTemplate({ "theContext": { pos: 2, name: "Wayne Cunningham", rating: 1300 } }));
+                                $("#" + event.target.id + "Ladder").append(theTemplate({ "theContext": { pos: 3, name: "Andrew lark", rating: 1200 } }));
+                                $("#" + event.target.id + "Ladder").append(theTemplate({ "theContext": { pos: 1, name: "Steve Lambert", rating: 1400 } }));
+                                $("#" + event.target.id + "Ladder").append(theTemplate({ "theContext": { pos: 2, name: "Wayne Cunningham", rating: 1300 } }));
+                                $("#" + event.target.id + "Ladder").append(theTemplate({ "theContext": { pos: 3, name: "Andrew lark", rating: 1200 } }));
+                                                               $("#" + event.target.id + "Ladder").append(theTemplate({ "theContext": { pos: 1, name: "Steve Lambert", rating: 1400 } }));
+                                $("#" + event.target.id + "Ladder").append(theTemplate({ "theContext": { pos: 2, name: "Wayne Cunningham", rating: 1300 } }));
+                                $("#" + event.target.id + "Ladder").append(theTemplate({ "theContext": { pos: 3, name: "Andrew lark", rating: 1200 } }));
                             });
                             
                           });
