@@ -29,7 +29,8 @@ $(document).ready(function () {
                             $("#" + event.target.id).addClass("btnpressed");
                               //firebase.database().ref('members/' + 1).set({ "firstname": "occulus", "bocculus": "lambert" })
                               var members = db.getMembers();
-                              firebase.database().ref('members').push().set(members)
+ //firebase.database().ref('members').push().set(members)
+                              firebase.database().ref('members/' + '777').set(members[0])                       
                                   .then(function (snapshot) {
                                       console.log("success");
                                      // success(); // some success method
@@ -37,6 +38,16 @@ $(document).ready(function () {
                                       console.log('error' + error);
                                       //error(); // some error method
                                   });
+                              firebase.database().ref('members/' + '888').set(members[1])
+                                  .then(function (snapshot) {
+                                      console.log("success");
+                                      // success(); // some success method
+                                  }, function (error) {
+                                      console.log('error' + error);
+                                      //error(); // some error method
+                                  });                           
+
+
 
                             /*var filename = "http://192.168.0.19:8080/" + event.target.id + ".html";
                             $("#ladderMain").load(filename, function() {

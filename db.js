@@ -44,7 +44,7 @@
                         }},
             {
                 id: {
-                    memberNumber: 1,
+                    memberNumber: 2,
                     forename: "Steve",
                     middleName: null,
                     surname: "Lambert",
