@@ -27,23 +27,39 @@ $(document).ready(function () {
     $("#main").on( "click",
                           function (event) {
                             $("#" + event.target.id).addClass("btnpressed");
-                              //firebase.database().ref('members/' + 1).set({ "firstname": "occulus", "bocculus": "lambert" })
-                              var members = db.getMembers();
- //firebase.database().ref('members').push().set(members)
-                              firebase.database().ref('members/' + '777').set(members[0])                       
-                                  .then(function (snapshot) {
-                                      console.log("success");
-                                     // success(); // some success method
-                                  }, function (error) {
-                                      console.log('error' + error);
-                                      //error(); // some error method
+                              fdb.collection("users").add({
+                                  first: "Ada",
+                                  last: "Lovelace",
+                                  born: 1815
+                              })
+                                  .then(function (docRef) {
+                                      console.log("Document written with ID: ", docRef.id);
+                                      fdb.collection("users").get().then((querySnapshot) => {
+                                          querySnapshot.forEach((doc) => {
+                                              console.log(`${doc.id} => ${doc.data()}`);
+                                          });
+                                      });
+                                  })
+                                  .catch(function (error) {
+                                      console.error("Error adding document: ", error);
                                   });
-                              firebase.database().ref('members/' + '888').set(members[1])
-                                  .then(function (snapshot) {
-                                      console.log("success");
+                              //firebase.database().ref('members/' + 1).set({ "firstname": "occulus", "bocculus": "lambert" })
+                              //var members = db.getMembers();
+ //firebase.database().ref('members').push().set(members)
+                              //firebase.database().ref('members/' + '777').set(members[0])                       
+                                 // .then(function (snapshot) {
+                                     // console.log("success");
+                                     // success(); // some success method
+                                  //}, function (error) {
+                                    //  console.log('error' + error);
+                                      //error(); // some error method
+                                  //});
+                             // firebase.database().ref('members/' + '888').set(members[1])
+                                  //.then(function (snapshot) {
+                                  //    console.log("success");
                                       // success(); // some success method
-                                  }, function (error) {
-                                      console.log('error' + error);
+                                //  }, function (error) {
+                                     // console.log('error' + error);
                                       //error(); // some error method
                                   });                           
 
@@ -58,9 +74,9 @@ $(document).ready(function () {
                                 $("#" + event.target.id + "Ladder").append(theTemplate({ "theContext": { pos: 1, name: "Steve Lambert", rating: 1400 }}) );
 
                             });*/
+
                             
                           });
 	  
 
 
-});
