@@ -9,17 +9,17 @@
   };
   firebase.initializeApp(config);*/
 
-firebase.initializeApp({
+/*firebase.initializeApp({
     apiKey: 'AIzaSyDxgEiXAJEvXAA4CDsF1yXlQaIczU3skgo',
     authDomain: 'nomads-d85b5.firebaseapp.com',
     projectId: 'nomads-d85b5'
-});
+});*/
 
 // Initialize Cloud Firestore through Firebase
 var fdb = firebase.firestore();
 
 // Disable deprecated features
-fdb.settings({
+/*fdb.settings({
     timestampsInSnapshots: true
-});
+});*/
 
