@@ -1,3 +1,5 @@
+var globalMembers = new Array();
+
 $(document).ready(function () {
 
     var theTemplate;
@@ -29,13 +31,18 @@ $(document).ready(function () {
                        var filename = "http://192.168.0.19:8080/" + event.target.id + ".html";
                        $("#ladderMain").load(filename, function() {
                            db.init();
-                           var members = db.getMembers();
-                           $.each( members, function() {
 
-                               /*fdb.collection("members").add(this)
-                               .then (function (docref) {alert ("success")})
-                               .catch (function(error) {alert("error")});*/
-                               $("#" + event.target.id + "Ladder").append(theTemplate({ "theContext": { pos: 1, name: this.id.forename, rating: this.ladder.med.currentRating }}) );                              
+                           db.getMembers()
+                           .then ( function(myData) {
+                               console.log("got my data");
+                               myData.forEach ( function(x) {                                 
+                                   var theData = x.data();
+                                   console.log("breakpoint");
+                                   $("#" + event.target.id + "Ladder").
+                                   append(theTemplate({ "theContext": { pos: theData.id.memberNumber, 
+                                                                        name: theData.id.forename, 
+                                                                        rating: theData.ladder.med.currentRating } }));
+                               });
                            });
                        });
     

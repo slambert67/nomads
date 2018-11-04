@@ -2,7 +2,6 @@
         var something = "cool";
         var another = [1, 2, 3];
         var fdb;
-        var xmembers = new Array();
 
         /*var members = [
             { id:   { memberNumber: 1,
@@ -255,13 +254,9 @@
         }
         
         function getMembers() {
-            fdb.collection("members").get().then(function(querySnapshot) {
-                querySnapshot.forEach(function(doc) {
-                    var theData = doc.data();
-                    xmembers.push(theData);   
-                });
-            });
-	        return xmembers;
+
+            return fdb.collection("members").get();
+
          }
 
          return {
