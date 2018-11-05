@@ -254,14 +254,37 @@
         }
         
         function getMembers() {
-
             return fdb.collection("members").get();
+         }
 
+         function addMember() {
+            var newMember = {};
+            newMember.id = {};
+            newMember.contact = {};
+            newMember.contact.address = {};
+            newMember.id.forename = $("#forename").val();
+             newMember.id.middleName = $("#midname").val();
+             newMember.id.surname = $("#surname").val();
+             newMember.contact.address.houseNumber = $("#housenumber").val();
+             newMember.contact.address.area = $("#area").val();
+             newMember.contact.address.city = $("#city").val();
+             newMember.contact.email = $("#email").val();
+             newMember.contact.landline = $("#tel").val();
+             newMember.contact.mobile = $("#mob").val();
+            console.log("new member: ", newMember);
+            fdb.collection("members").add(newMember)
+            .then ( function() {
+                console.log("successful addition of member")
+            })
+            .catch ( function() {
+                console("member addition failed");
+            })
          }
 
          return {
 	        getMembers: getMembers,
-            init: init
+            init: init,
+            addMember: addMember
          };
       
     })();
