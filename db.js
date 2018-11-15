@@ -3,243 +3,6 @@
         var another = [1, 2, 3];
         var fdb;
 
-        /*var members = [
-            { id:   { memberNumber: 1,
-                      forename: "Steve",
-                      middleName: null,
-                      surname: "Lambert",
-                      gender: "M"
-                    },
-              contact:  { address: { houseNumber: 37,
-                                     street: "Royston Road",
-                                     area: "Firswood",
-                                     city: "Manchester",
-                                     postcode: "M160EU"
-                                    },
-                          landline: null,
-                          mobile: "07967977357",
-                          email: "steve.lambert67@gmail.com"                
-                        },
-              ladder:   { med:  { participating: false,
-                                  currentRating: 2000,
-                                  previousRating: 0,
-                                  previousMatch:    { partner: 2,
-                                                      opponent1: 3,
-                                                      opponent2:4
-                                                    }
-
-                                },
-                          mid:  { participating: false,
-                                  currentRating: 0,
-                                  previousRating: 0,
-                                  previousMatch:    { partner: 2,
-                                                      opponent1: 3,
-                                                      opponent2: 4
-                                                    }
-                                },
-                          mes:  { participating: false,
-                                  currentRating: 0,
-                                  previousRating: 0,
-                                  previousMatch:    { opponent: 2 }                                              
-                                }
-                        }},
-            { id:   { memberNumber: 2,
-                      forename: "Wayne",
-                      middleName: null,
-                      surname: "Cunningham",
-                      gender: "M"
-                    },
-              contact:  { address: { houseNumber: 37,
-                                     street: "Royston Road",
-                                     area: "Firswood",
-                                     city: "Manchester",
-                                     postcode: "M160EU"
-                                    },
-                          landline: null,
-                          mobile: "07967977357",
-                          email: "steve.lambert67@gmail.com"                
-                        },
-              ladder:   { med:  { participating: false,
-                                  currentRating: 1800,
-                                  previousRating: 0,
-                                  previousMatch:    { partner: 2,
-                                                      opponent1: 3,
-                                                      opponent2:4
-                                                    }
-
-                                },
-                          mid:  { participating: false,
-                                  currentRating: 0,
-                                  previousRating: 0,
-                                  previousMatch:    { partner: 2,
-                                                      opponent1: 3,
-                                                      opponent2: 4
-                                                    }
-                                },
-                          mes:  { participating: false,
-                                  currentRating: 0,
-                                  previousRating: 0,
-                                  previousMatch:    { opponent: 2 }                                              
-                                }
-                        }},
-            { id:   { memberNumber: 3,
-                      forename: "Andrew",
-                      middleName: null,
-                      surname: "Lark",
-                      gender: "M"
-                    },
-              contact:  { address: { houseNumber: 37,
-                                     street: "Royston Road",
-                                     area: "Firswood",
-                                     city: "Manchester",
-                                     postcode: "M160EU"
-                                    },
-                          landline: null,
-                          mobile: "07967977357",
-                          email: "steve.lambert67@gmail.com"                
-                        },
-              ladder:   { med:  { participating: false,
-                                  currentRating: 1600,
-                                  previousRating: 0,
-                                  previousMatch:    { partner: 2,
-                                                      opponent1: 3,
-                                                      opponent2:4
-                                                    }
-
-                                },
-                          mid:  { participating: false,
-                                  currentRating: 0,
-                                  previousRating: 0,
-                                  previousMatch:    { partner: 2,
-                                                      opponent1: 3,
-                                                      opponent2: 4
-                                                    }
-                                },
-                          mes:  { participating: false,
-                                  currentRating: 0,
-                                  previousRating: 0,
-                                  previousMatch:    { opponent: 2 }                                              
-                                }
-                        }},
-            { id:   { memberNumber: 4,
-                      forename: "Edwin",
-                      middleName: null,
-                      surname: "Mak",
-                      gender: "M"
-                    },
-              contact:  { address: { houseNumber: 37,
-                                     street: "Royston Road",
-                                     area: "Firswood",
-                                     city: "Manchester",
-                                     postcode: "M160EU"
-                                    },
-                          landline: null,
-                          mobile: "07967977357",
-                          email: "steve.lambert67@gmail.com"                
-                        },
-              ladder:   { med:  { participating: false,
-                                  currentRating: 1400,
-                                  previousRating: 0,
-                                  previousMatch:    { partner: 2,
-                                                      opponent1: 3,
-                                                      opponent2:4
-                                                    }
-
-                                },
-                          mid:  { participating: false,
-                                  currentRating: 0,
-                                  previousRating: 0,
-                                  previousMatch:    { partner: 2,
-                                                      opponent1: 3,
-                                                      opponent2: 4
-                                                    }
-                                },
-                          mes:  { participating: false,
-                                  currentRating: 0,
-                                  previousRating: 0,
-                                  previousMatch:    { opponent: 2 }                                              
-                                }
-                        }},
-            { id:   { memberNumber: 5,
-                      forename: "Chris",
-                      middleName: null,
-                      surname: "Graves",
-                      gender: "M"
-                    },
-              contact:  { address: { houseNumber: 37,
-                                     street: "Royston Road",
-                                     area: "Firswood",
-                                     city: "Manchester",
-                                     postcode: "M160EU"
-                                    },
-                          landline: null,
-                          mobile: "07967977357",
-                          email: "steve.lambert67@gmail.com"                
-                        },
-              ladder:   { med:  { participating: false,
-                                  currentRating: 1200,
-                                  previousRating: 0,
-                                  previousMatch:    { partner: 2,
-                                                      opponent1: 3,
-                                                      opponent2:4
-                                                    }
-
-                                },
-                          mid:  { participating: false,
-                                  currentRating: 0,
-                                  previousRating: 0,
-                                  previousMatch:    { partner: 2,
-                                                      opponent1: 3,
-                                                      opponent2: 4
-                                                    }
-                                },
-                          mes:  { participating: false,
-                                  currentRating: 0,
-                                  previousRating: 0,
-                                  previousMatch:    { opponent: 2 }                                              
-                                }
-                        }},
-            { id:   { memberNumber: 6,
-                      forename: "Alex",
-                      middleName: null,
-                      surname: "Smith",
-                      gender: "M"
-                    },
-              contact:  { address: { houseNumber: 37,
-                                     street: "Royston Road",
-                                     area: "Firswood",
-                                     city: "Manchester",
-                                     postcode: "M160EU"
-                                    },
-                          landline: null,
-                          mobile: "07967977357",
-                          email: "steve.lambert67@gmail.com"                
-                        },
-              ladder:   { med:  { participating: false,
-                                  currentRating: 1000,
-                                  previousRating: 0,
-                                  previousMatch:    { partner: 2,
-                                                      opponent1: 3,
-                                                      opponent2:4
-                                                    }
-
-                                },
-                          mid:  { participating: false,
-                                  currentRating: 0,
-                                  previousRating: 0,
-                                  previousMatch:    { partner: 2,
-                                                      opponent1: 3,
-                                                      opponent2: 4
-                                                    }
-                                },
-                          mes:  { participating: false,
-                                  currentRating: 0,
-                                  previousRating: 0,
-                                  previousMatch:    { opponent: 2 }                                              
-                                }
-                        }}
-        ];*/
-
         function init() {
             firebase.initializeApp({
                 apiKey: 'AIzaSyDxgEiXAJEvXAA4CDsF1yXlQaIczU3skgo',
@@ -259,18 +22,33 @@
 
          function addMember() {
             var newMember = {};
+            var vals = $("#addMember").serializeArray();
+
             newMember.id = {};
+             newMember.id.forename = vals[0].value;
+             newMember.id.middleName = vals[1].value;
+             newMember.id.surname = vals[2].value;
+             newMember.id.gender = vals[3].value;
             newMember.contact = {};
             newMember.contact.address = {};
-            newMember.id.forename = $("#forename").val();
-             newMember.id.middleName = $("#midname").val();
-             newMember.id.surname = $("#surname").val();
-             newMember.contact.address.houseNumber = $("#housenumber").val();
-             newMember.contact.address.area = $("#area").val();
-             newMember.contact.address.city = $("#city").val();
-             newMember.contact.email = $("#email").val();
-             newMember.contact.landline = $("#tel").val();
-             newMember.contact.mobile = $("#mob").val();
+             newMember.contact.address.houseNumber = vals[4].value;
+             newMember.contact.address.street = vals[5].value;
+             newMember.contact.address.area = vals[6].value;
+             newMember.contact.address.city = vals[7].value;
+             newMember.contact.address.postcode = vals[8].value;
+             newMember.contact.email = vals[9].value;
+             newMember.contact.landline = vals[10].value;
+             newMember.contact.mobile = vals[11].value;
+             newMember.ladder = {};
+             newMember.ladder.mid = {currentRating: 'X'};
+             if (newMember.id.gender == 'M') {
+                 newMember.ladder.med = {currentRating: 'X'};
+                 newMember.ladder.mes = {currentRating: 'X'};
+             } else {
+                 newMember.ladder.wod = {currentRating: 'X'};
+                 newMember.ladder.wos = {currentRating: 'X'};                
+             }
+
             console.log("new member: ", newMember);
             fdb.collection("members").add(newMember)
             .then ( function() {
@@ -281,10 +59,15 @@
             })
          }
 
+         function hi() {
+             alert("hello world");
+         }
+
          return {
 	        getMembers: getMembers,
             init: init,
-            addMember: addMember
+            addMember: addMember,
+            hi: hi
          };
       
     })();

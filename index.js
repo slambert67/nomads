@@ -19,7 +19,7 @@ $(document).ready(function () {
             });
     });
 
-
+    db.init();
     /*$("#ladderNav").on( "click",
                           function (event) {
                             //$("#main").load("http://192.168.56.1:8080/ladder.html");
@@ -34,22 +34,27 @@ $(document).ready(function () {
                             console.log(evt.target);
                           });*/
 
+    $("form").submit(function (event) {
+        alert("hello world");
+        event.preventDefault();
+    });
     $("#main").on( "click",
                    function( event ) {
 
                       switch(event.target.id) {
                           case "addMemberBtn":
-                                db.init();
+                                console.log("add member button");
+                                //db.init();
                                 db.addMember();
                                 break;  
                           default:
                               var filename = "http://192.168.0.19:8080/" + event.target.id + ".html";
                               $("#ladderMain").load(filename, function () {
-                                  db.init();
+                                  //db.init();
 
                                   db.getMembers()
                                       .then(function (myData) {
-                                          console.log("got my data");
+                                          console.log("got my data",myData);
                                           myData.forEach(function (x) {
                                               var theData = x.data();
                                               console.log("breakpoint");
