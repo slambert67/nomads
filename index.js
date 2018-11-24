@@ -6,7 +6,7 @@ $(document).ready(function () {
     $("#ladderBtn").bind( "click",
                           function (event) {
                             console.log("hello");
-                            $("#main").load("http://192.168.0.19:8080/ladder.html", function(){
+                            $("#main").load("http://192.168.0.14:8080/ladder.html", function(){
                               var theTemplateScript = $("#name-template").html();
                               theTemplate = Handlebars.compile(theTemplateScript);
                             });
@@ -14,25 +14,12 @@ $(document).ready(function () {
 
     $("#newMember").bind("click",
         function (event) {
-            $("#main").load("http://192.168.0.19:8080/newMember.html", function () {
+            $("#main").load("http://192.168.0.14:8080/newMember.html", function () {
                 null;
             });
     });
 
     db.init();
-    /*$("#ladderNav").on( "click",
-                          function (event) {
-                            //$("#main").load("http://192.168.56.1:8080/ladder.html");
-                            console.log("hello");
-                            console.log(evt.target);
-                          });
-
-    $("#med").on( "click",
-                          function (event) {
-                            //$("#main").load("http://192.168.56.1:8080/ladder.html");
-                            console.log("hello");
-                            console.log(evt.target);
-                          });*/
 
     $("form").submit(function (event) {
         alert("hello world");
@@ -48,7 +35,7 @@ $(document).ready(function () {
                                 db.addMember();
                                 break;  
                           default:
-                              var filename = "http://192.168.0.19:8080/" + event.target.id + ".html";
+                              var filename = "http://192.168.0.14:8080/" + event.target.id + ".html";
                               $("#ladderMain").load(filename, function () {
                                   //db.init();
 
@@ -61,8 +48,52 @@ $(document).ready(function () {
                                               $("#" + event.target.id + "Ladder").
                                                   append(theTemplate({
                                                       "theContext": {
-                                                          pos: theData.id.memberNumber,
-                                                          name: theData.id.forename,
+                                                          fullname: theData.id.forename + " " + theData.id.surname,
+                                                          rating: theData.ladder.med.currentRating
+                                                      }
+                                                  }));
+                                          });
+                                      });
+                                  db.getMembers()
+                                      .then(function (myData) {
+                                          console.log("got my data", myData);
+                                          myData.forEach(function (x) {
+                                              var theData = x.data();
+                                              console.log("breakpoint");
+                                              $("#" + event.target.id + "Ladder").
+                                                  append(theTemplate({
+                                                      "theContext": {
+                                                          fullname: theData.id.forename + " " + theData.id.surname,
+                                                          rating: theData.ladder.med.currentRating
+                                                      }
+                                                  }));
+                                          });
+                                      });
+                                  db.getMembers()
+                                      .then(function (myData) {
+                                          console.log("got my data", myData);
+                                          myData.forEach(function (x) {
+                                              var theData = x.data();
+                                              console.log("breakpoint");
+                                              $("#" + event.target.id + "Ladder").
+                                                  append(theTemplate({
+                                                      "theContext": {
+                                                          fullname: theData.id.forename + " " + theData.id.surname,
+                                                          rating: theData.ladder.med.currentRating
+                                                      }
+                                                  }));
+                                          });
+                                      });
+                                  db.getMembers()
+                                      .then(function (myData) {
+                                          console.log("got my data", myData);
+                                          myData.forEach(function (x) {
+                                              var theData = x.data();
+                                              console.log("breakpoint");
+                                              $("#" + event.target.id + "Ladder").
+                                                  append(theTemplate({
+                                                      "theContext": {
+                                                          fullname: theData.id.forename + " " + theData.id.surname,
                                                           rating: theData.ladder.med.currentRating
                                                       }
                                                   }));

@@ -120,6 +120,25 @@ body > div {
     background-color: #393939;    
 }
 
+.btn2 {
+  width: 50%;
+  height: 50%;
+  padding: 0.5em 2em;
+  background: #66757F;
+  color: white;
+  border: 3px solid #55ACEE;
+  border-radius: 10px;
+  box-shadow: 1px 2px 3px rgba(0,0,0,0.5);
+  text-shadow: -1px 0 0 rgba(0,0,0,0.3), 
+               0 -1px 0 rgba(0,0,0,0.3),
+			   0 1px 0 rgba(255,255,255,0.5),
+               -1px -1px 0 #b9b0b0;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  margin: 5;
+}
+
 /* grid item of main */
 #ladder {
   display: grid;
@@ -162,7 +181,8 @@ body > div {
 
 #medLadder {
     display: grid;
-    grid-template-columns: 30% 40% 30%;
+    grid-template-columns: 10% 50% 30% 10%;
+    grid-auto-rows: 10%;
     overflow-y: scroll;
     margin: 0;
     height: 550px;
