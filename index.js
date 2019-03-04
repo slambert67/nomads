@@ -6,7 +6,7 @@ $(document).ready(function () {
     $("#ladderBtn").bind( "click",
                           function (event) {
                             console.log("hello");
-                            $("#main").load("http://192.168.0.14:8080/ladder.html", function(){
+                            $("#main").load("http://192.168.56.1:8080/ladder.html", function(){
                               var theTemplateScript = $("#name-template").html();
                               theTemplate = Handlebars.compile(theTemplateScript);
                             });
@@ -14,9 +14,16 @@ $(document).ready(function () {
 
     $("#newMember").bind("click",
         function (event) {
-            $("#main").load("http://192.168.0.14:8080/newMember.html", function () {
+            $("#main").load("http://192.168.56.1:8080/newMember.html", function () {
                 null;
             });
+    });
+
+    $("#home").bind("click",
+    function (event) {
+        $("#main").load("http://192.168.56.1:8080/main.html", function () {
+            null;
+        });
     });
 
     db.init();
@@ -34,8 +41,8 @@ $(document).ready(function () {
                                 //db.init();
                                 db.addMember();
                                 break;  
-                          default:
-                              var filename = "http://192.168.0.14:8080/" + event.target.id + ".html";
+                          case "med":
+                              var filename = "http://192.168.56.1:8080/" + event.target.id + ".html";
                               $("#ladderMain").load(filename, function () {
                                   //db.init();
 
@@ -100,6 +107,8 @@ $(document).ready(function () {
                                           });
                                       });
                               });
+                        default:
+                              console.log("default");
                       }   
                    })  
     });
