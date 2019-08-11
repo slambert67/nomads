@@ -6,7 +6,7 @@ $(document).ready(function () {
     $("#ladderBtn").bind( "click",
                           function (event) {
                             console.log("hello");
-                            $("#main").load("http://192.168.0.14:8080/ladder.html", function(){
+                            $("#main").load("http://192.168.0.24:8080/ladder.html", function(){
                               var theTemplateScript = $("#name-template").html();
                               theTemplate = Handlebars.compile(theTemplateScript);
                             });
@@ -35,7 +35,7 @@ $(document).ready(function () {
                                 db.addMember();
                                 break;  
                           default:
-                              var filename = "http://192.168.0.14:8080/" + event.target.id + ".html";
+                              var filename = "http://192.168.0.24:8080/" + event.target.id + ".html";
                               $("#ladderMain").load(filename, function () {
                                   //db.init();
 
