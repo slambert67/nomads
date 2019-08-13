@@ -22,7 +22,15 @@ var db = (function() {
                 console.log("retrieved members");
                 myData.forEach( function(x) {
                     var theData = x.data();
-                    console.log("name:" + theData.id.forename);
+                    console.log("name:" + x.id + " - " + theData.id.forename);
+                    theData.squoink = "squoink";
+                    fdb.collection("members").doc(x.id).set(theData)
+                    .then ( function(){
+                        console.log("doc successfully updated");
+                    })
+                    .catch ( function(){
+                        console.log("failed to update doc");
+                    });
                 })
             });
 
