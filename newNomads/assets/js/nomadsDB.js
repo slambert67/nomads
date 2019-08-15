@@ -24,13 +24,13 @@ var db = (function() {
                     var theData = x.data();
                     console.log("name:" + x.id + " - " + theData.id.forename);
                     theData.squoink = "squoink";
-                    fdb.collection("members").doc(x.id).set(theData)
+                   /* fdb.collection("members").doc(x.id).set(theData)
                     .then ( function(){
                         console.log("doc successfully updated");
                     })
                     .catch ( function(){
                         console.log("failed to update doc");
-                    });
+                    });*/
                 })
             });
 
@@ -40,9 +40,20 @@ var db = (function() {
         return members;
     }
 
+    function abc(id,entry) {
+        fdb.collection("members").doc(id).set(entry)
+        .then ( function(){
+            console.log("rating successfully updated");
+        })
+        .catch ( function(){
+            console.log("failed to update rating");
+        });
+    }
+
     return {
         init: init,
-        getMembers: getMembers
+        getMembers: getMembers,
+        abc: abc
     };
 })();
 db.init();
