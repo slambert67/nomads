@@ -20,10 +20,32 @@ var db = (function() {
             .then( function(myData) {
                 members = myData;
                 console.log("retrieved members");
-                myData.forEach( function(x) {
-                    var theData = x.data();
-                    console.log("name:" + x.id + " - " + theData.id.forename);
+                var i =0;
+                myData.forEach( function(doc) {
+                    var theData = doc.data();
+                    console.log("name:" + doc.id + " - " + theData.id.forename);
                     theData.squoink = "squoink";
+
+                    i++;
+                    // build ladder entries
+                    var newtr = document.createElement("tr");
+                    var newtd = document.createElement("td");
+                    $(newtd).html(i);
+                    $(newtr).append(newtd);
+
+                    newtd = document.createElement("td");
+                    $(newtd).html(doc.data().id.forename);
+                    $(newtr).append(newtd);
+
+                    newtd = document.createElement("td");
+                    $(newtd).html(doc.data().id.forename);
+                    $(newtr).append(newtd);
+
+                    newtd = document.createElement("td");
+                    $(newtd).html(666);
+                    $(newtr).append(newtd);
+
+                    $("#collapseOne tbody").append(newtr);
                    /* fdb.collection("members").doc(x.id).set(theData)
                     .then ( function(){
                         console.log("doc successfully updated");
@@ -40,7 +62,7 @@ var db = (function() {
         return members;
     }
 
-    function abc(id,entry) {
+    function updateMember(id,entry) {
         fdb.collection("members").doc(id).set(entry)
         .then ( function(){
             console.log("rating successfully updated");
@@ -53,7 +75,7 @@ var db = (function() {
     return {
         init: init,
         getMembers: getMembers,
-        abc: abc
+        updateMember: updateMember
     };
 })();
 db.init();
