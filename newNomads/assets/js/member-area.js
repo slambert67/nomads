@@ -1,11 +1,11 @@
 jQuery(document).ready(function ($) {
 
-    /*(function () {
-
+    $(document).on("db:loaded", function(){
+        console.log("custom event fired");
         // retrieve members from database module
         var mymembers = db.getMembers();
         var i = 0;
-        mymembers.forEach( function(doc) {
+        mymembers.forEach(function (doc) {
             i++;
             // build ladder entries
             var newtr = document.createElement("tr");
@@ -18,19 +18,17 @@ jQuery(document).ready(function ($) {
             $(newtr).append(newtd);
 
             newtd = document.createElement("td");
-            $(newtd).html(doc.data().id.forename);
+            $(newtd).html(doc.data().id.surname);
             $(newtr).append(newtd);
 
             newtd = document.createElement("td");
-            $(newtd).html(666);
+            $(newtd).html(doc.data().ladder.med.currentRating);
             $(newtr).append(newtd);
 
             $("#collapseOne tbody").append(newtr);
 
         });
-
-
-    })();*/
+    });
 
 
     // define match players
@@ -76,14 +74,14 @@ jQuery(document).ready(function ($) {
         var t2p2DocId = $("#t2p2").val();
 
         // verify players
-        if ( match.validMatch( t1p1DodId, t1p2DocId, t2p1DocId, t2p2DocId )) {
+        if ( match.validMatch( t1p1DocId, t1p2DocId, t2p1DocId, t2p2DocId )) {
             console.log("valid match");
         } else {
             console.log("invalid match");
         }
 
         // update player statistics
-        match.updatePlayerStats(t1p1DodId, t1p2DocId, t2p1DocId, t2p2DocId);
+        match.updatePlayerStats(t1p1DocId, t1p2DocId, t2p1DocId, t2p2DocId);
 
         
         // write results to database

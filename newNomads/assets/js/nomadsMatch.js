@@ -10,7 +10,18 @@ var match = (function () {
         return false;
     }
 
+    function updatePlayerStats(t1p1DocId, t1p2DocId, t2p1DocId, t2p2DocId) {
+
+        var member = db.getMember(t1p1DocId);
+        var memberData = member.data();
+        var newRating = memberData.ladder.med.currentRating + 50;
+        memberData.ladder.med.currentRating = newRating;
+        db.updateMember(t1p1DocId, memberData);
+        console.log("hello");
+    }
+
     return {
-        validMatch: validMatch
+        validMatch: validMatch,
+        updatePlayerStats: updatePlayerStats
     };
 })();

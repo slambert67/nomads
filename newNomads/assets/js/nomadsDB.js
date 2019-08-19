@@ -19,47 +19,17 @@ var db = (function() {
         fdb.collection("members").get()
             .then( function(myData) {
                 members = myData;
-                console.log("retrieved members");
-                var i =0;
-                myData.forEach( function(doc) {
-                    var theData = doc.data();
-                    console.log("name:" + doc.id + " - " + theData.id.forename);
-                    theData.squoink = "squoink";
-
-                    i++;
-                    // build ladder entries
-                    var newtr = document.createElement("tr");
-                    var newtd = document.createElement("td");
-                    $(newtd).html(i);
-                    $(newtr).append(newtd);
-
-                    newtd = document.createElement("td");
-                    $(newtd).html(doc.data().id.forename);
-                    $(newtr).append(newtd);
-
-                    newtd = document.createElement("td");
-                    $(newtd).html(doc.data().id.forename);
-                    $(newtr).append(newtd);
-
-                    newtd = document.createElement("td");
-                    $(newtd).html(666);
-                    $(newtr).append(newtd);
-
-                    $("#collapseOne tbody").append(newtr);
-                   /* fdb.collection("members").doc(x.id).set(theData)
-                    .then ( function(){
-                        console.log("doc successfully updated");
-                    })
-                    .catch ( function(){
-                        console.log("failed to update doc");
-                    });*/
-                })
+                $(document).trigger("db:loaded");
             });
-
     }
 
     function getMembers() {
         return members;
+    }
+
+    function getMember(id) {
+        var member = members.docs.find(el => el.id === id);
+        return member;
     }
 
     function updateMember(id,entry) {
@@ -75,6 +45,7 @@ var db = (function() {
     return {
         init: init,
         getMembers: getMembers,
+        getMember: getMember,
         updateMember: updateMember
     };
 })();
