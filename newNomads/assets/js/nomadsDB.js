@@ -2,6 +2,7 @@ var db = (function() {
 
     var fdb;
     var members;
+    var sortedMembers;
 
     function init() {
         firebase.initializeApp({
@@ -19,12 +20,30 @@ var db = (function() {
         fdb.collection("members").get()
             .then( function(myData) {
                 members = myData;
+                sortedMembers = sortByRating();
+
                 $(document).trigger("db:loaded");
             });
     }
 
+
+    function sortByRating() {
+        var unsorted = [];
+        members.forEach(function (doc) {
+            unsorted.push(doc);
+        });
+
+        return unsorted.sort( function(a,b) {
+            return b.data().ladder.med.currentRating - a.data().ladder.med.currentRating;
+        });
+    }
+
     function getMembers() {
         return members;
+    }
+
+    function getSortedMembers() {
+        return sortedMembers;
     }
 
     function getMember(id) {
@@ -36,6 +55,7 @@ var db = (function() {
         fdb.collection("members").doc(id).set(entry)
         .then ( function(){
             console.log("rating successfully updated");
+            location.reload(true);
         })
         .catch ( function(){
             console.log("failed to update rating");
@@ -45,6 +65,7 @@ var db = (function() {
     return {
         init: init,
         getMembers: getMembers,
+        getSortedMembers: getSortedMembers,
         getMember: getMember,
         updateMember: updateMember
     };

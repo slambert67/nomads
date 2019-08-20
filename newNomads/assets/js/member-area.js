@@ -3,7 +3,7 @@ jQuery(document).ready(function ($) {
     $(document).on("db:loaded", function(){
         console.log("custom event fired");
         // retrieve members from database module
-        var mymembers = db.getMembers();
+        var mymembers = db.getSortedMembers();
         var i = 0;
         mymembers.forEach(function (doc) {
             i++;
@@ -25,8 +25,7 @@ jQuery(document).ready(function ($) {
             $(newtd).html(doc.data().ladder.med.currentRating);
             $(newtr).append(newtd);
 
-            $("#collapseOne tbody").append(newtr);
-
+            $("#collapseOne tbody").get(0).append(newtr);
         });
     });
 
@@ -76,12 +75,14 @@ jQuery(document).ready(function ($) {
         // verify players
         if ( match.validMatch( t1p1DocId, t1p2DocId, t2p1DocId, t2p2DocId )) {
             console.log("valid match");
+            // update player statistics
+            match.updateDoublesStats(t1p1DocId, t1p2DocId, t2p1DocId, t2p2DocId);
         } else {
             console.log("invalid match");
+            alert("invalid match");
         }
 
-        // update player statistics
-        match.updatePlayerStats(t1p1DocId, t1p2DocId, t2p1DocId, t2p2DocId);
+
 
         
         // write results to database

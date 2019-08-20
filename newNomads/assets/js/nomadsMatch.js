@@ -10,39 +10,55 @@ var match = (function () {
         return false;
     }
 
-    function updatePlayerStats(t1p1DocId, t1p2DocId, t2p1DocId, t2p2DocId) {
 
-        /*var member = db.getMember(t1p1DocId);
-        var memberData = member.data();
-        var newRating = memberData.ladder.med.currentRating + 50;
-        memberData.ladder.med.currentRating = newRating;
-        db.updateMember(t1p1DocId, memberData);
-        console.log("hello");*/
+    function ratingDelta(winnerCurrentRating, loserCurrentRating) {
 
-        // winner
-        var t1p1 = db.getMember(t1p1DocId);
-        var t1p1Data = t1p1.data();
-        var t1p1OldRating = t1p1Data.ladder.med.currentRating;
-        var t1p1TransformedRating = Math.pow(10,(t1p1OldRating / 400));
+        var winnerTransformedRating = Math.pow(10, (winnerCurrentRating / 400));
+        var loserTransformedRating = Math.pow(10, (loserCurrentRating / 400));
 
-        // loser
-        var t2p1 = db.getMember(t2p1DocId);
-        var t2p1Data = t2p1.data();
-        var t2p1OldRating = t2p1Data.ladder.med.currentRating;
-        var t2p1TransformedRating = Math.pow(10, (t2p1OldRating / 400));
+        var winnerExpectedScore = winnerTransformedRating / (winnerTransformedRating + loserTransformedRating);
+        //var loserExpectedScore = loserTransformedRating / (loserTransformedRating + winnerTransformedRating);
 
-        var t1p1ExpectedScore = t1p1TransformedRating / (t1p1TransformedRating + t2p1TransformedRating);
-        var t2p1ExpectedScore = t2p1TransformedRating / (t2p1TransformedRating + t1p1TransformedRating); 
+        return Math.round(32 * (1 - winnerExpectedScore));
+    }
 
-        var t1p1NewRating = t1p1OldRating + (32 * (1 - t1p1ExpectedScore));
-        var t2p1NewRating = t2p1OldRating + (32 * (0 - t2p1ExpectedScore)); 
 
-        console.log("t1p1 new rating = " + t1p1NewRating);
-        console.log("t2p1 new rating = " + t2p1NewRating); 
+    function updateDoublesStats(winningPlayer1DocId, winningPlayer2DocId, losingPlayer1DocId, losingPlayer2DocId) {
+
+        // winners
+        var winningPlayer1 = db.getMember(winningPlayer1DocId);
+        var winningPlayer1Data = winningPlayer1.data();
+        var winningPlayer1CurrentRating = winningPlayer1Data.ladder.med.currentRating;
+        var winningPlayer2 = db.getMember(winningPlayer2DocId);
+        var winningPlayer2Data = winningPlayer2.data();
+        var winningPlayer2CurrentRating = winningPlayer2Data.ladder.med.currentRating;
+
+        // losers
+        var losingPlayer1 = db.getMember(losingPlayer1DocId);
+        var losingPlayer1Data = losingPlayer1.data();
+        var losingPlayer1CurrentRating = losingPlayer1Data.ladder.med.currentRating;
+        var losingPlayer2 = db.getMember(losingPlayer2DocId);
+        var losingPlayer2Data = losingPlayer2.data();
+        var losingPlayer2CurrentRating = losingPlayer2Data.ladder.med.currentRating;
+
+        var winningTeamAvgRating = Math.round((winningPlayer1CurrentRating + winningPlayer2CurrentRating) / 2 );
+        var losingTeamAvgRating = Math.round((losingPlayer1CurrentRating + losingPlayer2CurrentRating) / 2);
+
+        var delta = ratingDelta(winningTeamAvgRating, losingTeamAvgRating);
+
+        winningPlayer1Data.ladder.med.currentRating = winningPlayer1Data.ladder.med.currentRating + Math.round(delta / 2);
+        winningPlayer2Data.ladder.med.currentRating = winningPlayer2Data.ladder.med.currentRating + Math.round(delta / 2);
+        losingPlayer1Data.ladder.med.currentRating  = losingPlayer1Data.ladder.med.currentRating - Math.round(delta / 2);
+        losingPlayer2Data.ladder.med.currentRating  = losingPlayer2Data.ladder.med.currentRating - Math.round(delta / 2);
+
+        db.updateMember(winningPlayer1DocId, winningPlayer1Data);
+        db.updateMember(winningPlayer2DocId, winningPlayer2Data);
+        db.updateMember(losingPlayer1DocId, losingPlayer1Data);
+        db.updateMember(losingPlayer2DocId, losingPlayer2Data); 
     }
 
     return {
         validMatch: validMatch,
-        updatePlayerStats: updatePlayerStats
+        updateDoublesStats: updateDoublesStats
     };
 })();
