@@ -1,2 +1,0 @@
-# nomads
-Nomads Badminton Club
