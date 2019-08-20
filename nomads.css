@@ -1,0 +1,230 @@
+html {
+    height: 100vh;
+}
+body {
+    background-color: #393939;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 15fr 83fr 1fr;
+    grid-template-rows: 1fr 16fr 62fr 10fr 10fr 1fr;
+    grid-row-gap: 5px;
+    grid-column-gap: 5px; 
+    margin: 0;    
+}
+
+body > div {
+    background-color: #CCD6DD;
+}
+
+/* grid item of body */
+#hdr {
+    grid-column-start: 2;
+    grid-column-end: 4;
+    grid-row-start: 2;
+    grid-row-end: 3;
+}
+
+#hdr > div {
+    display:flex;
+    align-items: center;
+    justify-content: center; 
+}
+
+/* grid item of body */
+#nav {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 3;
+    grid-row-end: 5;   
+    display: grid;
+    grid-template-rows: repeat(5,1fr);
+}
+
+#nav > div {
+    display:flex;
+    align-items: center;
+    justify-content: center; 
+}
+
+/* grid item of body */
+#main {
+    grid-column-start: 3;
+    grid-column-end: 4;
+    grid-row-start: 3;
+    grid-row-end: 4;  
+    background-color: #cf5c36;
+    height: 100%;
+}
+
+/* grid item of body */
+#misc {
+    grid-column-start: 3;
+    grid-column-end: 4;
+    grid-row-start: 4;
+    grid-row-end: 5;   
+    background-color: #66757F;
+}
+
+/* grid item of body */
+#ftr {
+    grid-column-start: 2;
+    grid-column-end: 4;
+    grid-row-start: 5;
+    grid-row-end: 6;   
+}
+
+.btn {
+  width: 50%;
+  height: 50%;
+  padding: 0.5em 2em;
+  background: #66757F;
+  color: white;
+  border: 3px solid #55ACEE;
+  border-radius: 10px;
+  box-shadow: 1px 2px 3px rgba(0,0,0,0.5);
+  text-shadow: -1px 0 0 rgba(0,0,0,0.3), 
+               0 -1px 0 rgba(0,0,0,0.3),
+			   0 1px 0 rgba(255,255,255,0.5),
+               -1px -1px 0 #b9b0b0;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px;
+}
+
+.btn:hover {
+  position: relative;
+  top: 1px;
+  cursor: pointer;
+  box-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+  text-shadow: -1px 0 0 rgba(0,0,0,0.3),
+               0 1px 0 rgba(0,0,0,0.3),
+			   0 0 0 rgba(255,255,255,0.5),
+               -1px 1px 0 rgba(250,151,3,0.5);
+    width: 60%;
+    height: 60%;
+    background-color: #393939;
+}
+
+.btnpressed {
+  position: relative;
+  top: 1px;
+  cursor: pointer;
+  box-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+  text-shadow: -1px 0 0 rgba(0,0,0,0.3),
+               0 1px 0 rgba(0,0,0,0.3),
+			   0 0 0 rgba(255,255,255,0.5),
+               -1px 1px 0 rgba(250,151,3,0.5);
+    width: 60%;
+    height: 60%;
+    background-color: #393939;    
+}
+
+.btn2 {
+  width: 50%;
+  height: 50%;
+  padding: 0.5em 2em;
+  background: #66757F;
+  color: white;
+  border: 3px solid #55ACEE;
+  border-radius: 10px;
+  box-shadow: 1px 2px 3px rgba(0,0,0,0.5);
+  text-shadow: -1px 0 0 rgba(0,0,0,0.3), 
+               0 -1px 0 rgba(0,0,0,0.3),
+			   0 1px 0 rgba(255,255,255,0.5),
+               -1px -1px 0 #b9b0b0;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  margin: 5;
+}
+
+/* grid item of main */
+#ladder {
+  display: grid;
+  grid-template-columns: 20% 40% 40%;
+  /*background-color: #cf5c36;*/
+  height: 100%;
+  grid-gap: 5px;
+}
+
+#ladderNav {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  /*background-color: #55ACEE;*/
+  grid-column-gap: 5px;
+  display: grid;
+  grid-template-rows: repeat(5,1fr);
+  height: 100%;
+}
+
+#ladderNav > div {
+    font-size: small;
+    display:flex;
+    align-items: center;
+    justify-content: center; 
+}
+
+#ladderMain {
+  grid-column-start:2;
+  grid-column-end: 3;
+  /*background-color: #55ACEE;*/
+  height: 100%;
+}
+
+#ladderMatch {
+  grid-column-start:3;
+  grid-column-end: 4;
+  /*background-color: #55ACEE;*/
+  height: 100%;
+}
+
+#medLadder {
+    display: grid;
+    grid-template-columns: 10% 50% 30% 10%;
+    grid-auto-rows: 10%;
+    overflow-y: scroll;
+    margin: 0;
+    height: 550px;
+}
+
+#wodLadder {
+    display: grid;
+    grid-template-columns: 30% 40% 30%;
+    overflow-y: scroll;
+    margin: 0;
+    height: 550px;
+}
+#midLadder {
+    display: grid;
+    grid-template-columns: 30% 40% 30%;
+    overflow-y: scroll;
+    margin: 0;
+    height: 550px;
+}
+#mesLadder {
+    display: grid;
+    grid-template-columns: 30% 40% 30%;
+    overflow-y: scroll;
+    margin: 0;
+    height: 550px;
+}
+#wosLadder {
+    display: grid;
+    grid-template-columns: 30% 40% 30%;
+    overflow-y: scroll;
+    margin: 0;
+    height: 550px;
+}
+
+.box2 {
+  background-color: #55ACEE;;
+  color: #fff;
+  border-radius: 10px;
+  /*padding: 20px;*/
+  margin: 5px;
+  font-size: 100%;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+}
