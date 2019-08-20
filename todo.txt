@@ -1,4 +1,0 @@
-meta viewport height?
-fontawesome
-set absolute height of html and body?
-set absolute height in javascript?
