@@ -97,7 +97,6 @@ var db = (function() {
         fdb.collection("members").doc(id).set(entry)
         .then ( function(){
             console.log("rating successfully updated");
-            location.reload(true);
         })
         .catch ( function(){
             console.log("failed to update rating");
