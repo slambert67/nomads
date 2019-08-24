@@ -16,14 +16,56 @@ var db = (function() {
         fdb.settings({
             timestampsInSnapshots: true
         });  
-        
+
+        var newMember = {
+            "contact": {
+                "address": {
+                    "area": "",
+                    "city": "",
+                    "houseNumber": 1,
+                    "postcode": "",
+                    "street": ""
+                },
+                "email": "alex_smith83@hotmail.com",
+                "landline": "",
+                "mobile": "07912563138"
+            },
+            "id": {
+                "forename": "Chris",
+                "surname": "Graves",
+                "middleName": "",
+                "gender": "M"
+            },
+            "ladder": {
+                "med": { "currentRating": 1500 },
+                "mes": { "currentRating": 1500 },
+                "mid": { "currentRating": 1500 }
+            }
+        }
+
+       /* fdb.collection("members").add(newMember)
+        .then(function () {
+            console.log("new member added");
+            fdb.collection("members").get()
+                .then(function (myData) {
+                    members = myData;
+                    sortedMembers = sortByRating();
+
+                    $(document).trigger("db:loaded");
+                });
+        })
+        .catch(function (error) {
+            console.log("error adding member: " + error);
+        });*/
+
         fdb.collection("members").get()
-            .then( function(myData) {
+            .then(function (myData) {
                 members = myData;
                 sortedMembers = sortByRating();
 
                 $(document).trigger("db:loaded");
             });
+
     }
 
 
