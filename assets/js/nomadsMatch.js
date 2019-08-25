@@ -45,16 +45,18 @@ var match = (function () {
         var losingTeamAvgRating = Math.round((losingPlayer1CurrentRating + losingPlayer2CurrentRating) / 2);
 
         var delta = ratingDelta(winningTeamAvgRating, losingTeamAvgRating);
+        var winLose = Math.round(delta / 2);
 
-        winningPlayer1Data.ladder.med.currentRating = winningPlayer1Data.ladder.med.currentRating + Math.round(delta / 2);
-        winningPlayer2Data.ladder.med.currentRating = winningPlayer2Data.ladder.med.currentRating + Math.round(delta / 2);
-        losingPlayer1Data.ladder.med.currentRating  = losingPlayer1Data.ladder.med.currentRating - Math.round(delta / 2);
-        losingPlayer2Data.ladder.med.currentRating  = losingPlayer2Data.ladder.med.currentRating - Math.round(delta / 2);
+        winningPlayer1Data.ladder.med.currentRating = winningPlayer1Data.ladder.med.currentRating + winLose;
+        winningPlayer2Data.ladder.med.currentRating = winningPlayer2Data.ladder.med.currentRating + winLose;
+        losingPlayer1Data.ladder.med.currentRating = losingPlayer1Data.ladder.med.currentRating - winLose;
+        losingPlayer2Data.ladder.med.currentRating = losingPlayer2Data.ladder.med.currentRating - winLose;
 
-        db.updateMember(winningPlayer1DocId, winningPlayer1Data);
-        db.updateMember(winningPlayer2DocId, winningPlayer2Data);
-        db.updateMember(losingPlayer1DocId, losingPlayer1Data);
-        db.updateMember(losingPlayer2DocId, losingPlayer2Data); 
+        db.updateDoublesStats(winningPlayer1DocId, winningPlayer1Data,
+                              winningPlayer2DocId, winningPlayer2Data,
+                              losingPlayer1DocId, losingPlayer1Data,
+                              losingPlayer2DocId, losingPlayer2Data,
+                              winLose);
     }
 
     return {

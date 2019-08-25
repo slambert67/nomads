@@ -257,27 +257,24 @@
                                     </div>
                                     <div id="collapseOne" class="accordion-body collapse">
                                         <div class="accordion-inner">
-                                            <table class="table table-striped">
-                                                <thead>
-                                                    <tr>
-                                                        <th>#</th>
-                                                        <th>First Name</th>
-                                                        <th>Last Name</th>
-                                                        <th>Rating</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                </tbody>
-                                            </table>
-                                            <!-- line divider -->
-                                            <div class="row">
-                                                <div class="span12">
-                                                    <div class="solid_line"></div>
-                                                </div>
+                                            <div id="medTablePanel">
+                                                <table id="medtable" class="table table-striped">
+                                                    <thead>
+                                                     <tr>
+                                                            <th>#</th>
+                                                            <th>First Name</th>
+                                                            <th>Last Name</th>
+                                                            <th>Rating</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    </tbody>
+                                                </table>
+
+                                                <div id="medSubmitResultBtn"><button type="button" class="btn btn-inverse">Submit New Result</button></div>
                                             </div>
-                                            <!-- end divider -->
-                                            <div id="mdResultButton"><button type="button" class="btn btn-inverse">Submit New Result</button></div>
-                                            <div id="submitResult" class="hide">
+
+                                            <div id="medSubmitResultPanel" class="hide">
                                                 <table class="table table-striped">
                                                     <thead>
                                                         <tr>
@@ -303,12 +300,18 @@
                                                             <td><select id="t2p2"></select></td>
                                                         </tr>
                                                         <tr>
-                                                            <td><button id="submitMDR" type="button" class="btn btn-color">Submit</button></td>
+                                                            <td><button id="submitMedResult" type="button" class="btn btn-color">Submit</button></td>
                                                             <td></td>
-                                                            <td><button id="cancelMDR" type="button" class="btn btn-danger">Cancel</button></td>
+                                                            <td><button id="cancelMedResult" type="button" class="btn btn-danger">Cancel</button></td>
                                                         </tr>                               
                                                     </tbody>
                                                 </table>
+                                            </div>
+                                            <div id="medResultSummary" class="hide">
+                                                <h2>Result summary</h2>
+                                                <div id="medt1Summary"></div>
+                                                <div id="medt2Summary"></div>
+                                                <td><button id="medSummaryBtn" type="button" class="btn btn-color">OK</button></td>
                                             </div>
                                         </div>
                                     </div>

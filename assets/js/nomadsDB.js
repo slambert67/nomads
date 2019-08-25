@@ -93,13 +93,50 @@ var db = (function() {
         return member;
     }
 
-    function updateMember(id,entry) {
-        fdb.collection("members").doc(id).set(entry)
+    function updateDoublesStats(id1,entry1,id2,entry2,id3,entry3,id4,entry4,winLose) {
+
+        var t1p1;
+        var txt;
+
+        fdb.collection("members").doc(id1).set(entry1)
         .then ( function(){
-            console.log("rating successfully updated");
+            console.log("member1 successfully updated");
+
+            fdb.collection("members").doc(id2).set(entry2)
+                .then(function () {
+                    console.log("member2 successfully updated");
+
+                    fdb.collection("members").doc(id3).set(entry3)
+                        .then(function () {
+                            console.log("member3 successfully updated");
+                            fdb.collection("members").doc(id4).set(entry4)
+                                .then(function () {
+                                    console.log("member4 successfully updated");
+                                    txt = "<h4>" + entry1.id.forename + " " + entry1.id.surname + " and ";
+                                    txt = txt + entry2.id.forename + " " + entry2.id.surname;
+                                    txt = txt + " gained " + winLose + " rating points</h4>";
+                                    $("#medt1Summary").html(txt);
+                                    txt = "<h4>" + entry3.id.forename + " " + entry3.id.surname + " and ";
+                                    txt = txt + entry4.id.forename + " " + entry4.id.surname;
+                                    txt = txt + " Lost " + winLose + " rating points</h4>";
+                                    $("#medt2Summary").html(txt);
+
+                                    
+                                })
+                                .catch(function () {
+                                    console.log("failed to update member4 rating");
+                                });
+                        })
+                        .catch(function () {
+                            console.log("failed to update member3 rating");
+                        });
+                })
+                .catch(function () {
+                    console.log("failed to update member2 rating");
+                });
         })
         .catch ( function(){
-            console.log("failed to update rating");
+            console.log("failed to update member1 rating");
         });
     }
 
@@ -108,7 +145,7 @@ var db = (function() {
         getMembers: getMembers,
         getSortedMembers: getSortedMembers,
         getMember: getMember,
-        updateMember: updateMember
+        updateDoublesStats: updateDoublesStats
     };
 })();
 db.init();

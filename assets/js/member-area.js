@@ -1,7 +1,7 @@
 jQuery(document).ready(function ($) {
 
     $(document).on("db:loaded", function(){
-        console.log("custom event fired");
+
         // retrieve members from database module
         var mymembers = db.getSortedMembers();
         var i = 0;
@@ -31,14 +31,16 @@ jQuery(document).ready(function ($) {
 
 
     // define match players
-    $("#mdResultButton").on("click", function(){
+    $("#medSubmitResultBtn").on("click", function(){
 
-        // reveal and hide appropriate elements
-        $(this).addClass("hide");
-        $("#submitResult").removeClass("hide");
+        // hide medTablePanel
+        $("#medTablePanel").addClass("hide");
+
+        // reveal medSubmitResultPanel
+        $("#medSubmitResultPanel").removeClass("hide");
 
         // retrieve members from database module
-        var mymembers = db.getMembers();
+        var mymembers = db.getSortedMembers();
 
         // add each member to select list
         let i = 0;
@@ -59,14 +61,17 @@ jQuery(document).ready(function ($) {
 
     });
 
+    // cancel an actual result
+    $("#cancelMedResult").on("click", function () {
+        // hide medSubmitResultPanel
+        $("#medSubmitResultPanel").addClass("hide");
+
+        // reveal medTablePanel
+        $("#medTablePanel").removeClass("hide");
+    });
+
     // submit an actual result
-    $("#submitMDR").on("click", function () {
-
-        // reveal and hide appropriate elements
-        $(this).addClass("hide");
-        $("#submitResult").addClass("hide");
-        $("#mdResultButton").removeClass("hide");
-
+    $("#submitMedResult").on("click", function () {
         var t1p1DocId = $("#t1p1").val();
         var t1p2DocId = $("#t1p2").val();
         var t2p1DocId = $("#t2p1").val();
@@ -75,6 +80,10 @@ jQuery(document).ready(function ($) {
         // verify players
         if ( match.validMatch( t1p1DocId, t1p2DocId, t2p1DocId, t2p2DocId )) {
             console.log("valid match");
+            // hide medSubmitResultPanel
+            $("#medSubmitResultPanel").addClass("hide");
+            // reveal medResultSummary
+            $("#medResultSummary").removeClass("hide");
             // update player statistics
             match.updateDoublesStats(t1p1DocId, t1p2DocId, t2p1DocId, t2p2DocId);
         } else {
@@ -82,16 +91,10 @@ jQuery(document).ready(function ($) {
             alert("invalid match");
         }
 
+    });
 
-
-        
-        // write results to database
-
-        /*var doc = $("#t1p1").data('memberdoc');
-        var docData = doc.data();
-        var docid = doc.id;
-        docData.ladder.med.currentRating = 666;
-        db.abc(docid,docData);*/
+    $("#medSummaryBtn").on("click", function(){
+        location.reload(true);
     });
 
     $("#cancelMDR").on("click", function () {
