@@ -59,6 +59,7 @@ var db = (function() {
         });*/
 
         fdb.collection("members").get()
+        .where("id.gender", "==", "M")
             .then(function (myData) {
                 members = myData;
                 sortedMembers = sortByRating();
