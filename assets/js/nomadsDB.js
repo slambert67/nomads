@@ -58,8 +58,9 @@ var db = (function() {
             console.log("error adding member: " + error);
         });*/
 
-        fdb.collection("members").get()
+        fdb.collection("members")
         .where("id.gender", "==", "M")
+        .get()       
             .then(function (myData) {
                 members = myData;
                 sortedMembers = sortByRating();
