@@ -260,7 +260,7 @@
                                             <div id="medTablePanel">
                                                 <table id="medtable" class="table table-striped">
                                                     <thead>
-                                                     <tr>
+                                                        <tr>
                                                             <th>#</th>
                                                             <th>Player</th>
                                                             <th>Won / Lost</th>
@@ -321,16 +321,68 @@
                                 <div class="accordion-group">
                                     <div class="accordion-heading">
                                         <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
-                                            <i class="icon-caret-right"></i> Collapsible Group Item #2 </a>
+                                            <i class="icon-caret-right"></i> Mixed Doubles </a>
                                     </div>
                                     <div id="collapseTwo" class="accordion-body collapse">
                                         <div class="accordion-inner">
-                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute,
-                            non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
-                            sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh
-                            helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher
-                            vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't
-                            heard of them accusamus labore sustainable VHS.
+                                            <div id="midTablePanel">
+                                                <table id="midtable" class="table table-striped">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>#</th>
+                                                            <th>Player</th>
+                                                            <th>Won / Lost</th>
+                                                            <th>Rating</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    </tbody>
+                                                </table>
+                                            
+                                                <div id="midSubmitResultBtn"><button type="button" class="btn btn-inverse">Submit New Result</button></div>
+                                            </div>
+                                            <div id="midSubmitResultPanel" class="hide">
+                                                <table class="table table-striped">
+                                                    <thead>
+                                                        <tr>
+                                                            <th></th>
+                                                            <th>Player 1</th>
+                                                            <th>Player 2</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td><strong>Winners</strong></td>
+                                                            <td><select id="midt1p1"></select></td>
+                                                            <td><select id="midt1p2"></select></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><strong>Vs</strong></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><strong>Losers</strong></td>
+                                                            <td><select id="midt2p1"></select></td>
+                                                            <td><select id="midt2p2"></select></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><button id="submitMidResult" type="button" class="btn btn-color">Submit</button></td>
+                                                            <td></td>
+                                                            <td><button id="cancelMidResult" type="button" class="btn btn-danger">Cancel</button></td>
+                                                        </tr>                               
+                                                    </tbody>
+                                                </table>
+                                            </div>   
+                                            <div id="midResultSummary" class="hide">
+                                                <h4>Result summary</h4>
+                                                <div id="midt1Summary"></div>
+                                                <br>
+                                                <div id="midt2Summary"></div>
+                                                <br>
+                                                <td><button id="midSummaryBtn" type="button" class="btn btn-color">OK</button></td>
+                                            </div>
+
                                         </div>
                                     </div>
                                 </div>

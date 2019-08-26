@@ -1,8 +1,10 @@
 var db = (function() {
 
     var fdb;
-    var members;
-    var sortedMembers;
+    var maleMembers;
+    var sortedMaleMembers;
+    var femaleMembers;
+    var sortedFemaleMembers;
 
     function init() {
         firebase.initializeApp({
@@ -26,24 +28,24 @@ var db = (function() {
                     "postcode": "",
                     "street": ""
                 },
-                "email": "alex_smith83@hotmail.com",
+                "email": "ellie_harper@hotmail.com",
                 "landline": "",
                 "mobile": "07912563138"
             },
             "id": {
-                "forename": "Chris",
-                "surname": "Graves",
+                "forename": "Ellie",
+                "surname": "Harper",
                 "middleName": "",
-                "gender": "M"
+                "gender": "F"
             },
             "ladder": {
-                "med": { "currentRating": 1500, "won":0, "lost":0 },
-                "mes": { "currentRating": 1500 },
-                "mid": { "currentRating": 1500 }
+                "wod": { "currentRating": 1500, "won":0, "lost":0 },
+                "mid": { "currentRating": 1500, "won":0, "lost":0 },
+                "wos": { "currentRating": 1500 }
             }
         }
 
-       /* fdb.collection("members").add(newMember)
+        /*fdb.collection("members").add(newMember)
         .then(function () {
             console.log("new member added");
             fdb.collection("members").get()
@@ -58,20 +60,31 @@ var db = (function() {
             console.log("error adding member: " + error);
         });*/
 
-        fdb.collection("members").get()
+        fdb.collection("members")
+        .where("id.gender", "==", "M")
+        .get()
             .then(function (myData) {
-                members = myData;
-                sortedMembers = sortByRating();
+                maleMembers = myData;
+                sortedMaleMembers = sortMalesByRating();
 
-                $(document).trigger("db:loaded");
+                $(document).trigger("db:loaded1");
             });
 
+        fdb.collection("members")
+            .where("id.gender", "==", "F")
+            .get()
+            .then(function (myData) {
+                femaleMembers = myData;
+                sortedFemaleMembers = sortFemalesByRating();
+
+                $(document).trigger("db:loaded2");
+            });
     }
 
 
-    function sortByRating() {
+    function sortMalesByRating() {
         var unsorted = [];
-        members.forEach(function (doc) {
+        maleMembers.forEach(function (doc) {
             unsorted.push(doc);
         });
 
@@ -80,20 +93,39 @@ var db = (function() {
         });
     }
 
-    function getMembers() {
-        return members;
+    function sortFemalesByRating() {
+        var unsorted = [];
+        femaleMembers.forEach(function (doc) {
+            unsorted.push(doc);
+        });
+
+        return unsorted.sort(function (a, b) {
+            return b.data().ladder.mid.currentRating - a.data().ladder.mid.currentRating;
+        });
     }
 
-    function getSortedMembers() {
-        return sortedMembers;
+    function getMaleMembers() {
+        return maleMembers;
+    }
+
+    function getSortedMaleMembers() {
+        return sortedMaleMembers;
+    }
+
+    function getFemaleMembers() {
+        return FemaleMembers;
+    }
+
+    function getSortedFemaleMembers() {
+        return sortedFemaleMembers;
     }
 
     function getMember(id) {
-        var member = members.docs.find(el => el.id === id);
+        var member = maleMembers.docs.find(el => el.id === id);
         return member;
     }
 
-    function updateDoublesStats(id1,entry1,id2,entry2,id3,entry3,id4,entry4,winLose) {
+    function updateMedStats(id1,entry1,id2,entry2,id3,entry3,id4,entry4,winLose) {
 
         var t1p1;
         var txt;
@@ -119,9 +151,7 @@ var db = (function() {
                                     txt = entry3.id.forename + " " + entry3.id.surname + " and ";
                                     txt = txt + entry4.id.forename + " " + entry4.id.surname;
                                     txt = txt + " lost " + winLose + " rating points";
-                                    $("#medt2Summary").html(txt);
-
-                                    
+                                    $("#medt2Summary").html(txt);                                  
                                 })
                                 .catch(function () {
                                     console.log("failed to update member4 rating");
@@ -142,10 +172,12 @@ var db = (function() {
 
     return {
         init: init,
-        getMembers: getMembers,
-        getSortedMembers: getSortedMembers,
+        getMaleMembers: getMaleMembers,
+        getFemaleMembers: getFemaleMembers,
+        getSortedMaleMembers: getSortedMaleMembers,
+        getSortedFemaleMembers: getSortedFemaleMembers,
         getMember: getMember,
-        updateDoublesStats: updateDoublesStats
+        updateMedStats: updateMedStats
     };
 })();
 db.init();
