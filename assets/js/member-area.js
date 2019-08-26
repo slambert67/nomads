@@ -14,11 +14,11 @@ jQuery(document).ready(function ($) {
             $(newtr).append(newtd);
 
             newtd = document.createElement("td");
-            $(newtd).html(doc.data().id.forename);
+            $(newtd).html(doc.data().id.forename + " " + doc.data().id.surname);
             $(newtr).append(newtd);
 
             newtd = document.createElement("td");
-            $(newtd).html(doc.data().id.surname);
+            $(newtd).html(doc.data().ladder.med.won + " / " + doc.data().ladder.med.lost);
             $(newtr).append(newtd);
 
             newtd = document.createElement("td");

@@ -48,9 +48,13 @@ var match = (function () {
         var winLose = Math.round(delta / 2);
 
         winningPlayer1Data.ladder.med.currentRating = winningPlayer1Data.ladder.med.currentRating + winLose;
+        winningPlayer1Data.ladder.med.won = winningPlayer1Data.ladder.med.won + 1;
         winningPlayer2Data.ladder.med.currentRating = winningPlayer2Data.ladder.med.currentRating + winLose;
+        winningPlayer2Data.ladder.med.won = winningPlayer2Data.ladder.med.won + 1;
         losingPlayer1Data.ladder.med.currentRating = losingPlayer1Data.ladder.med.currentRating - winLose;
+        losingPlayer1Data.ladder.med.lost = losingPlayer1Data.ladder.med.lost + 1;
         losingPlayer2Data.ladder.med.currentRating = losingPlayer2Data.ladder.med.currentRating - winLose;
+        losingPlayer2Data.ladder.med.lost = losingPlayer2Data.ladder.med.lost + 1;
 
         db.updateDoublesStats(winningPlayer1DocId, winningPlayer1Data,
                               winningPlayer2DocId, winningPlayer2Data,

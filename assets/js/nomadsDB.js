@@ -37,7 +37,7 @@ var db = (function() {
                 "gender": "M"
             },
             "ladder": {
-                "med": { "currentRating": 1500 },
+                "med": { "currentRating": 1500, "won":0, "lost":0 },
                 "mes": { "currentRating": 1500 },
                 "mid": { "currentRating": 1500 }
             }
@@ -112,13 +112,13 @@ var db = (function() {
                             fdb.collection("members").doc(id4).set(entry4)
                                 .then(function () {
                                     console.log("member4 successfully updated");
-                                    txt = "<h4>" + entry1.id.forename + " " + entry1.id.surname + " and ";
+                                    txt = entry1.id.forename + " " + entry1.id.surname + " and ";
                                     txt = txt + entry2.id.forename + " " + entry2.id.surname;
-                                    txt = txt + " gained " + winLose + " rating points</h4>";
+                                    txt = txt + " gained " + winLose + " rating points";
                                     $("#medt1Summary").html(txt);
-                                    txt = "<h4>" + entry3.id.forename + " " + entry3.id.surname + " and ";
+                                    txt = entry3.id.forename + " " + entry3.id.surname + " and ";
                                     txt = txt + entry4.id.forename + " " + entry4.id.surname;
-                                    txt = txt + " Lost " + winLose + " rating points</h4>";
+                                    txt = txt + " lost " + winLose + " rating points";
                                     $("#medt2Summary").html(txt);
 
                                     
