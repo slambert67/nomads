@@ -1,62 +1,70 @@
 jQuery(document).ready(function ($) {
 
-    $(document).on("db:loaded1", function(){
+    db.init()
+    .then (
+        // fulfillment handler
+        function () {
+            console.log("init fulfilled");
+            var mymembers = db.getMalesSortedByRating();
+            var i = 0;
+            mymembers.forEach(function (doc) {
+                i++;
+                // build ladder entries
+                var newtr = document.createElement("tr");
+                var newtd = document.createElement("td");
+                $(newtd).html(i);
+                $(newtr).append(newtd);
 
-        // retrieve members from database module
-        var mymembers = db.getSortedMaleMembers();
-        var i = 0;
-        mymembers.forEach(function (doc) {
-            i++;
-            // build ladder entries
-            var newtr = document.createElement("tr");
-            var newtd = document.createElement("td");
-            $(newtd).html(i);
-            $(newtr).append(newtd);
+                newtd = document.createElement("td");
+                $(newtd).html(doc.data().id.forename + " " + doc.data().id.surname);
+                $(newtr).append(newtd);
 
-            newtd = document.createElement("td");
-            $(newtd).html(doc.data().id.forename + " " + doc.data().id.surname);
-            $(newtr).append(newtd);
+                newtd = document.createElement("td");
+                $(newtd).html(doc.data().ladder.med.won + " / " + doc.data().ladder.med.lost);
+                $(newtr).append(newtd);
 
-            newtd = document.createElement("td");
-            $(newtd).html(doc.data().ladder.med.won + " / " + doc.data().ladder.med.lost);
-            $(newtr).append(newtd);
+                newtd = document.createElement("td");
+                $(newtd).html(doc.data().ladder.med.currentRating);
+                $(newtr).append(newtd);
 
-            newtd = document.createElement("td");
-            $(newtd).html(doc.data().ladder.med.currentRating);
-            $(newtr).append(newtd);
+                $("#collapseOne tbody").get(0).append(newtr);
+            });
 
-            $("#collapseOne tbody").get(0).append(newtr);
-        });
-    });
+            mymembers = db.getFemalesSortedByRating();
+            i = 0;
+            mymembers.forEach(function (doc) {
+                i++;
+                // build ladder entries
+                var newtr = document.createElement("tr");
+                var newtd = document.createElement("td");
+                $(newtd).html(i);
+                $(newtr).append(newtd);
 
-    $(document).on("db:loaded2", function () {
+                newtd = document.createElement("td");
+                $(newtd).html(doc.data().id.forename + " " + doc.data().id.surname);
+                $(newtr).append(newtd);
 
-        // retrieve members from database module
-        var mymembers = db.getSortedFemaleMembers();
-        var i = 0;
-        mymembers.forEach(function (doc) {
-            i++;
-            // build ladder entries
-            var newtr = document.createElement("tr");
-            var newtd = document.createElement("td");
-            $(newtd).html(i);
-            $(newtr).append(newtd);
+                newtd = document.createElement("td");
+                $(newtd).html(doc.data().ladder.mid.won + " / " + doc.data().ladder.mid.lost);
+                $(newtr).append(newtd);
 
-            newtd = document.createElement("td");
-            $(newtd).html(doc.data().id.forename + " " + doc.data().id.surname);
-            $(newtr).append(newtd);
+                newtd = document.createElement("td");
+                $(newtd).html(doc.data().ladder.mid.currentRating);
+                $(newtr).append(newtd);
 
-            newtd = document.createElement("td");
-            $(newtd).html(doc.data().ladder.mid.won + " / " + doc.data().ladder.mid.lost);
-            $(newtr).append(newtd);
+                $("#collapseTwo tbody").get(0).append(newtr);
+            });
 
-            newtd = document.createElement("td");
-            $(newtd).html(doc.data().ladder.mid.currentRating);
-            $(newtr).append(newtd);
+            $("#accordion2").removeClass("hide");
+        },
 
-            $("#collapseTwo tbody").get(0).append(newtr);
-        });
-    });
+        //rejection handler
+        function (err) {
+            console.error("init error");
+        }
+    );
+
+
     // define mens doubles match players
     $("#medSubmitResultBtn").on("click", function(){
 
@@ -67,7 +75,7 @@ jQuery(document).ready(function ($) {
         $("#medSubmitResultPanel").removeClass("hide");
 
         // retrieve members from database module
-        var mymembers = db.getSortedMaleMembers();
+        var mymembers = db.getMalesSortedByName();
 
         // add each member to select list
         let i = 0;
@@ -96,7 +104,7 @@ jQuery(document).ready(function ($) {
         $("#midSubmitResultPanel").removeClass("hide");
 
         // retrieve members from database module
-        var mymembers = db.getSortedFemaleMembers();
+        var mymembers = db.getFemalesSortedByRating();
 
         // add each member to select list
         let i = 0;

@@ -1,10 +1,35 @@
 var db = (function() {
 
     var fdb;
-    var maleMembers;
-    var sortedMaleMembers;
-    var femaleMembers;
-    var sortedFemaleMembers;
+    var males;
+    var females;
+ 
+    var newMember = {
+        "contact": {
+            "address": {
+                "area": "",
+                "city": "",
+                "houseNumber": 1,
+                "postcode": "",
+                "street": ""
+            },
+            "email": "marklucas8809@gmail.com",
+            "landline": "",
+            "mobile": "07912563138"
+        },
+        "id": {
+            "forename": "Mark",
+            "surname": "Lucas",
+            "middleName": "",
+            "gender": "M"
+        },
+        "ladder": {
+            "med": { "currentRating": 1500, "won": 0, "lost": 0 },
+            "mid": { "currentRating": 1500, "won": 0, "lost": 0 },
+            "mes": { "currentRating": 1500 }
+        }
+    }
+
 
     function init() {
         firebase.initializeApp({
@@ -19,72 +44,56 @@ var db = (function() {
             timestampsInSnapshots: true
         });  
 
-        var newMember = {
-            "contact": {
-                "address": {
-                    "area": "",
-                    "city": "",
-                    "houseNumber": 1,
-                    "postcode": "",
-                    "street": ""
-                },
-                "email": "ellie_harper@hotmail.com",
-                "landline": "",
-                "mobile": "07912563138"
-            },
-            "id": {
-                "forename": "Ellie",
-                "surname": "Harper",
-                "middleName": "",
-                "gender": "F"
-            },
-            "ladder": {
-                "wod": { "currentRating": 1500, "won":0, "lost":0 },
-                "mid": { "currentRating": 1500, "won":0, "lost":0 },
-                "wos": { "currentRating": 1500 }
-            }
-        }
 
-        /*fdb.collection("members").add(newMember)
-        .then(function () {
-            console.log("new member added");
-            fdb.collection("members").get()
-                .then(function (myData) {
-                    members = myData;
-                    sortedMembers = sortByRating();
-
-                    $(document).trigger("db:loaded");
-                });
-        })
-        .catch(function (error) {
-            console.log("error adding member: " + error);
-        });*/
-
-        fdb.collection("members")
+        var m = fdb.collection("members")
         .where("id.gender", "==", "M")
         .get()
-            .then(function (myData) {
-                maleMembers = myData;
-                sortedMaleMembers = sortMalesByRating();
+        .then (
+            // fulfillment handler
+            function (myData) {
+                males = myData;
+            },
 
-                $(document).trigger("db:loaded1");
-            });
+            // rejection handler
+            function (err) {
+                console.error("get males error");
+            }
+        );
 
-        fdb.collection("members")
-            .where("id.gender", "==", "F")
-            .get()
-            .then(function (myData) {
-                femaleMembers = myData;
-                sortedFemaleMembers = sortFemalesByRating();
+        var w = fdb.collection("members")
+        .where("id.gender", "==", "F")
+        .get()
+        .then(
+            // fulfillment handler
+            function (myData) {
+                females = myData;
+            },
 
-                $(document).trigger("db:loaded2");
-            });
+            // rejection handler
+            function (err) {
+                console.error("get females error");
+            }
+        );
+
+        return Promise.all([m,w]);
     }
 
 
-    function sortMalesByRating() {
+    function getMale(id) {
+        var member = maleMembers.docs.find(el => el.id === id);
+        return member;
+    }
+
+
+    function getFemale(id) {
+        var member = FemaleMembers.docs.find(el => el.id === id);
+        return member;
+    }
+
+
+    function getMalesSortedByRating() {
         var unsorted = [];
-        maleMembers.forEach(function (doc) {
+        males.forEach(function (doc) {
             unsorted.push(doc);
         });
 
@@ -93,9 +102,25 @@ var db = (function() {
         });
     }
 
-    function sortFemalesByRating() {
+    function getMalesSortedByName() {
         var unsorted = [];
-        femaleMembers.forEach(function (doc) {
+        males.forEach(function (doc) {
+            unsorted.push(doc);
+        });
+
+        return unsorted.sort(function (a, b) {
+            if ((a.data().id.forename + a.data().id.surname) <= (b.data().id.forename + b.data().id.surname)) {
+                return -1;
+            } else {
+                return 1;
+            }
+        });
+
+    }
+
+    function getFemalesSortedByRating() {
+        var unsorted = [];
+        females.forEach(function (doc) {
             unsorted.push(doc);
         });
 
@@ -104,28 +129,19 @@ var db = (function() {
         });
     }
 
-    function getMaleMembers() {
-        return maleMembers;
+
+
+
+    function updateMedStats(id1, entry1, id2, entry2, id3, entry3, id4, entry4) {
+        var update1 = fdb.collection("members").doc(id1).set(entry1);
+        var update2 = fdb.collection("members").doc(id2).set(entry2);
+        var update3 = fdb.collection("members").doc(id3).set(entry3);
+        var update4 = fdb.collection("members").doc(id4).set(entry4);
+
+        return Promise.all ( [update1,update2,update3,update4] );
     }
 
-    function getSortedMaleMembers() {
-        return sortedMaleMembers;
-    }
-
-    function getFemaleMembers() {
-        return FemaleMembers;
-    }
-
-    function getSortedFemaleMembers() {
-        return sortedFemaleMembers;
-    }
-
-    function getMember(id) {
-        var member = maleMembers.docs.find(el => el.id === id);
-        return member;
-    }
-
-    function updateMedStats(id1,entry1,id2,entry2,id3,entry3,id4,entry4,winLose) {
+    function updateMedStatsOld(id1,entry1,id2,entry2,id3,entry3,id4,entry4,winLose) {
 
         var t1p1;
         var txt;
@@ -172,12 +188,12 @@ var db = (function() {
 
     return {
         init: init,
-        getMaleMembers: getMaleMembers,
-        getFemaleMembers: getFemaleMembers,
-        getSortedMaleMembers: getSortedMaleMembers,
-        getSortedFemaleMembers: getSortedFemaleMembers,
-        getMember: getMember,
+        getMalesSortedByRating: getMalesSortedByRating,
+        getMalesSortedByName: getMalesSortedByName,
+        getFemalesSortedByRating: getFemalesSortedByRating,
+        getMale: getMale,
+        getFemale: getFemale,
         updateMedStats: updateMedStats
     };
 })();
-db.init();
+

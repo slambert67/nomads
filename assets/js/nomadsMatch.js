@@ -56,11 +56,14 @@ var match = (function () {
         losingPlayer2Data.ladder.med.currentRating = losingPlayer2Data.ladder.med.currentRating - winLose;
         losingPlayer2Data.ladder.med.lost = losingPlayer2Data.ladder.med.lost + 1;
 
-        db.updateDoublesStats(winningPlayer1DocId, winningPlayer1Data,
+        db.updateMedStats(winningPlayer1DocId, winningPlayer1Data,
                               winningPlayer2DocId, winningPlayer2Data,
                               losingPlayer1DocId, losingPlayer1Data,
                               losingPlayer2DocId, losingPlayer2Data,
-                              winLose);
+                              winLose)
+        .then(
+            console.log("doubles stats updated")
+        )
     }
 
     return {
