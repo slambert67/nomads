@@ -126,13 +126,19 @@ var db = (function() {
     }
 
 
-    function updateDoublesMatchStats(id1, entry1, id2, entry2, id3, entry3, id4, entry4) {
-        
-        var update2 = fdb.collection("members").doc(id2).set(entry2);
-        var update3 = fdb.collection("members").doc(id3).set(entry3);
-        var update4 = fdb.collection("members").doc(id4).set(entry4);
+    function getCredentials(username, pwd) {
 
-        return Promise.all ( [update1,update2,update3,update4] );
+        var username = $("#medCred").val();
+        var pwd = $("#medPwd").val();
+
+        console.log("username = " + username);
+        console.log("password = " + pwd);
+
+        return fdb.collection("credentials")
+                .where("forename", "==", "Steve")
+                .where("surname", "==", "Lambert")
+                .get();
+
     }
 
     return {
@@ -143,7 +149,8 @@ var db = (function() {
         getFemalesSortedByName: getFemalesSortedByName,
         getMale: getMale,
         getFemale: getFemale,
-        updateMember: updateMember
+        updateMember: updateMember,
+        getCredentials: getCredentials
     };
 })();
 
