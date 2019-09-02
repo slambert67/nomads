@@ -100,8 +100,11 @@ jQuery(document).ready(function ($) {
     // define mens doubles match players
     $("#medSubmitResultBtn").on("click", function(){
 
+        checkCredentials();
+
         // hide medTablePanel
         $("#medTablePanel").addClass("hide");
+
 
         // reveal medSubmitResultPanel
         $("#medSubmitResultPanel").removeClass("hide");
@@ -122,6 +125,9 @@ jQuery(document).ready(function ($) {
             $("#medt1p2").get(0).add( $(opt).clone().get(0));
             $("#medt2p1").get(0).add( $(opt).clone().get(0));
             $("#medt2p2").get(0).add( $(opt).clone().get(0));
+
+            // add option to credentials list
+            $("#medCred").get(0).add( $(opt).clone().get(0));
         })
     });
 
@@ -196,6 +202,7 @@ jQuery(document).ready(function ($) {
 
     // submit an actual med result
     $("#submitMedResult").on("click", function () {
+
         var medt1p1DocId = $("#medt1p1").val();
         var medt1p2DocId = $("#medt1p2").val();
         var medt2p1DocId = $("#medt2p1").val();
@@ -236,6 +243,8 @@ jQuery(document).ready(function ($) {
 
     // submit an actual mid result
     $("#submitMidResult").on("click", function () {
+
+    
         var midt1p1DocId = $("#midt1p1").val();
         var midt1p2DocId = $("#midt1p2").val();
         var midt2p1DocId = $("#midt2p1").val();
@@ -281,6 +290,31 @@ jQuery(document).ready(function ($) {
     $("#midSummaryBtn").on("click", function () {
         location.reload(true);
     });
+
+
+
+    /*
+    ********************************************************************************
+    Credential checking
+    ********************************************************************************
+    */
+    function checkCredentials() {
+        console.log("checking credentials");
+
+        db.getCredentials($("#medCred").val(),$("#medPwd").val())
+        .then (
+            function(docs) {
+                console.log("retrieved user");
+                if ( docs.size === 1 && docs.docs[0].data().password === "squoink") {
+                    console.log("valid");
+                } else {
+                    console.log("invalid");
+                }
+            }
+        );
+
+
+    }
 
  });
 
