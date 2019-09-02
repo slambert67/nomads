@@ -44,9 +44,12 @@
 
 <!-- Template Custom Javascript File -->
 <script src="assets/js/custom.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.5.5/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.5.5/firebase-firestore.js"></script>
+<script src="assets/js/nomadsDB.js"></script>
+<script src="assets/js/nomadsAdmin.js"></script>
 </head>
 
-<!-- START http-server in project directory: http-server -c-1 -->
 <body>
   <header>
     <!-- Navbar
@@ -74,15 +77,6 @@
                       <li class="dropdown active">
                         <a href="index.html">Home</a>
                       </li>
-                      <li class="dropdown">
-                        <a href="club-info.html">Club Info</a>
-                      </li>
-                      <li class="dropdown">
-                        <a href="login.html">Member's Area</a>
-                      </li>
-                      <li class="dropdown">
-                          <a href="admin.html">Admin</a>
-                      </li>
                     </ul>
                   </nav>
                 </div>
@@ -98,36 +92,13 @@
   <section id="intro">
 
     <div class="container">
+
       <div class="row">
         <div class="span6">
-          <img src="assets/img/banner-with-text.jpg" alt="" />
-          <p class="lead">
-            <h4>Friendly club based in South manchester.</h4>
-          </p>
-          <ul class="list list-ok strong bigger">
-            <li>All standards above beginner welcome</li>
-            <li>Full year or Summer only memberships available</li>
-            <li>Competitive league badminton (if you get in one of the teams!)</li>
-            <li>Summer and Winter social events</li>
-            <li>"Refreshments" afterwards in a local pub/bar for those interested in joining us</li>
-          </ul>
-
+            <div class="hide"><button id="resetMedBtn" type="button" class="btn btn-inverse">Reset Men's Doubles Stats</button></div>
         </div>
+
         <div class="span6">
-
-          <div class="group section-wrap upper" id="upper">
-            <div class="section-2 group">
-              <ul id="images" class="rs-slider">
-                <li class="group"><img src="assets/img/1.jpg" alt="" /></li>
-                <li class="group"><img src="assets/img/2.jpg" alt="" /></li>
-                <li class="group"><img src="assets/img/3.jpg" alt="" /></li>
-                <li class="group"><img src="assets/img/4.jpg" alt="" /></li>
-                <li class="group"><img src="assets/img/5.jpg" alt="" /></li>
-              </ul>
-            </div>
-            <!-- /.section-2 -->
-          </div>
-
         </div>
       </div>
     </div>
