@@ -108,10 +108,27 @@ var match = (function () {
 
         if (wp2 === null) {
             // singles match
-            return Promise.all([wp1, lp1]);
+            //var statsUpdated = Promise.all([wp1, lp1]);
+
+            // update match submission log
+
         } else {
             // doubles match
-            return [Promise.all([wp1, wp2, lp1, lp2]), pointsWonOrLost];
+            //return [Promise.all([wp1, wp2, lp1, lp2]), pointsWonOrLost];
+
+            var submitter = ma.getSubmitter();
+            var log = {
+                "submitter": submitter,
+                "winner1": winningPlayer1DocId,
+                "winner2": winningPlayer2DocId,
+                "loser1": losingPlayer1DocId,
+                "loser2": losingPlayer2DocId,
+                "delta": pointsWonOrLost
+            }
+            var logUpdated = db.updateMedSubmissionLog(log);
+
+            return [Promise.all([wp1, wp2, lp1, lp2, logUpdated]), pointsWonOrLost];
+
         }
     }
 

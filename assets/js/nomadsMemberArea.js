@@ -1,3 +1,22 @@
+var ma = (function () {
+
+    var submitter;
+
+    function getSubmitter() {
+        return submitter;
+    }
+
+    function setSubmitter(pSubmitterDocId) {
+        var male = db.getMale(pSubmitterDocId)
+        submitter = male.data().id.forename + ' ' + male.data().id.surname;
+    }
+
+    return {
+        getSubmitter: getSubmitter,
+        setSubmitter: setSubmitter 
+    }
+})();
+
 jQuery(document).ready(function ($) {
 
     db.init()
@@ -32,6 +51,12 @@ jQuery(document).ready(function ($) {
 
                 $("#medAccordion tbody").get(0).append(newtr);
 
+                // create option element
+                var opt = document.createElement("option");
+                $(opt).val(doc.id);
+                opt.text = doc.data().id.forename + " " + doc.data().id.surname;
+                // add option to credentials list
+                $("#medCred").get(0).add(opt);
             });
 
             // build mid ladder entries
@@ -100,35 +125,47 @@ jQuery(document).ready(function ($) {
     // define mens doubles match players
     $("#medSubmitResultBtn").on("click", function(){
 
-        checkCredentials();
+        checkCredentials()
+        .then(
+            function (docs) {
+                console.log("retrieved user");
+                if (docs.size === 1 && docs.docs[0].data().password === $("#medPwd").val()) {
+                    console.log("valid");
 
-        // hide medTablePanel
-        $("#medTablePanel").addClass("hide");
+                    ma.setSubmitter($("#medCred").val());
+
+                    // hide medTablePanel
+                    $("#medTablePanel").addClass("hide");
+
+                    // reveal medSubmitResultPanel
+                    $("#medSubmitResultPanel").removeClass("hide");
+
+                    // retrieve members from database module
+                    var males = db.getMalesSortedByName();
+
+                    // add each member to select list
+                    males.forEach(function (doc) {
+
+                        // create option element
+                        var opt = document.createElement("option");
+                        $(opt).val(doc.id);
+                        opt.text = doc.data().id.forename + " " + doc.data().id.surname;
+
+                        // add instance of option element to each select
+                        $("#medt1p1").get(0).add(opt);
+                        $("#medt1p2").get(0).add($(opt).clone().get(0));
+                        $("#medt2p1").get(0).add($(opt).clone().get(0));
+                        $("#medt2p2").get(0).add($(opt).clone().get(0));
+                    })
+                } else {
+                    alert("invalid user");
+                }
+            }
+        );
 
 
-        // reveal medSubmitResultPanel
-        $("#medSubmitResultPanel").removeClass("hide");
 
-        // retrieve members from database module
-        var males = db.getMalesSortedByName();
 
-        // add each member to select list
-        males.forEach( function(doc) {
-
-            // create option element
-            var opt = document.createElement("option");
-            $(opt).val(doc.id);
-            opt.text = doc.data().id.forename + " " + doc.data().id.surname;
-
-            // add instance of option element to each select
-            $("#medt1p1").get(0).add(opt);
-            $("#medt1p2").get(0).add( $(opt).clone().get(0));
-            $("#medt2p1").get(0).add( $(opt).clone().get(0));
-            $("#medt2p2").get(0).add( $(opt).clone().get(0));
-
-            // add option to credentials list
-            $("#medCred").get(0).add( $(opt).clone().get(0));
-        })
     });
 
     // define mixed doubles match players
@@ -301,18 +338,7 @@ jQuery(document).ready(function ($) {
     function checkCredentials() {
         console.log("checking credentials");
 
-        db.getCredentials($("#medCred").val(),$("#medPwd").val())
-        .then (
-            function(docs) {
-                console.log("retrieved user");
-                if ( docs.size === 1 && docs.docs[0].data().password === "squoink") {
-                    console.log("valid");
-                } else {
-                    console.log("invalid");
-                }
-            }
-        );
-
+        return db.getCredentials($("#medCred").val(),$("#medPwd").val());
 
     }
 

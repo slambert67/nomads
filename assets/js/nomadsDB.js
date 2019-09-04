@@ -126,21 +126,22 @@ var db = (function() {
     }
 
 
-    function getCredentials(username, pwd) {
+    function getCredentials(userId, pwd) {
 
-        var username = $("#medCred").val();
-        var pwd = $("#medPwd").val();
-
-        console.log("username = " + username);
+        console.log("userid = " + userId);
         console.log("password = " + pwd);
 
         return fdb.collection("credentials")
-                .where("forename", "==", "Steve")
-                .where("surname", "==", "Lambert")
+                .where("id", "==", userId)
+                .where("password", "==", pwd )
                 .get();
 
     }
 
+    function updateMedSubmissionLog(log) {
+        return fdb.collection("med_submission_log").add(log);
+    }
+    
     return {
         init: init,
         getMalesSortedByRating: getMalesSortedByRating,
@@ -150,7 +151,8 @@ var db = (function() {
         getMale: getMale,
         getFemale: getFemale,
         updateMember: updateMember,
-        getCredentials: getCredentials
+        getCredentials: getCredentials,
+        updateMedSubmissionLog: updateMedSubmissionLog
     };
 })();
 
