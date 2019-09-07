@@ -42,6 +42,7 @@
         <script src="assets/js/jquery.flexslider.js"></script>
         <script src="assets/js/jquery.refineslide.js"></script>
         <script src="assets/js/jquery.ui.totop.js"></script>
+        <script src="assets/js/handlebars-v4.2.0.js"></script>
         
         <!-- Template Custom Javascript File -->
         <script src="assets/js/custom.js"></script>
@@ -133,19 +134,7 @@
                             </ul>
                             <div class="tab-content">
                                 <div class="tab-pane active" id="one">
-                                        <p>
-                                            <strong>Augue iriure</strong> dolorum per ex, ne iisque ornatus veritus duo. Ex nobis
-                                            integre lucilius sit, pri ea falli ludus appareat. Eum quodsi fuisset id, nostro
-                                            patrioque qui id. Nominati eloquentiam in mea.
-                                        </p>
-                                        <p>
-                                            No eum sanctus vituperata reformidans, dicant abhorreant ut pro. Duo id enim iisque praesent, amet intellegat per et, solet
-                                            referrentur eum et.
-                                        </p>
-                                        <p>
-                                            Tale dolor mea ex, te enim assum suscipit cum, vix aliquid omittantur in. Duo eu cibo dolorum menandri, nam sumo dicit admodum
-                                            ei. Ne mazim commune honestatis cum, mentitum phaedrum sit et.
-                                        </p>
+
                                 </div>
                                 <div class="tab-pane" id="two">
                                        <p>
@@ -181,18 +170,6 @@
                                 <div id="medAccordion" class="accordion-body collapse">
                                     <div class="accordion-inner">
                                         <div id="medTablePanel">
-                                            <table id="medTable" class="table table-striped">
-                                                <thead>
-                                                    <tr>
-                                                        <th>#</th>
-                                                        <th>Player</th>
-                                                        <th>Won / Lost</th>
-                                                        <th>Rating</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                </tbody>
-                                            </table>
 
                                             <table>
                                                 <thead>
@@ -369,6 +346,39 @@
 <footer class="footer">
     <h4>footer</h4>
 </footer>
+
+<!-- templates -->
+<script id="test-template" type="text/x-handlebars-template">
+  <div class="entry">
+    <h1>{{title}}</h1>
+    <div class="body">
+      {{body}}
+    </div>
+  </div>
+</script>
+
+<script id="medLadderTemplate" type="text/x-handlebars-template">
+    <table id="medTable" class="table table-striped">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Player</th>
+                <th>Won / Lost</th>
+                <th>Rating</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each males}}
+                <tr>
+                    <td>{{this.position}}</td>
+                    <td>{{this.forename}}</td>
+                    <td>{{this.surname}}</td>
+                    <td>{{this.rating}}</td>
+                </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</script>
 
 </body>
 

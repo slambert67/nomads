@@ -19,6 +19,17 @@ var ma = (function () {
 
 jQuery(document).ready(function ($) {
 
+    // template
+    /*var source = document.getElementById("test-template").innerHTML;
+    var template = Handlebars.compile(source);
+
+    var context = { title: "My New Post", body: "This is my first post!" };
+    var html = template(context);
+
+    $("#one").html(html);*/
+
+
+
     db.init()
     .then (
         // fulfillment handler
@@ -28,6 +39,22 @@ jQuery(document).ready(function ($) {
             var females = db.getFemalesSortedByRating();
 
             // build med ladder entries
+            var templateSrc = $("#medLadderTemplate").html();
+            var template = Handlebars.compile(templateSrc);
+            var context = {"males":[]};
+            males.forEach(function (doc,i) {
+                var male = {};
+                male.position = i+1;
+                male.forename = doc.data().id.forename;
+                male.surname = doc.data().id.surname;
+                male.won = doc.data().ladder.med.won;
+                male.lost = doc.data().ladder.med.lost;
+                male.rating = doc.data().ladder.med.currentRating;
+                context.males.push(male);
+            });
+            var html = template(context);
+            $("#medTablePanel").html(html);
+            /*
             var i = 0;
             males.forEach(function (doc) {
                 i++;
@@ -57,7 +84,7 @@ jQuery(document).ready(function ($) {
                 opt.text = doc.data().id.forename + " " + doc.data().id.surname;
                 // add option to credentials list
                 $("#medCred").get(0).add(opt);
-            });
+            });*/
 
             // build mid ladder entries
             i = 0;
