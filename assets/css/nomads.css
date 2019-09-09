@@ -111,7 +111,32 @@ ul.list-ok li:before {
 }
 
 /* accordion */
+#headingOne:hover {
+   background: #27a845; 
+   cursor: pointer;
+}
+#headingTwo:hover {
+   background: #27a845; 
+   cursor: pointer;
+}
+#headingThree:hover {
+   background: #27a845; 
+   cursor: pointer;
+}
+#headingFour:hover {
+   background: #27a845; 
+   cursor: pointer;
+}
+#headingFive:hover {
+   background: #27a845; 
+   cursor: pointer;
+}
 
+.icon-caret-right:before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "\f0da";
+}
  
 
 
