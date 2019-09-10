@@ -53,6 +53,10 @@ var db = (function () {
         return Promise.all([m, w]);
     }
 
+    function getMales() {
+        return males;
+    }
+
     function getMembersSortedByRating(pLadder) {
         var unsorted = [];
 
@@ -86,9 +90,28 @@ var db = (function () {
         });
     }
 
+    function addMember( pMember ) {
+
+        fdb.collection("members").add(pMember)
+            .then(function (docRef) {
+                console.log("Document written with ID: ", docRef.id);
+            })
+            .catch(function (error) {
+                console.error("Error adding document: ", error);
+            });
+
+    }
+
+    function updateMember(memberId, memberData) {
+        return fdb.collection("members").doc(memberId).set(memberData);
+    }
+
     return {
         init: init,
-        getMembersSortedByRating: getMembersSortedByRating
+        getMales: getMales,
+        getMembersSortedByRating: getMembersSortedByRating,
+        addMember: addMember,
+        updateMember: updateMember
     };
 
 
