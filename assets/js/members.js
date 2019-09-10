@@ -1,0 +1,46 @@
+var members = (function () {
+
+    function buildLadder( pLadder ) {
+
+        var members = db.getMembersSortedByRating(pLadder.ladder);
+        var context = { "members": [] };
+
+        members.forEach(function (doc, i) {
+            var member = {};
+            member.position = i + 1;
+            member.name = doc.data().id.forename + " " + doc.data().id.surname;
+            member.stats = doc.data().ladder[pLadder.ladder].won + " / " + doc.data().ladder[pLadder.ladder].lost;
+            member.rating = doc.data().ladder[pLadder.ladder].currentRating;
+            context.members.push(member);
+        });
+
+        var templateSrc = $("#" + pLadder.template).html();
+        var template = Handlebars.compile(templateSrc);
+        var html = template(context);
+        $("#" + pLadder.element).html(html);
+    }
+
+    return {
+        buildLadder: buildLadder
+    };
+})();
+
+jQuery(document).ready(function ($) {
+
+    db.init()
+    .then(
+        // fulfillment handler
+        function () {
+            members.buildLadder( { "ladder": "med", "element": "medladder", "template": "ladderTemplate"} );
+            members.buildLadder( { "ladder": "mid", "element": "midladder", "template": "ladderTemplate" });
+            members.buildLadder( { "ladder": "wod", "element": "wodladder", "template": "ladderTemplate" });
+        },
+
+        //rejection handler
+        function (err) {
+            console.error("init error");
+        }
+    );
+
+
+});

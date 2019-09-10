@@ -25,8 +25,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prettyPhoto/3.1.6/js/jquery.prettyPhoto.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.5/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.5/firebase-firestore.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.2.0/handlebars.min.js"></script>
 
     <!-- Project Scripts -->
+    <script src="assets/js/db.js"></script>
+    <script src="assets/js/members.js"></script>
     <script src="assets/js/nomads.js"></script>
 
 </head>
@@ -148,7 +153,7 @@
                             </div>
                         </nav>
                         <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
-                            <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
+                            <div class="tab-content py-3 px-3 px-sm-0" id="medladder">
                                     <p>men's doubles</p>
                             </div>
                         </div>
@@ -161,7 +166,7 @@
                             </div>
                         </nav>
                         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-                            <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
+                            <div class="tab-content py-3 px-3 px-sm-0" id="midladder">
                                 <p>Mixed doubles</p>
                             </div>
                         </div>
@@ -174,7 +179,7 @@
                             </div>
                         </nav>
                         <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-                            <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
+                            <div class="tab-content py-3 px-3 px-sm-0" id="wodladder">
                                 <p>Women's doubles</p>
                             </div>
                         </div>
@@ -188,7 +193,7 @@
                             </div>
                         </nav>
                         <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
-                            <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
+                            <div class="tab-content py-3 px-3 px-sm-0" id="mesladder">
                                 <p>Men's Singles</p>
                             </div>
                         </div>
@@ -202,7 +207,7 @@
                             </div>
                         </nav>
                         <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
-                            <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
+                            <div class="tab-content py-3 px-3 px-sm-0" id="wosladder">
                                 <p>Women's Singles</p>
                             </div>
                         </div>
@@ -216,6 +221,29 @@
         </div>
     </section>
 
+<!-- Templates-->
+<script id="ladderTemplate" type="text/x-handlebars-template">
+    <table id="{{id}}" class="table table-striped">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Player</th>
+                <th>Won / Lost</th>
+                <th>Rating</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each members}}
+                <tr>
+                    <td>{{this.position}}</td>
+                    <td>{{this.name}}</td>
+                    <td>{{this.stats}}</td>
+                    <td>{{this.rating}}</td>
+                </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</script>
 </body>
 
 </html>
