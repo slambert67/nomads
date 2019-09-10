@@ -20,8 +20,26 @@ var members = (function () {
         $("#" + pLadder.element).html(html);
     }
 
+    function maleNames( pSelect ) {
+
+        var members = db.getMales();
+        var context = { "members": [] };
+        members.forEach(function (doc) {
+            var member = {};
+            member.name = doc.data().id.forename + " " + doc.data().id.surname;
+            member.docid = doc.id;
+            context.members.push(member);
+        });    
+        
+        var templateSrc = $("#namesTemplate").html();
+        var template = Handlebars.compile(templateSrc);
+        var html = template(context);
+        $("#" + pSelect.ele).html(html);
+    }
+
     return {
-        buildLadder: buildLadder
+        buildLadder: buildLadder,
+        maleNames: maleNames
     };
 })();
 
@@ -34,6 +52,10 @@ jQuery(document).ready(function ($) {
             members.buildLadder( { "ladder": "med", "element": "medladder", "template": "ladderTemplate"} );
             members.buildLadder( { "ladder": "mid", "element": "midladder", "template": "ladderTemplate" });
             members.buildLadder( { "ladder": "wod", "element": "wodladder", "template": "ladderTemplate" });
+            members.buildLadder( { "ladder": "mes", "element": "mesladder", "template": "ladderTemplate" });
+            members.buildLadder( { "ladder": "wos", "element": "wosladder", "template": "ladderTemplate" });
+
+            members.maleNames( {"ele": "medsubmitters"} );
         },
 
         //rejection handler

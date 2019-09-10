@@ -103,6 +103,34 @@ jQuery(document).ready(function ($) {
                     ad.resetStats(doc,"med");
                 });
             });
+            $("#resetmes").on("click", function () {
+                var males = db.getMales();
+                males.forEach(function (doc) {
+                    ad.resetStats(doc, "mes");
+                });
+            });
+            $("#resetmid").on("click", function () {
+                var males = db.getMales();
+                males.forEach(function (doc) {
+                    ad.resetStats(doc, "mid");
+                });
+                var females = db.getFemales();
+                females.forEach(function (doc) {
+                    ad.resetStats(doc, "mid");
+                });
+            });
+            $("#resetwod").on("click", function () {
+                var females = db.getFemales();
+                females.forEach(function (doc) {
+                    ad.resetStats(doc, "wod");
+                });
+            });
+            $("#resetwos").on("click", function () {
+                var females = db.getFemales();
+                females.forEach(function (doc) {
+                    ad.resetStats(doc, "wos");
+                });
+            });
         }
     );
 

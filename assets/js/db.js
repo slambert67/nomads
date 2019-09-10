@@ -57,6 +57,10 @@ var db = (function () {
         return males;
     }
 
+    function getFemales() {
+        return females;
+    }
+
     function getMembersSortedByRating(pLadder) {
         var unsorted = [];
 
@@ -109,6 +113,7 @@ var db = (function () {
     return {
         init: init,
         getMales: getMales,
+        getFemales: getFemales,
         getMembersSortedByRating: getMembersSortedByRating,
         addMember: addMember,
         updateMember: updateMember
