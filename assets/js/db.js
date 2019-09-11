@@ -110,13 +110,25 @@ var db = (function () {
         return fdb.collection("members").doc(memberId).set(memberData);
     }
 
+    function getCredentials(name, pwd) {
+
+        console.log("in credentials name = " + name);
+        console.log("in credentials password = " + pwd);
+
+        return fdb.collection("credentials")
+            .where("name", "==", name)
+            .where("password", "==", pwd)
+            .get();
+    }
+
     return {
         init: init,
         getMales: getMales,
         getFemales: getFemales,
         getMembersSortedByRating: getMembersSortedByRating,
         addMember: addMember,
-        updateMember: updateMember
+        updateMember: updateMember,
+        getCredentials: getCredentials
     };
 
 

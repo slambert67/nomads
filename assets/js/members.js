@@ -1,5 +1,15 @@
 var members = (function () {
 
+    var submitter;
+
+    function setSubmitter( pSubmitter ) {
+        submitter = pSubmitter;
+    }
+
+    function getSubmitter() {
+        return submitter;
+    }
+
     function buildLadder( pLadder ) {
 
         var members = db.getMembersSortedByRating(pLadder.ladder);
@@ -27,7 +37,6 @@ var members = (function () {
         members.forEach(function (doc) {
             var member = {};
             member.name = doc.data().id.forename + " " + doc.data().id.surname;
-            member.docid = doc.id;
             context.members.push(member);
         });    
         
@@ -39,7 +48,9 @@ var members = (function () {
 
     return {
         buildLadder: buildLadder,
-        maleNames: maleNames
+        maleNames: maleNames,
+        getSubmitter: getSubmitter,
+        setSubmitter: setSubmitter
     };
 })();
 
@@ -63,6 +74,26 @@ jQuery(document).ready(function ($) {
             console.error("init error");
         }
     );
+
+    $("#entermedresult").on("click", function() {
+
+        console.log("submitter = " + $("#medsubmitters").val());
+        console.log("entered password = " + $("#medpwd").val());
+
+        db.getCredentials($("#medsubmitters").val(), $("#medpwd").val())
+        .then (
+
+            function(docs) {
+                                  
+                if (docs.size === 1 && docs.docs[0].data().password === $("#medpwd").val()) {
+                    console.log("valid");
+                    members.setSubmitter($("#medsubmitters").val());
+                } else {
+                    console.log("invalid");
+                }
+            }
+        );
+    });
 
 
 });

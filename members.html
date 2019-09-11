@@ -263,9 +263,9 @@
 
 <!-- Name options -->
 <script id="namesTemplate" type="text/x-handlebars-template">
-    <option value="">--Please select submitter--</option>
+    <option value="{{this.docid}}">--Please select submitter--</option>
     {{#each members}}
-        <option value="{{this.docid}}">{{this.name}}</option>
+        <option value="{{this.name}}">{{this.name}}</option>
     {{/each}}
 </script>
 
