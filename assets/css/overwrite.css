@@ -1,0 +1,63 @@
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    background-color: #f2f2f2;
+}
+
+header {
+    height: 10%;
+    background-color:#333333;
+    color:#fafafa;
+    display: flex;
+    align-items: center;
+}
+
+a {
+    color: #fafafa;
+}
+
+a:hover {
+    /*color:#398b5b;*/
+    color: #e6e6e6;
+    text-decoration: none;
+}
+
+.nav > li > a {
+    padding: 0 0 20px 20px;
+}
+
+li.active a {
+	color:#4eb478;	
+}
+
+@media (max-width: 767px) {
+    header {
+        height:20%;
+    }
+}
+
+#clubSummary {
+    list-style:none;
+}
+
+#clubSummary > li {
+    padding: 5px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+#clubSummary > li:before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900; 
+    content: "\f00c";
+    color:#27a845;    
+}
+
+.icon-caret-right:before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "\f0da";
+}
