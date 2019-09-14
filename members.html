@@ -13,18 +13,17 @@
     
     <!-- CDN Stylesheets -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css"/>
     
     <!-- Project stylesheets -->
+    <link rel="stylesheet" href="assets/css/overwrite.css">
     <link rel="stylesheet" href="assets/css/nomads.css">
 
     <!-- CDN Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prettyPhoto/3.1.6/js/jquery.prettyPhoto.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.5.5/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.5.5/firebase-firestore.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.2.0/handlebars.min.js"></script>
@@ -39,123 +38,108 @@
 <body>
 
     <header>
-        <!-- Navigation bar -->
+        <!-- flexbox to align centrally on vertical axis-->
         <div class="container-fluid">
             <div class="row">
-                <div class="col-sm-4 bg-dark text-light" style="display:flex; justify-content:center;align-items: center">
-                    <h1>Nomads Badminton Club</h1>
+                <div class="col-sm-0 col-md-2"></div>
+                <div class="col-sm-12 col-md-4">
+                    <div style="display:flex; justify-content:center">
+                        <h1>Nomads Badminton</h1>
+                    </div>
                 </div>
-    
-                <div class="col-sm-8 bg-dark" style="display:flex; justify-content:center;align-items: center">
-                    <nav class="navbar navbar-expand-md navbar-dark">
-                        <ul class="nav topnav">
-                            <li class="nav-item">
-                                <a class="nav-link text-light" href="index.html">Home</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link active text-success" href="members.html">Members</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-light" href="admin.html">Admin</a>
-                            </li>
-                        </ul>
-                    </nav>
+                <div class="col-sm-12 col-md-4">
+                    <div style="display:flex; justify-content:center; padding-top:20px;">
+                        <nav>
+                            <ul class="nav">
+                                <li>
+                                    <a href="index.html">Home</a>
+                                </li>
+                                <li class="active">
+                                    <a href="members.html">Members</a>
+                                </li>
+                                <li>
+                                    <a href="admin.html">Admin</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
                 </div>
-            </div>   
-        </div>   
-    </header>
-
-    <section>
-        <div class="container-fluid">
-            <div class="row breadcrumb">
-                <div class="col-sm-4" style="display:flex;justify-content:center; align-items: center">
-                    <h3><strong>Members</strong></h3>
-                </div>
-                <div class="col-sm-8" style="display:flex;justify-content:center;align-items: center">
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a class="text-dark" href="index.html">Home</a></li>
-                            <li class="breadcrumb-item"><a class="text-success" href="#">Members</a></li>
-                        </ol>
-                    </nav>
-                </div>
+                <div class="col-sm-0 col-md-2"></div>
             </div>
         </div>
-    </section>
+    </header>
 
-    <section id="maincontent">
+    <div style="height:5%"></div>
+
+    <section id="indexMain" style="color: #5a5a5a; height:75%">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-2">
 
-                </div>
-                <div class="col-sm-6 col-md-4">
-                    <h1>Tabs</h1>
-                <div class="col-xs-12 ">
+                <div class="col-sm-0 col-md-2"></div>
+
+                <div class="col-sm-12 col-md-4">
                     <nav>
-                        <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
-                            <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab"
-                                aria-controls="nav-home" aria-selected="true">Home</a>
-                            <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab"
-                                aria-controls="nav-profile" aria-selected="false">Profile</a>
-                            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab"
-                                aria-controls="nav-contact" aria-selected="false">Contact</a>
-                            <a class="nav-item nav-link" id="nav-about-tab" data-toggle="tab" href="#nav-about" role="tab"
-                                aria-controls="nav-about" aria-selected="false">About</a>
-                        </div>
+                    <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                        <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab"
+                            aria-controls="nav-home" aria-selected="true">Home</a>
+                        <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab"
+                            aria-controls="nav-profile" aria-selected="false">Profile</a>
+                        <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab"
+                            aria-controls="nav-contact" aria-selected="false">Contact</a>
+                        <a class="nav-item nav-link" id="nav-about-tab" data-toggle="tab" href="#nav-about" role="tab"
+                            aria-controls="nav-about" aria-selected="false">About</a>
+                    </div>
                     </nav>
                     <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
-                        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                            Et et consectetur ipsum labore excepteur est proident excepteur ad velit occaecat qui minim occaecat veniam.
-                            Fugiat veniam incididunt anim aliqua enim pariatur veniam sunt est aute sit dolor anim. Velit non irure
-                            adipisicing aliqua ullamco irure incididunt irure non esse consectetur nostrud minim non minim occaecat.
-                            Amet duis do nisi duis veniam non est eiusmod tempor incididunt tempor dolor ipsum in qui sit. Exercitation
-                            mollit sit culpa nisi culpa non adipisicing reprehenderit do dolore. Duis reprehenderit occaecat anim
-                            ullamco ad duis occaecat ex.
-                        </div>
-                        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-                            Et et consectetur ipsum labore excepteur est proident excepteur ad velit occaecat qui minim occaecat veniam.
-                            Fugiat veniam incididunt anim aliqua enim pariatur veniam sunt est aute sit dolor anim. Velit non irure
-                            adipisicing aliqua ullamco irure incididunt irure non esse consectetur nostrud minim non minim occaecat.
-                            Amet duis do nisi duis veniam non est eiusmod tempor incididunt tempor dolor ipsum in qui sit. Exercitation
-                            mollit sit culpa nisi culpa non adipisicing reprehenderit do dolore. Duis reprehenderit occaecat anim
-                            ullamco ad duis occaecat ex.
-                        </div>
-                        <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
-                            Et et consectetur ipsum labore excepteur est proident excepteur ad velit occaecat qui minim occaecat veniam.
-                            Fugiat veniam incididunt anim aliqua enim pariatur veniam sunt est aute sit dolor anim. Velit non irure
-                            adipisicing aliqua ullamco irure incididunt irure non esse consectetur nostrud minim non minim occaecat.
-                            Amet duis do nisi duis veniam non est eiusmod tempor incididunt tempor dolor ipsum in qui sit. Exercitation
-                            mollit sit culpa nisi culpa non adipisicing reprehenderit do dolore. Duis reprehenderit occaecat anim
-                            ullamco ad duis occaecat ex.
-                        </div>
-                        <div class="tab-pane fade" id="nav-about" role="tabpanel" aria-labelledby="nav-about-tab">
-                            Et et consectetur ipsum labore excepteur est proident excepteur ad velit occaecat qui minim occaecat veniam.
-                            Fugiat veniam incididunt anim aliqua enim pariatur veniam sunt est aute sit dolor anim. Velit non irure
-                            adipisicing aliqua ullamco irure incididunt irure non esse consectetur nostrud minim non minim occaecat.
-                            Amet duis do nisi duis veniam non est eiusmod tempor incididunt tempor dolor ipsum in qui sit. Exercitation
-                            mollit sit culpa nisi culpa non adipisicing reprehenderit do dolore. Duis reprehenderit occaecat anim
-                            ullamco ad duis occaecat ex.
-                        </div>
+                    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                        Et et consectetur ipsum labore excepteur est proident excepteur ad velit occaecat qui minim occaecat veniam.
+                        Fugiat veniam incididunt anim aliqua enim pariatur veniam sunt est aute sit dolor anim. Velit non irure
+                        adipisicing aliqua ullamco irure incididunt irure non esse consectetur nostrud minim non minim occaecat. Amet
+                        duis do nisi duis veniam non est eiusmod tempor incididunt tempor dolor ipsum in qui sit. Exercitation mollit
+                        sit culpa nisi culpa non adipisicing reprehenderit do dolore. Duis reprehenderit occaecat anim ullamco ad duis
+                        occaecat ex.
                     </div>
-                
+                    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                        Et et consectetur ipsum labore excepteur est proident excepteur ad velit occaecat qui minim occaecat veniam.
+                        Fugiat veniam incididunt anim aliqua enim pariatur veniam sunt est aute sit dolor anim. Velit non irure
+                        adipisicing aliqua ullamco irure incididunt irure non esse consectetur nostrud minim non minim occaecat. Amet
+                        duis do nisi duis veniam non est eiusmod tempor incididunt tempor dolor ipsum in qui sit. Exercitation mollit
+                        sit culpa nisi culpa non adipisicing reprehenderit do dolore. Duis reprehenderit occaecat anim ullamco ad duis
+                        occaecat ex.
+                    </div>
+                    <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+                        Et et consectetur ipsum labore excepteur est proident excepteur ad velit occaecat qui minim occaecat veniam.
+                        Fugiat veniam incididunt anim aliqua enim pariatur veniam sunt est aute sit dolor anim. Velit non irure
+                        adipisicing aliqua ullamco irure incididunt irure non esse consectetur nostrud minim non minim occaecat. Amet
+                        duis do nisi duis veniam non est eiusmod tempor incididunt tempor dolor ipsum in qui sit. Exercitation mollit
+                        sit culpa nisi culpa non adipisicing reprehenderit do dolore. Duis reprehenderit occaecat anim ullamco ad duis
+                        occaecat ex.
+                    </div>
+                    <div class="tab-pane fade" id="nav-about" role="tabpanel" aria-labelledby="nav-about-tab">
+                        Et et consectetur ipsum labore excepteur est proident excepteur ad velit occaecat qui minim occaecat veniam.
+                        Fugiat veniam incididunt anim aliqua enim pariatur veniam sunt est aute sit dolor anim. Velit non irure
+                        adipisicing aliqua ullamco irure incididunt irure non esse consectetur nostrud minim non minim occaecat. Amet
+                        duis do nisi duis veniam non est eiusmod tempor incididunt tempor dolor ipsum in qui sit. Exercitation mollit
+                        sit culpa nisi culpa non adipisicing reprehenderit do dolore. Duis reprehenderit occaecat anim ullamco ad duis
+                        occaecat ex.
+                    </div>
+                    </div>
                 </div>
-                </div>
-                <div class="col-sm-6 col-md-4">
-                    <h1>Ladders</h1>
 
+                <div class="col-sm-12 col-md-4">
                     <div class="accordion" id="accordionExample">
                         <nav>
                             <div class="nav nav-tabs nav-fill" id="headingOne" style="margin-bottom:5px;">
                                 <div style="padding:18px">
-                                    <span class="icon-caret-right"></span><a data-toggle="collapse" data-target="#collapseOne" style="margin:20px;">Men's Doubles</a>
+                                    <span class="icon-caret-right"></span><a data-toggle="collapse" data-target="#collapseOne"
+                                        style="margin:20px;">Men's Doubles</a>
                                 </div>
                             </div>
                         </nav>
                         <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
-
+                    
                             <div class="tab-content py-3 px-3 px-sm-0" id="medladder"></div>
-
+                    
                             <div class="col-sm-12 col-lg-4">
                                 <input type="button" value="Enter New Result" id="entermedresult"></input>
                             </div>
@@ -167,15 +151,16 @@
                                 <div class="col-sm-12 col-xl-6">
                                     <input type="text" value="Enter Password" id="medpwd"></input>
                                 </div>
-                            
+                    
                             </div>
-
+                    
                         </div>
-
+                    
                         <nav>
                             <div class="nav nav-tabs nav-fill" id="headingTwo" style="margin-top:5px; margin-bottom:5px;">
                                 <div style="padding:18px">
-                                    <span class="icon-caret-right"></span><a data-toggle="collapse" data-target="#collapseTwo" style="margin:20px">Mixed Doubles</a>
+                                    <span class="icon-caret-right"></span><a data-toggle="collapse" data-target="#collapseTwo"
+                                        style="margin:20px">Mixed Doubles</a>
                                 </div>
                             </div>
                         </nav>
@@ -184,11 +169,12 @@
                                 <p>Mixed doubles</p>
                             </div>
                         </div>
-
+                    
                         <nav>
                             <div class="nav nav-tabs nav-fill" id="headingThree" style="margin-top:5px">
                                 <div style="padding:18px">
-                                    <span class="icon-caret-right"></span><a data-toggle="collapse" data-target="#collapseThree" style="margin:20px">Women's Doubles</a>
+                                    <span class="icon-caret-right"></span><a data-toggle="collapse" data-target="#collapseThree"
+                                        style="margin:20px">Women's Doubles</a>
                                 </div>
                             </div>
                         </nav>
@@ -197,7 +183,7 @@
                                 <p>Women's doubles</p>
                             </div>
                         </div>
-
+                    
                         <nav>
                             <div class="nav nav-tabs nav-fill" id="headingFour" style="margin-top:5px">
                                 <div style="padding:18px">
@@ -211,7 +197,7 @@
                                 <p>Men's Singles</p>
                             </div>
                         </div>
-
+                    
                         <nav>
                             <div class="nav nav-tabs nav-fill" id="headingFive" style="margin-top:5px">
                                 <div style="padding:18px">
@@ -228,10 +214,9 @@
                     </div>
                 </div>
 
-                <div class="col-md-2">
-                
-                </div>
-            </div>
+                <div class="col-sm-0 col-md-2"></div>
+
+            </div> 
         </div>
     </section>
 
@@ -269,6 +254,7 @@
     {{/each}}
 </script>
 
+ 
 
 </body>
 
