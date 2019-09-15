@@ -74,3 +74,26 @@ nav > div a.nav-item.nav-link:focus
     border-radius:0;
     transition:background 0.20s linear;
 }
+
+/*
+::-moz-selection {
+  background: #4eb478;
+  color: #fff;
+  text-shadow: none;
+}
+::selection {
+  background: #4eb478;
+  color: #fff;
+  text-shadow: none;
+}
+*/
+
+#squoink:hover {
+    text-decoration: none;
+}
+
+
+
+
+
+
