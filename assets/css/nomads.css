@@ -75,21 +75,28 @@ nav > div a.nav-item.nav-link:focus
     transition:background 0.20s linear;
 }
 
-/*
-::-moz-selection {
-  background: #4eb478;
-  color: #fff;
-  text-shadow: none;
-}
-::selection {
-  background: #4eb478;
-  color: #fff;
-  text-shadow: none;
-}
-*/
+
+
 
 #squoink:hover {
     text-decoration: none;
+}
+
+.ladder {
+    display:flex; 
+    flex-direction:column;
+}
+
+.ladder:hover {
+    background-color: #4eb478;
+}
+
+.btn-dark:hover {
+   background-color: #4eb478; 
+}
+
+.card-header {
+    padding:0;
 }
 
 
