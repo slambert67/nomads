@@ -78,9 +78,10 @@ jQuery(document).ready(function ($) {
     $("#medEnterResultBtn").on("click", function() {
         $(this).addClass("hide");
         $("#medladder").addClass("hide");
+        $("#medcredpanel").removeClass("hide");
     });
 
-    $("#entermedresult2").on("click", function() {
+    $("#medLoginBtn").on("click", function() {
 
         console.log("submitter = " + $("#medsubmitters").val());
         console.log("entered password = " + $("#medpwd").val());
@@ -93,11 +94,22 @@ jQuery(document).ready(function ($) {
                 if (docs.size === 1 && docs.docs[0].data().password === $("#medpwd").val()) {
                     console.log("valid");
                     members.setSubmitter($("#medsubmitters").val());
+                    $("#medcredpanel").addClass("hide");
+                    $("#medresultpanel").removeClass("hide");
+                    members.buildMaleNamesSelect({ "ele": "medt1p1" });
+                    members.buildMaleNamesSelect({ "ele": "medt1p2" });
+                    members.buildMaleNamesSelect({ "ele": "medt2p1" });
+                    members.buildMaleNamesSelect({ "ele": "medt2p2" });
                 } else {
                     console.log("invalid");
                 }
             }
         );
+    });
+
+    $("#medSubmitBtn").on("click", function(){
+        $("#medresultpanel").addClass("hide");
+        $("#medladder").removeClass("hide");
     });
 
 });
