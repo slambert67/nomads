@@ -101,6 +101,12 @@ nav > div a.nav-item.nav-link:focus
 
 
 
+button[aria-expanded="true"] {
+  background-color: #4eb478;
+}
+
+
+
 
 
 
