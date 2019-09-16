@@ -30,7 +30,7 @@ var members = (function () {
         $("#" + pLadder.element).html(html);
     }
 
-    function maleNames( pSelect ) {
+    function buildMaleNamesSelect( pSelect ) {
 
         var members = db.getMales();
         var context = { "members": [] };
@@ -48,7 +48,7 @@ var members = (function () {
 
     return {
         buildLadder: buildLadder,
-        maleNames: maleNames,
+        buildMaleNamesSelect: buildMaleNamesSelect,
         getSubmitter: getSubmitter,
         setSubmitter: setSubmitter
     };
@@ -66,7 +66,7 @@ jQuery(document).ready(function ($) {
             members.buildLadder( { "ladder": "mes", "element": "mesladder", "template": "ladderTemplate" });
             members.buildLadder( { "ladder": "wos", "element": "wosladder", "template": "ladderTemplate" });
 
-            members.maleNames( {"ele": "medsubmitters"} );
+            members.buildMaleNamesSelect( {"ele": "medsubmitters"} );
         },
 
         //rejection handler
@@ -75,7 +75,12 @@ jQuery(document).ready(function ($) {
         }
     );
 
-    $("#entermedresult").on("click", function() {
+    $("#medEnterResultBtn").on("click", function() {
+        $(this).addClass("hide");
+        $("#medladder").addClass("hide");
+    });
+
+    $("#entermedresult2").on("click", function() {
 
         console.log("submitter = " + $("#medsubmitters").val());
         console.log("entered password = " + $("#medpwd").val());
