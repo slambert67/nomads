@@ -53,6 +53,17 @@ var db = (function () {
         return Promise.all([m, w]);
     }
 
+    function getMale(id) {
+        var member = males.docs.find(el => el.id === id);
+        return member;
+    }
+
+
+    function getFemale(id) {
+        var member = females.docs.find(el => el.id === id);
+        return member;
+    }
+
     function getMales() {
         return males;
     }
@@ -121,14 +132,21 @@ var db = (function () {
             .get();
     }
 
+    function updateMedSubmissionLog(log) {
+        return fdb.collection("med_submission_log").add(log);
+    }
+
     return {
         init: init,
+        getMale: getMale,
+        getFemale: getFemale,
         getMales: getMales,
         getFemales: getFemales,
         getMembersSortedByRating: getMembersSortedByRating,
         addMember: addMember,
         updateMember: updateMember,
-        getCredentials: getCredentials
+        getCredentials: getCredentials,
+        updateMedSubmissionLog: updateMedSubmissionLog
     };
 
 

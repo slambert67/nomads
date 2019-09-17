@@ -148,37 +148,54 @@
                                                         <select id="medsubmitters"></select>
                                                     </div>
                                                     <div class="col-sm-12 col-xl-6">
-                                                        <input type="text" value="Enter Password" id="medpwd"></input>
+                                                        <input type="password" value="" id="medpwd" required placeholder="Password"></input>
                                                     </div>
                                                 </div>
                                                 <div id="medLoginBtn"><button type="button" class="btn btn-dark">Login</button></div>
                                             </div>
                                             <div id="medresultpanel" class="hide">
+                                                <h2>Winners</h2>
                                                 <div class="row">
-                                                    <div class="col-sm-12 col-md-4">
-                                                        Winners
+                                                    <div class="col-sm-12 col-lg-6">
+                                                        <div style="display:flex; align-items:center; margin-top:20px">
+                                                            <select id="medt1p1"></select>
+                                                        </div>
                                                     </div>
-                                                    <div class="col-sm-12 col-md-4"></div><div class="col-sm-12 col-md-4"></div>
-                                                    <div class="col-sm-12 col-md-4">
-                                                        <select id="medt1p1"></select>
-                                                    </div>
-                                                    <div class="col-sm-12 col-md-4">
-                                                        <select id="medt1p2"></select>
-                                                    </div>
-                                                    <div class="col-sm-12 col-md-4"></div>
-                                                    <div class="col-sm-12 col-md-4">
-                                                        Losers
-                                                    </div>
-                                                    <div class="col-sm-12 col-md-4"></div><div class="col-sm-12 col-md-4"></div>
-                                                    <div class="col-sm-12 col-md-4">
-                                                        <select id="medt2p1"></select>
-                                                    </div>
-                                                    <div class="col-sm-12 col-md-4">
-                                                        <select id="medt2p2"></select>
+                                                    <div class="col-sm-12 col-lg-6">
+                                                        <div style="display:flex; align-items:center; margin-top:20px">
+                                                            <select id="medt1p2"></select>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                                <div id="medSubmitBtn"><button type="button" class="btn btn-success">Submit Result</button></div>
-                                                <div id="medCancelBtn"><button type="button" class="btn btn-danger">Cancel</button></div>
+                                                <hr>
+                                                <h2>Losers</h2>
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-lg-6">
+                                                        <div style="display:flex; align-items:center; margin-top:20px">
+                                                            <select id="medt2p1"></select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-lg-6">
+                                                        <div style="display:flex; align-items:center; margin-top:20px">
+                                                            <select id="medt2p2"></select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-lg-6">
+                                                        <div style="display:flex; align-items:center; margin-top:20px">
+                                                            <div id="medSubmitBtn"><button type="button" class="btn btn-success">Submit</button></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-lg-6">
+                                                        <div style="display:flex; align-items:center; margin-top:20px">
+                                                            <div id="medCancelBtn"><button type="button" class="btn btn-danger">Cancel</button></div>
+                                                        </div>
+                                                    </div>
+                                                </div>                                                                                                                                             
+                                            </div>
+                                            <div id="medResultSummary" class="hide">
+                                                <h1>summary</h1>
                                             </div>
 
                                         </div>
@@ -390,9 +407,9 @@
 
 <!-- Name options -->
 <script id="namesTemplate" type="text/x-handlebars-template">
-    <option value="{{this.docid}}">--Please select submitter--</option>
+    <option>--{{this.theText}}--</option>
     {{#each members}}
-        <option value="{{this.name}}">{{this.name}}</option>
+        <option value="{{this.id}}">{{this.name}}</option>
     {{/each}}
 </script>
 
