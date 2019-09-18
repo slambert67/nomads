@@ -126,15 +126,22 @@ var db = (function() {
     }
 
 
-    function updateDoublesMatchStats(id1, entry1, id2, entry2, id3, entry3, id4, entry4) {
-        
-        var update2 = fdb.collection("members").doc(id2).set(entry2);
-        var update3 = fdb.collection("members").doc(id3).set(entry3);
-        var update4 = fdb.collection("members").doc(id4).set(entry4);
+    function getCredentials(userId, pwd) {
 
-        return Promise.all ( [update1,update2,update3,update4] );
+        console.log("userid = " + userId);
+        console.log("password = " + pwd);
+
+        return fdb.collection("credentials")
+                .where("id", "==", userId)
+                .where("password", "==", pwd )
+                .get();
+
     }
 
+    function updateMedSubmissionLog(log) {
+        return fdb.collection("med_submission_log").add(log);
+    }
+    
     return {
         init: init,
         getMalesSortedByRating: getMalesSortedByRating,
@@ -143,7 +150,9 @@ var db = (function() {
         getFemalesSortedByName: getFemalesSortedByName,
         getMale: getMale,
         getFemale: getFemale,
-        updateMember: updateMember
+        updateMember: updateMember,
+        getCredentials: getCredentials,
+        updateMedSubmissionLog: updateMedSubmissionLog
     };
 })();
 

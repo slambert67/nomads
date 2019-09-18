@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Nomads Badminton Club</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Nomads Badminton Club website">
+    <meta name="author" content="Steve Lambert">
+
+    <!-- Images -->
+    <link rel="shortcut icon" href="assets/images/favicon.png">
+
+    <!-- CDN Stylesheets -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css">
+
+    <!-- Project stylesheets -->
+    <link rel="stylesheet" href="assets/css/nomads.css">
+
+    <!-- CDN Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prettyPhoto/3.1.6/js/jquery.prettyPhoto.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.5/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.5/firebase-firestore.js"></script>
+
+    <!-- Project Scripts -->
+    <script src="assets/js/db.js"></script>
+    <script src="assets/js/admin.js"></script>
+</head>
+
+<body>
+
+    <form id="addmemberform">
+        <div>
+            <label for="forename">Forename:</label>
+            <input type="text" id="forename" name="forename" required minlength="1" maxlength="20" size="20">
+            <label for="surname">Surname:</label>
+            <input type="text" id="surname" name="surname" required minlength="1" maxlength="20" size="20">
+            <label for="middleName">Middlename:</label>
+            <input type="text" id="middleName" name="middleName" minlength="1" maxlength="20" size="20">
+            <label for="gender">Gender:</label>
+            <input type="text" id="gender" name="gender" required minlength="1" maxlength="1" size="1">
+        </div>
+
+        <div>
+            <label for="houseNumber">House Number (1-1000):</label>           
+            <input type="number" id="houseNumber" name="houseNumber" min="1" max="1000">
+            <label for="street">Street:</label>
+            <input type="text" id="street" name="street" minlength="1" maxlength="20" size="20">
+            <label for="area">Area:</label>
+            <input type="text" id="area" name="area" minlength="1" maxlength="20" size="20">
+            <label for="city">City:</label>
+            <input type="text" id="city" name="city" minlength="1" maxlength="20" size="20">
+            <label for="postcode">Postcode:</label>
+            <input type="text" id="postcode" name="postcode" minlength="1" maxlength="10" size="10">
+        </div>
+
+        <div>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" size="40">
+            <label for="landline">Landline:</label>
+            <input type="text" id="landline" name="landline" minlength="10" maxlength="20" size="20">
+            <label for="mobile">Mobile:</label>
+            <input type="text" id="mobile" name="mobile" minlength="10" maxlength="20" size="20">
+        </div>
+    </form>
+
+    <div>
+        <input type="button" id="addmember" value="Add Member">
+    </div>
+
+    <div>
+        <input type="button" id="resetmed" value="Reset MED stats">
+        <input type="button" id="resetmes" value="Reset MES stats">
+        <input type="button" id="resetmid" value="Reset MID stats">
+        <input type="button" id="resetwod" value="Reset WOD stats">
+        <input type="button" id="resetwos" value="Reset WOS stats">
+    </div>
+</body>
+
+</html>

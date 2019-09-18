@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Nomads Badminton Club</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Nomads Badminton Club members">
+    <meta name="author" content="Steve Lambert">
+
+    <!-- Images -->
+    <link rel="shortcut icon" href="assets/images/favicon.png">
+    
+    <!-- CDN Stylesheets -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css"/>
+    
+    <!-- Project stylesheets -->
+    <link rel="stylesheet" href="assets/css/overwrite.css">
+    <link rel="stylesheet" href="assets/css/nomads.css">
+
+    <!-- CDN Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.5/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.5/firebase-firestore.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.2.0/handlebars.min.js"></script>
+
+    <!-- Project Scripts -->
+    <script src="assets/js/db.js"></script>
+    <script src="assets/js/members.js"></script>
+    <script src="assets/js/match.js"></script>
+    <script src="assets/js/nomads.js"></script>
+
+</head>
+
+<body>
+
+    <header>
+        <!-- flexbox to align centrally on vertical axis-->
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-0 col-md-2"></div>
+                <div class="col-sm-12 col-md-4">
+                    <div style="display:flex; justify-content:center">
+                        <h1>Nomads Badminton</h1>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-4">
+                    <div style="display:flex; justify-content:center; padding-top:20px;">
+                        <nav>
+                            <ul class="nav">
+                                <li>
+                                    <a href="index.html">Home</a>
+                                </li>
+                                <li class="active">
+                                    <a href="members.html">Members</a>
+                                </li>
+                                <li>
+                                    <a href="admin.html">Admin</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                <div class="col-sm-0 col-md-2"></div>
+            </div>
+        </div>
+    </header>
+
+    <div style="height:5%"></div>
+
+    <section id="indexMain" style="color: #5a5a5a; height:75%">
+        <div class="container-fluid">
+            <div class="row">
+
+                <div class="col-sm-0 col-md-2">
+                </div>
+
+                <div class="col-sm-12 col-md-4">
+                    <nav>
+                        <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                            <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab"
+                             aria-controls="nav-home" aria-selected="true">Members</a>
+                            <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab"
+                                aria-controls="nav-profile" aria-selected="false">Equipment</a>
+                            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab"
+                                aria-controls="nav-contact" aria-selected="false">Club Rules</a>
+                            <a class="nav-item nav-link" id="nav-about-tab" data-toggle="tab" href="#nav-about" role="tab"
+                                aria-controls="nav-about" aria-selected="false">Other</a>
+                        </div>
+                    </nav>
+                    <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
+                        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                            Member details here
+                        </div>
+                        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                            Equipment details here
+                        </div>
+                        <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+                            Rules stuff
+                        </div>
+                        <div class="tab-pane fade" id="nav-about" role="tabpanel" aria-labelledby="nav-about-tab">
+                            Other stuff
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-12 col-md-4">
+
+                    <!-- tab headings -->
+                    <nav>
+                        <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                            <a class="nav-item nav-link active" id="nav-ladders-tab" data-toggle="tab" href="#nav-ladders" role="tab"
+                                aria-controls="nav-ladders" aria-selected="true">Ladders</a>
+                            <a class="nav-item nav-link" id="nav-help-tab" data-toggle="tab" href="#nav-help" role="tab"
+                                aria-controls="nav-help" aria-selected="false">How it works</a>
+                        </div>
+                    </nav>
+
+                    <!-- tab panels -->
+                    <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent2">
+
+                        <!-- ladders panel -->
+                        <div class="tab-pane fade show active" id="nav-ladders" role="tabpanel" aria-labelledby="nav-ladders-tab">
+
+                            <div class="accordion" id="accordionExample">
+
+                                <!-- mens doubles -->
+                                <div class="card">
+                                    <div class="card-header" id="headingOne">
+                                        <div class="ladder">
+                                            <button id="squoink" class="btn btn-dark" type="button" data-toggle="collapse" data-target="#collapseOne"
+                                                    aria-controls="collapseOne">
+                                                Men's Doubles
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">  
+                                        <div class="card-body">
+
+                                            <!-- ladder panel -->
+                                            <div id="medLadderPanel">
+                                                <div id="medladder"></div>
+                                                <div id="medEnterResultBtn"><button type="button" class="btn btn-dark">Enter New Result</button></div>
+                                            </div>
+
+                                            <!-- login panel -->
+                                            <div id="medLoginPanel" class="hide">
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-xl-6">
+                                                        <select id="medsubmitters"></select>
+                                                    </div>
+                                                    <div class="col-sm-12 col-xl-6">
+                                                        <input type="password" value="" id="medpwd" required placeholder="Password"></input>
+                                                    </div>
+                                                </div>
+                                                <hr>
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-xl-6">
+                                                        <div id="medLoginBtn"><button type="button" class="btn btn-success">Login</button></div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-xl-6">
+                                                        <div id="medCancelLoginBtn"><button type="button" class="btn btn-danger">Cancel</button></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- enter result panel -->
+                                            <div id="medResultPanel" class="hide">
+                                                <h2>Winners</h2>
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-lg-6">
+                                                        <div style="display:flex; align-items:center; margin-top:20px">
+                                                            <select id="medt1p1"></select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-lg-6">
+                                                        <div style="display:flex; align-items:center; margin-top:20px">
+                                                            <select id="medt1p2"></select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <hr>
+                                                <h2>Losers</h2>
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-lg-6">
+                                                        <div style="display:flex; align-items:center; margin-top:20px">
+                                                            <select id="medt2p1"></select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-lg-6">
+                                                        <div style="display:flex; align-items:center; margin-top:20px">
+                                                            <select id="medt2p2"></select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-lg-6">
+                                                        <div style="display:flex; align-items:center; margin-top:20px">
+                                                            <div id="medSubmitBtn"><button type="button" class="btn btn-success">Submit</button></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-lg-6">
+                                                        <div style="display:flex; align-items:center; margin-top:20px">
+                                                            <div id="medCancelSubmitBtn"><button type="button" class="btn btn-danger">Cancel</button></div>
+                                                        </div>
+                                                    </div>
+                                                </div>                                                                                                                                             
+                                            </div>
+
+                                            <!-- result summary panel -->
+                                            <div id="medResultSummaryPanel" class="hide">
+                                                <h4>Result summary</h4>
+                                                <div id="medt1Summary"></div>
+                                                <br>
+                                                <div id="medt2Summary"></div>
+                                                <hr>
+                                                <td><button id="medSummaryBtn" type="button" class="btn btn-color">OK</button></td>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+
+                                <!-- womens doubles -->
+                                <div class="card">
+                                    <div class="card-header" id="headingTwo">
+                                        <div class="ladder">
+                                            <button class="btn btn-dark collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo"
+                                                 aria-expanded="false" aria-controls="collapseTwo">
+                                                Women's Doubles
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                                        <div class="card-body">
+                                            <div id="wodladder"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+
+                                <!-- mixed doubles -->
+                                <div class="card">
+                                    <div class="card-header" id="headingThree">
+                                        <div class="ladder">
+                                            <button class="btn btn-dark collapsed" type="button" data-toggle="collapse" data-target="#collapseThree"
+                                                aria-expanded="false" aria-controls="collapseThree">
+                                                Mixed Doubles
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                                        <div class="card-body">
+                                            <div id="midladder"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+
+                                <!-- mens singles -->
+                                <div class="card">
+                                    <div class="card-header" id="headingFour">
+                                        <div class="ladder">
+                                            <button class="btn btn-dark collapsed" type="button" data-toggle="collapse" data-target="#collapseFour"
+                                                aria-expanded="false" aria-controls="collapseFour">
+                                                Men's Singles
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
+                                        <div class="card-body">
+                                            <div id="mesladder"></div>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+
+                                <!-- womens singles -->
+                                <div class="card">
+                                    <div class="card-header" id="headingFive">
+                                        <div class="ladder">
+                                            <button class="btn btn-dark collapsed" type="button" data-toggle="collapse" data-target="#collapseFive"
+                                                aria-expanded="false" aria-controls="collapseFive">
+                                                Women's Singles
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
+                                        <div class="card-body">
+                                            <div id="wosladder"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>  <!-- accordion -->
+
+                        </div>  
+
+                        <!-- help panel -->
+                        <div class="tab-pane fade" id="nav-help" role="tabpanel" aria-labelledby="nav-help-tab">
+                            help
+                        </div>
+                    </div>
+
+                </div> <!-- column -->
+
+                <div class="col-sm-0 col-md-2"></div>
+
+            </div> <!-- row -->
+        </div> <!-- container -->
+    </section>
+
+    <!--
+                                <div class="accordion" id="accordionExample">
+                        <nav>
+                            <div class="nav nav-tabs nav-fill" id="headingOne" style="margin-bottom:5px;">
+                                <div style="padding:18px">
+                                    <span class="icon-caret-right"></span><a data-toggle="collapse" data-target="#collapseOne"
+                                        style="margin:20px;">Men's Doubles</a>
+                                </div>
+                            </div>
+                        </nav>
+                        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                    
+                            <div class="tab-content py-3 px-3 px-sm-0" id="medladder"></div>
+                    
+                            <div class="col-sm-12 col-lg-4">
+                                <input type="button" value="Enter New Result" id="entermedresult"></input>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-sm-12 col-xl-6">
+                                    <select id="medsubmitters"></select>
+                                </div>
+                                <div class="col-sm-12 col-xl-6">
+                                    <input type="text" value="Enter Password" id="medpwd"></input>
+                                </div>
+                    
+                            </div>
+                    
+                        </div>
+                    
+                        <nav>
+                            <div class="nav nav-tabs nav-fill" id="headingTwo" style="margin-top:5px; margin-bottom:5px;">
+                                <div style="padding:18px">
+                                    <span class="icon-caret-right"></span><a data-toggle="collapse" data-target="#collapseTwo"
+                                        style="margin:20px">Mixed Doubles</a>
+                                </div>
+                            </div>
+                        </nav>
+                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                            <div class="tab-content py-3 px-3 px-sm-0" id="midladder">
+                                <p>Mixed doubles</p>
+                            </div>
+                        </div>
+                    
+                        <nav>
+                            <div class="nav nav-tabs nav-fill" id="headingThree" style="margin-top:5px">
+                                <div style="padding:18px">
+                                    <span class="icon-caret-right"></span><a data-toggle="collapse" data-target="#collapseThree"
+                                        style="margin:20px">Women's Doubles</a>
+                                </div>
+                            </div>
+                        </nav>
+                        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                            <div class="tab-content py-3 px-3 px-sm-0" id="wodladder">
+                                <p>Women's doubles</p>
+                            </div>
+                        </div>
+                    
+                        <nav>
+                            <div class="nav nav-tabs nav-fill" id="headingFour" style="margin-top:5px">
+                                <div style="padding:18px">
+                                    <span class="icon-caret-right"></span><a data-toggle="collapse" data-target="#collapseFour"
+                                        style="margin:20px">Men's Singles</a>
+                                </div>
+                            </div>
+                        </nav>
+                        <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
+                            <div class="tab-content py-3 px-3 px-sm-0" id="mesladder">
+                                <p>Men's Singles</p>
+                            </div>
+                        </div>
+                    
+                        <nav>
+                            <div class="nav nav-tabs nav-fill" id="headingFive" style="margin-top:5px">
+                                <div style="padding:18px">
+                                    <span class="icon-caret-right"></span><a data-toggle="collapse" data-target="#collapseFive"
+                                        style="margin:20px">Women's Singles</a>
+                                </div>
+                            </div>
+                        </nav>
+                        <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
+                            <div class="tab-content py-3 px-3 px-sm-0" id="wosladder">
+                                <p>Women's Singles</p>
+                            </div>
+                        </div>
+                        </div>
+    -->
+<!-- Templates-->
+
+<!-- ladders -->
+<script id="ladderTemplate" type="text/x-handlebars-template">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Player</th>
+                <th>Won / Lost</th>
+                <th>Rating</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each members}}
+                <tr>
+                    <td>{{this.position}}</td>
+                    <td>{{this.name}}</td>
+                    <td>{{this.stats}}</td>
+                    <td>{{this.rating}}</td>
+                </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</script>
+
+<!-- Name options -->
+<script id="namesTemplate" type="text/x-handlebars-template">
+    {{#each members}}
+        <option value="{{this.id}}">{{this.name}}</option>
+    {{/each}}
+</script>
+
+ 
+
+</body>
+
+</html>
+

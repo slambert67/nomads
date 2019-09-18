@@ -1,73 +1,153 @@
-    var db = (function () {
-        var something = "cool";
-        var another = [1, 2, 3];
-        var fdb;
+var db = (function () {
 
-        function init() {
-            firebase.initializeApp({
-                apiKey: 'AIzaSyDxgEiXAJEvXAA4CDsF1yXlQaIczU3skgo',
-                authDomain: 'nomads-d85b5.firebaseapp.com',
-                projectId: 'nomads-d85b5'});  
+    var fdb;
+    var males;
+    var females;
 
-            fdb = firebase.firestore();
+    // initialise firebase and retrieve all members
+    function init() {
+        firebase.initializeApp({
+            apiKey: 'AIzaSyDxgEiXAJEvXAA4CDsF1yXlQaIczU3skgo',
+            authDomain: 'nomads-d85b5.firebaseapp.com',
+            projectId: 'nomads-d85b5'
+        });
 
-            fdb.settings({
-                timestampsInSnapshots: true});
-            
+        fdb = firebase.firestore();
+
+        fdb.settings({
+            timestampsInSnapshots: true
+        }); 
+
+        // retrieve male members
+        var m = fdb.collection("members")
+            .where("id.gender", "==", "M")
+            .get()
+            .then(
+                // fulfillment handler
+                function (myData) {
+                    males = myData;
+                },
+
+                // rejection handler
+                function (err) {
+                    console.error("get males error");
+                }
+            );
+
+        // retrieve female members
+        var w = fdb.collection("members")
+            .where("id.gender", "==", "F")
+            .get()
+            .then(
+                // fulfillment handler
+                function (myData) {
+                    females = myData;
+                },
+
+                // rejection handler
+                function (err) {
+                    console.error("get females error");
+                }
+            );
+
+        return Promise.all([m, w]);
+    }
+
+    function getMale(id) {
+        var member = males.docs.find(el => el.id === id);
+        return member;
+    }
+
+
+    function getFemale(id) {
+        var member = females.docs.find(el => el.id === id);
+        return member;
+    }
+
+    function getMales() {
+        return males;
+    }
+
+    function getFemales() {
+        return females;
+    }
+
+    function getMembersSortedByRating(pLadder) {
+        var unsorted = [];
+
+        switch (pLadder) {
+            case "med":
+            case "mes":
+                males.forEach(function (doc) {
+                    unsorted.push(doc);
+                });
+                break;
+            case "wod":
+            case "wos":
+                females.forEach(function (doc) {
+                    unsorted.push(doc);
+                });
+                break;
+            case "mid":
+                males.forEach(function (doc) {
+                    unsorted.push(doc);
+                });   
+                females.forEach(function (doc) {
+                    unsorted.push(doc);
+                });
+                break;
+            default:
+                break;             
         }
-        
-        function getMembers() {
-            return fdb.collection("members").get();
-         }
 
-         function addMember() {
-            var newMember = {};
-            var vals = $("#addMember").serializeArray();
+        return unsorted.sort(function (a, b) {
+            return b.data().ladder[pLadder].currentRating - a.data().ladder[pLadder].currentRating;
+        });
+    }
 
-            newMember.id = {};
-             newMember.id.forename = vals[0].value;
-             newMember.id.middleName = vals[1].value;
-             newMember.id.surname = vals[2].value;
-             newMember.id.gender = vals[3].value;
-            newMember.contact = {};
-            newMember.contact.address = {};
-             newMember.contact.address.houseNumber = vals[4].value;
-             newMember.contact.address.street = vals[5].value;
-             newMember.contact.address.area = vals[6].value;
-             newMember.contact.address.city = vals[7].value;
-             newMember.contact.address.postcode = vals[8].value;
-             newMember.contact.email = vals[9].value;
-             newMember.contact.landline = vals[10].value;
-             newMember.contact.mobile = vals[11].value;
-             newMember.ladder = {};
-             newMember.ladder.mid = {currentRating: 'X'};
-             if (newMember.id.gender == 'M') {
-                 newMember.ladder.med = {currentRating: 'X'};
-                 newMember.ladder.mes = {currentRating: 'X'};
-             } else {
-                 newMember.ladder.wod = {currentRating: 'X'};
-                 newMember.ladder.wos = {currentRating: 'X'};                
-             }
+    function addMember( pMember ) {
 
-            console.log("new member: ", newMember);
-            fdb.collection("members").add(newMember)
-            .then ( function() {
-                console.log("successful addition of member")
+        fdb.collection("members").add(pMember)
+            .then(function (docRef) {
+                console.log("Document written with ID: ", docRef.id);
             })
-            .catch ( function() {
-                console("member addition failed");
-            })
-         }
+            .catch(function (error) {
+                console.error("Error adding document: ", error);
+            });
 
-         function hi() {
-             alert("hello world");
-         }
+    }
 
-         return {
-	        getMembers: getMembers,
-            init: init,
-            addMember: addMember,
-            hi: hi
-         };
-      
-    })();
+    function updateMember(memberId, memberData) {
+        return fdb.collection("members").doc(memberId).set(memberData);
+    }
+
+    function getCredentials(name, pwd) {
+
+        console.log("in credentials name = " + name);
+        console.log("in credentials password = " + pwd);
+
+        return fdb.collection("credentials")
+            .where("name", "==", name)
+            .where("password", "==", pwd)
+            .get();
+    }
+
+    function updateMedSubmissionLog(log) {
+        return fdb.collection("med_submission_log").add(log);
+    }
+
+    return {
+        init: init,
+        getMale: getMale,
+        getFemale: getFemale,
+        getMales: getMales,
+        getFemales: getFemales,
+        getMembersSortedByRating: getMembersSortedByRating,
+        addMember: addMember,
+        updateMember: updateMember,
+        getCredentials: getCredentials,
+        updateMedSubmissionLog: updateMedSubmissionLog
+    };
+
+
+})();

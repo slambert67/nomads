@@ -1,4 +1,34 @@
+var ma = (function () {
+
+    var submitter;
+
+    function getSubmitter() {
+        return submitter;
+    }
+
+    function setSubmitter(pSubmitterDocId) {
+        var male = db.getMale(pSubmitterDocId)
+        submitter = male.data().id.forename + ' ' + male.data().id.surname;
+    }
+
+    return {
+        getSubmitter: getSubmitter,
+        setSubmitter: setSubmitter 
+    }
+})();
+
 jQuery(document).ready(function ($) {
+
+    // template
+    /*var source = document.getElementById("test-template").innerHTML;
+    var template = Handlebars.compile(source);
+
+    var context = { title: "My New Post", body: "This is my first post!" };
+    var html = template(context);
+
+    $("#one").html(html);*/
+
+
 
     db.init()
     .then (
@@ -9,6 +39,22 @@ jQuery(document).ready(function ($) {
             var females = db.getFemalesSortedByRating();
 
             // build med ladder entries
+            var templateSrc = $("#medLadderTemplate").html();
+            var template = Handlebars.compile(templateSrc);
+            var context = {"males":[]};
+            males.forEach(function (doc,i) {
+                var male = {};
+                male.position = i+1;
+                male.forename = doc.data().id.forename;
+                male.surname = doc.data().id.surname;
+                male.won = doc.data().ladder.med.won;
+                male.lost = doc.data().ladder.med.lost;
+                male.rating = doc.data().ladder.med.currentRating;
+                context.males.push(male);
+            });
+            var html = template(context);
+            $("#medTablePanel").html(html);
+            /*
             var i = 0;
             males.forEach(function (doc) {
                 i++;
@@ -32,7 +78,13 @@ jQuery(document).ready(function ($) {
 
                 $("#medAccordion tbody").get(0).append(newtr);
 
-            });
+                // create option element
+                var opt = document.createElement("option");
+                $(opt).val(doc.id);
+                opt.text = doc.data().id.forename + " " + doc.data().id.surname;
+                // add option to credentials list
+                $("#medCred").get(0).add(opt);
+            });*/
 
             // build mid ladder entries
             i = 0;
@@ -100,29 +152,47 @@ jQuery(document).ready(function ($) {
     // define mens doubles match players
     $("#medSubmitResultBtn").on("click", function(){
 
-        // hide medTablePanel
-        $("#medTablePanel").addClass("hide");
+        checkCredentials()
+        .then(
+            function (docs) {
+                console.log("retrieved user");
+                if (docs.size === 1 && docs.docs[0].data().password === $("#medPwd").val()) {
+                    console.log("valid");
 
-        // reveal medSubmitResultPanel
-        $("#medSubmitResultPanel").removeClass("hide");
+                    ma.setSubmitter($("#medCred").val());
 
-        // retrieve members from database module
-        var males = db.getMalesSortedByName();
+                    // hide medTablePanel
+                    $("#medTablePanel").addClass("hide");
 
-        // add each member to select list
-        males.forEach( function(doc) {
+                    // reveal medSubmitResultPanel
+                    $("#medSubmitResultPanel").removeClass("hide");
 
-            // create option element
-            var opt = document.createElement("option");
-            $(opt).val(doc.id);
-            opt.text = doc.data().id.forename + " " + doc.data().id.surname;
+                    // retrieve members from database module
+                    var males = db.getMalesSortedByName();
 
-            // add instance of option element to each select
-            $("#medt1p1").get(0).add(opt);
-            $("#medt1p2").get(0).add( $(opt).clone().get(0));
-            $("#medt2p1").get(0).add( $(opt).clone().get(0));
-            $("#medt2p2").get(0).add( $(opt).clone().get(0));
-        })
+                    // add each member to select list
+                    males.forEach(function (doc) {
+
+                        // create option element
+                        var opt = document.createElement("option");
+                        $(opt).val(doc.id);
+                        opt.text = doc.data().id.forename + " " + doc.data().id.surname;
+
+                        // add instance of option element to each select
+                        $("#medt1p1").get(0).add(opt);
+                        $("#medt1p2").get(0).add($(opt).clone().get(0));
+                        $("#medt2p1").get(0).add($(opt).clone().get(0));
+                        $("#medt2p2").get(0).add($(opt).clone().get(0));
+                    })
+                } else {
+                    alert("invalid user");
+                }
+            }
+        );
+
+
+
+
     });
 
     // define mixed doubles match players
@@ -196,6 +266,7 @@ jQuery(document).ready(function ($) {
 
     // submit an actual med result
     $("#submitMedResult").on("click", function () {
+
         var medt1p1DocId = $("#medt1p1").val();
         var medt1p2DocId = $("#medt1p2").val();
         var medt2p1DocId = $("#medt2p1").val();
@@ -236,6 +307,8 @@ jQuery(document).ready(function ($) {
 
     // submit an actual mid result
     $("#submitMidResult").on("click", function () {
+
+    
         var midt1p1DocId = $("#midt1p1").val();
         var midt1p2DocId = $("#midt1p2").val();
         var midt2p1DocId = $("#midt2p1").val();
@@ -281,6 +354,20 @@ jQuery(document).ready(function ($) {
     $("#midSummaryBtn").on("click", function () {
         location.reload(true);
     });
+
+
+
+    /*
+    ********************************************************************************
+    Credential checking
+    ********************************************************************************
+    */
+    function checkCredentials() {
+        console.log("checking credentials");
+
+        return db.getCredentials($("#medCred").val(),$("#medPwd").val());
+
+    }
 
  });
 
