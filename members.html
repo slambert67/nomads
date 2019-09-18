@@ -31,6 +31,7 @@
     <!-- Project Scripts -->
     <script src="assets/js/db.js"></script>
     <script src="assets/js/members.js"></script>
+    <script src="assets/js/match.js"></script>
     <script src="assets/js/nomads.js"></script>
 
 </head>
@@ -140,9 +141,15 @@
 
                                     <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">  
                                         <div class="card-body">
-                                            <div id="medladder"></div>
-                                            <div id="medEnterResultBtn"><button type="button" class="btn btn-dark">Enter New Result</button></div>
-                                            <div id="medcredpanel" class="hide">
+
+                                            <!-- ladder panel -->
+                                            <div id="medLadderPanel">
+                                                <div id="medladder"></div>
+                                                <div id="medEnterResultBtn"><button type="button" class="btn btn-dark">Enter New Result</button></div>
+                                            </div>
+
+                                            <!-- login panel -->
+                                            <div id="medLoginPanel" class="hide">
                                                 <div class="row">
                                                     <div class="col-sm-12 col-xl-6">
                                                         <select id="medsubmitters"></select>
@@ -151,9 +158,19 @@
                                                         <input type="password" value="" id="medpwd" required placeholder="Password"></input>
                                                     </div>
                                                 </div>
-                                                <div id="medLoginBtn"><button type="button" class="btn btn-dark">Login</button></div>
+                                                <hr>
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-xl-6">
+                                                        <div id="medLoginBtn"><button type="button" class="btn btn-success">Login</button></div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-xl-6">
+                                                        <div id="medCancelLoginBtn"><button type="button" class="btn btn-danger">Cancel</button></div>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div id="medresultpanel" class="hide">
+
+                                            <!-- enter result panel -->
+                                            <div id="medResultPanel" class="hide">
                                                 <h2>Winners</h2>
                                                 <div class="row">
                                                     <div class="col-sm-12 col-lg-6">
@@ -189,13 +206,20 @@
                                                     </div>
                                                     <div class="col-sm-12 col-lg-6">
                                                         <div style="display:flex; align-items:center; margin-top:20px">
-                                                            <div id="medCancelBtn"><button type="button" class="btn btn-danger">Cancel</button></div>
+                                                            <div id="medCancelSubmitBtn"><button type="button" class="btn btn-danger">Cancel</button></div>
                                                         </div>
                                                     </div>
                                                 </div>                                                                                                                                             
                                             </div>
-                                            <div id="medResultSummary" class="hide">
-                                                <h1>summary</h1>
+
+                                            <!-- result summary panel -->
+                                            <div id="medResultSummaryPanel" class="hide">
+                                                <h4>Result summary</h4>
+                                                <div id="medt1Summary"></div>
+                                                <br>
+                                                <div id="medt2Summary"></div>
+                                                <hr>
+                                                <td><button id="medSummaryBtn" type="button" class="btn btn-color">OK</button></td>
                                             </div>
 
                                         </div>
@@ -407,7 +431,6 @@
 
 <!-- Name options -->
 <script id="namesTemplate" type="text/x-handlebars-template">
-    <option>--{{this.theText}}--</option>
     {{#each members}}
         <option value="{{this.id}}">{{this.name}}</option>
     {{/each}}
