@@ -16,8 +16,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css"/>
     
     <!-- Project stylesheets -->
+    <link rel="stylesheet" href="assets/css/overwrite.css">
     <link rel="stylesheet" href="assets/css/nomads.css">
-    <link rel="stylesheet" href="assets/css/resp.css">
 
     <!-- CDN Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -39,208 +39,115 @@
 <body>
 
     <header>
-        <!-- xs and sm -->
-        <div id="xshdr">
-            <h1>Nomads</h1>
-            <h1>Badminton Club</h1>
-            <div>
-                <nav>
-                    <ul class="nav">
-                        <li class="active">
-                            <a href="index.html">Home</a>
-                        </li>
-                        <li>
-                            <a href="members.html">Members</a>
-                        </li>
-                        <li>
-                            <a href="admin.html">Admin</a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-            <div>
-                <nav>
-                    <ul class="nav">
-                        <li class>
-                            <a href="index.html">Home2</a>
-                        </li>
-                        <li>
-                            <a href="members.html">Members2</a>
-                        </li>
-                        <li>
-                            <a href="admin.html">Admin2</a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-            <hr>
-        </div>
-    
-        <!-- md -->
-        <div id="mdhdr">
-            <h1 style="padding-top: 10px;">Nomads Badminton Club</h1>
-    
-            <div style="padding-bottom:10px;">
-                <nav>
-                    <ul class="nav">
-                        <li class="active">
-                            <a href="index.html">Home</a>
-                        </li>
-                        <li>
-                            <a href="members.html">Members</a>
-                        </li>
-                        <li>
-                            <a href="admin.html">Admin</a>
-                        </li>
-                        <li>
-                            <a href="index.html">Home2</a>
-                        </li>
-                        <li>
-                            <a href="members.html">Members2</a>
-                        </li>
-                        <li>
-                            <a href="admin.html">Admin2</a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-    
-        <!-- lg -->
-        <div id="lghdr" class="container-fluid">
+        <!-- flexbox to align centrally on vertical axis-->
+        <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-6" style="display:flex; justify-content:left; padding-top:20px; padding-bottom:20px;">
-                    <h1>Nomads Badminton Club</h1>
+                <div class="col-sm-0 col-md-2"></div>
+                <div class="col-sm-12 col-md-4">
+                    <div style="display:flex; justify-content:center">
+                        <h1>Nomads Badminton</h1>
+                    </div>
                 </div>
-                <div class="col-lg-6" style="display:flex; justify-content:center; align-items:center">
-                    <nav>
-                        <ul class="nav">
-                            <li class="active">
-                                <a href="index.html">Home</a>
-                            </li>
-                            <li>
-                                <a href="members.html">Members</a>
-                            </li>
-                            <li>
-                                <a href="admin.html">Admin</a>
-                            </li>
-                            <li>
-                                <a href="index.html">Home2</a>
-                            </li>
-                            <li>
-                                <a href="members.html">Members2</a>
-                            </li>
-                            <li>
-                                <a href="admin.html">Admin2</a>
-                            </li>
-                        </ul>
-                    </nav>
+                <div class="col-sm-12 col-md-4">
+                    <div style="display:flex; justify-content:center; padding-top:20px;">
+                        <nav>
+                            <ul class="nav">
+                                <li>
+                                    <a href="index.html">Home</a>
+                                </li>
+                                <li class="active">
+                                    <a href="members.html">Members</a>
+                                </li>
+                                <li>
+                                    <a href="admin.html">Admin</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
                 </div>
-            </div>
-        </div>
-    
-        <!-- xl -->
-        <div id="xlhdr" class="container-fluid">
-            <div class="row">
-                <div class="col-xl-2"></div>
-                <div class="col-xl-4" style="display:flex; justify-content:center; padding-top:20px; padding-bottom:20px;">
-                    <h1>Nomads Badminton Club</h1>
-                </div>
-                <div class="col-xl-4" style="display:flex; justify-content:center; align-items:center">
-                    <nav>
-                        <ul class="nav">
-                            <li class="active">
-                                <a href="index.html">Home</a>
-                            </li>
-                            <li>
-                                <a href="members.html">Members</a>
-                            </li>
-                            <li>
-                                <a href="admin.html">Admin</a>
-                            </li>
-                            <li>
-                                <a href="index.html">Home2</a>
-                            </li>
-                            <li>
-                                <a href="members.html">Members2</a>
-                            </li>
-                            <li>
-                                <a href="admin.html">Admin2</a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-                <div class="col-xl-2"></div>
+                <div class="col-sm-0 col-md-2"></div>
             </div>
         </div>
     </header>
-    <br>
 
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-1 col-xl-2"></div>
-            <div class="col-lg-5 col-xl-4" style="padding-bottom:20px;">
-                <nav>
-                    <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
-                        <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab"
-                            aria-controls="nav-home" aria-selected="true">Members</a>
-                        <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab"
-                            aria-controls="nav-profile" aria-selected="false">Equipment</a>
-                        <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab"
-                            aria-controls="nav-contact" aria-selected="false">Club Rules</a>
-                        <a class="nav-item nav-link" id="nav-about-tab" data-toggle="tab" href="#nav-about" role="tab" aria-controls="nav-about"
-                            aria-selected="false">Other</a>
-                    </div>
-                </nav>
-                <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
-                    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                        Member details here
-                    </div>
-                    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-                        Equipment details here
-                    </div>
-                    <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
-                        Rules stuff
-                    </div>
-                    <div class="tab-pane fade" id="nav-about" role="tabpanel" aria-labelledby="nav-about-tab">
-                        Other stuff
+    <div style="height:5%"></div>
+
+    <section id="indexMain" style="color: #5a5a5a; height:75%">
+        <div class="container-fluid">
+            <div class="row">
+
+                <div class="col-sm-0 col-md-2">
+                </div>
+
+                <div class="col-sm-12 col-md-4">
+                    <nav>
+                        <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                            <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab"
+                             aria-controls="nav-home" aria-selected="true">Members</a>
+                            <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab"
+                                aria-controls="nav-profile" aria-selected="false">Equipment</a>
+                            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab"
+                                aria-controls="nav-contact" aria-selected="false">Club Rules</a>
+                            <a class="nav-item nav-link" id="nav-about-tab" data-toggle="tab" href="#nav-about" role="tab"
+                                aria-controls="nav-about" aria-selected="false">Other</a>
+                        </div>
+                    </nav>
+                    <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
+                        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                            Member details here
+                        </div>
+                        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                            Equipment details here
+                        </div>
+                        <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+                            Rules stuff
+                        </div>
+                        <div class="tab-pane fade" id="nav-about" role="tabpanel" aria-labelledby="nav-about-tab">
+                            Other stuff
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-5 col-xl-4">
-                <nav>
-                    <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
-                        <a class="nav-item nav-link active" id="nav-ladders-tab" data-toggle="tab" href="#nav-ladders" role="tab"
-                            aria-controls="nav-ladders" aria-selected="true">Ladders</a>
-                        <a class="nav-item nav-link" id="nav-help-tab" data-toggle="tab" href="#nav-help" role="tab" aria-controls="nav-help"
-                            aria-selected="false">How it works</a>
-                    </div>
-                </nav>
-                <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent2">
-                    <div class="tab-pane fade show active" id="nav-ladders" role="tabpanel" aria-labelledby="nav-ladders-tab">
+
+                <div class="col-sm-12 col-md-4">
+
+                    <!-- tab headings -->
+                    <nav>
+                        <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                            <a class="nav-item nav-link active" id="nav-ladders-tab" data-toggle="tab" href="#nav-ladders" role="tab"
+                                aria-controls="nav-ladders" aria-selected="true">Ladders</a>
+                            <a class="nav-item nav-link" id="nav-help-tab" data-toggle="tab" href="#nav-help" role="tab"
+                                aria-controls="nav-help" aria-selected="false">How it works</a>
+                        </div>
+                    </nav>
+
+                    <!-- tab panels -->
+                    <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent2">
+
+                        <!-- ladders panel -->
+                        <div class="tab-pane fade show active" id="nav-ladders" role="tabpanel" aria-labelledby="nav-ladders-tab">
+
                             <div class="accordion" id="accordionExample">
-                            
+
                                 <!-- mens doubles -->
                                 <div class="card">
                                     <div class="card-header" id="headingOne">
                                         <div class="ladder">
-                                            <button id="squoink" class="btn btn-dark" type="button" data-toggle="collapse"
-                                                data-target="#collapseOne" aria-controls="collapseOne">
+                                            <button id="squoink" class="btn btn-dark" type="button" data-toggle="collapse" data-target="#collapseOne"
+                                                    aria-controls="collapseOne">
                                                 Men's Doubles
                                             </button>
                                         </div>
                                     </div>
-                            
-                                    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+
+                                    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">  
                                         <div class="card-body">
-                            
+
                                             <!-- ladder panel -->
                                             <div id="medLadderPanel">
                                                 <div id="medladder"></div>
-                                                <div id="medEnterResultBtn"><button type="button" class="btn btn-dark">Enter New Result</button>
-                                                </div>
+                                                <div id="medEnterResultBtn"><button type="button" class="btn btn-dark">Enter New Result</button></div>
                                             </div>
-                            
+
                                             <!-- login panel -->
                                             <div id="medLoginPanel" class="hide">
                                                 <div class="row">
@@ -257,12 +164,11 @@
                                                         <div id="medLoginBtn"><button type="button" class="btn btn-success">Login</button></div>
                                                     </div>
                                                     <div class="col-sm-12 col-xl-6">
-                                                        <div id="medCancelLoginBtn"><button type="button" class="btn btn-danger">Cancel</button>
-                                                        </div>
+                                                        <div id="medCancelLoginBtn"><button type="button" class="btn btn-danger">Cancel</button></div>
                                                     </div>
                                                 </div>
                                             </div>
-                            
+
                                             <!-- enter result panel -->
                                             <div id="medResultPanel" class="hide">
                                                 <h2>Winners</h2>
@@ -295,19 +201,17 @@
                                                 <div class="row">
                                                     <div class="col-sm-12 col-lg-6">
                                                         <div style="display:flex; align-items:center; margin-top:20px">
-                                                            <div id="medSubmitBtn"><button type="button" class="btn btn-success">Submit</button>
-                                                            </div>
+                                                            <div id="medSubmitBtn"><button type="button" class="btn btn-success">Submit</button></div>
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-12 col-lg-6">
                                                         <div style="display:flex; align-items:center; margin-top:20px">
-                                                            <div id="medCancelSubmitBtn"><button type="button"
-                                                                    class="btn btn-danger">Cancel</button></div>
+                                                            <div id="medCancelSubmitBtn"><button type="button" class="btn btn-danger">Cancel</button></div>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </div>                                                                                                                                             
                                             </div>
-                            
+
                                             <!-- result summary panel -->
                                             <div id="medResultSummaryPanel" class="hide">
                                                 <h4>Result summary</h4>
@@ -315,20 +219,20 @@
                                                 <br>
                                                 <div id="medt2Summary"></div>
                                                 <hr>
-                                                <td><button id="medSummaryBtn" type="button" class="btn btn-success">OK</button></td>
+                                                <td><button id="medSummaryBtn" type="button" class="btn btn-color">OK</button></td>
                                             </div>
-                            
+
                                         </div>
                                     </div>
                                 </div>
                                 <br>
-                            
+
                                 <!-- womens doubles -->
                                 <div class="card">
                                     <div class="card-header" id="headingTwo">
                                         <div class="ladder">
                                             <button class="btn btn-dark collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo"
-                                                aria-expanded="false" aria-controls="collapseTwo">
+                                                 aria-expanded="false" aria-controls="collapseTwo">
                                                 Women's Doubles
                                             </button>
                                         </div>
@@ -340,7 +244,7 @@
                                     </div>
                                 </div>
                                 <br>
-                            
+
                                 <!-- mixed doubles -->
                                 <div class="card">
                                     <div class="card-header" id="headingThree">
@@ -358,7 +262,7 @@
                                     </div>
                                 </div>
                                 <br>
-                            
+
                                 <!-- mens singles -->
                                 <div class="card">
                                     <div class="card-header" id="headingFour">
@@ -372,12 +276,12 @@
                                     <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
                                         <div class="card-body">
                                             <div id="mesladder"></div>
-                            
+                                            
                                         </div>
                                     </div>
                                 </div>
                                 <br>
-                            
+
                                 <!-- womens singles -->
                                 <div class="card">
                                     <div class="card-header" id="headingFive">
@@ -394,16 +298,23 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div> <!-- accordion -->
+                            </div>  <!-- accordion -->
+
+                        </div>  
+
+                        <!-- help panel -->
+                        <div class="tab-pane fade" id="nav-help" role="tabpanel" aria-labelledby="nav-help-tab">
+                            help
+                        </div>
                     </div>
-                    <div class="tab-pane fade" id="nav-help" role="tabpanel" aria-labelledby="nav-help-tab">
-                        help
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-1 col-xl-2"></div>
-        </div>
-    </div>
+
+                </div> <!-- column -->
+
+                <div class="col-sm-0 col-md-2"></div>
+
+            </div> <!-- row -->
+        </div> <!-- container -->
+    </section>
 
     <!--
                                 <div class="accordion" id="accordionExample">

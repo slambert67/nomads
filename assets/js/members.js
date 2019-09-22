@@ -166,7 +166,6 @@ jQuery(document).ready(function ($) {
             result[0]
                 .then(
                     function () {
-                        alert("match stats updated");
                         male = db.getMale(medt1p1DocId).data();
                         txt = male.id.forename + " " + male.id.surname + " and ";
                         male = db.getMale(medt1p2DocId).data();
