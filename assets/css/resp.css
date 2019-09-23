@@ -25,6 +25,11 @@ header {
 #xlhdr {
     display: none;
 }
+
+.table td, .table th {
+    padding: 0.25rem;
+}
+
 /* sm */
 /*@media (min-width: 576px) {
     #div1 {background-color: grey;

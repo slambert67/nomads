@@ -72,6 +72,36 @@ var db = (function () {
         return females;
     }
 
+    function getMalesSortedByName() {
+        var unsorted = [];
+        males.forEach(function (doc) {
+            unsorted.push(doc);
+        });
+
+        return unsorted.sort(function (a, b) {
+            if ((a.data().id.forename + a.data().id.surname) <= (b.data().id.forename + b.data().id.surname)) {
+                return -1;
+            } else {
+                return 1;
+            }
+        });
+    }
+
+    function getFemalesSortedByName() {
+        var unsorted = [];
+        females.forEach(function (doc) {
+            unsorted.push(doc);
+        });
+
+        return unsorted.sort(function (a, b) {
+            if ((a.data().id.forename + a.data().id.surname) <= (b.data().id.forename + b.data().id.surname)) {
+                return -1;
+            } else {
+                return 1;
+            }
+        });
+    }
+
     function getMembersSortedByRating(pLadder) {
         var unsorted = [];
 
@@ -142,6 +172,8 @@ var db = (function () {
         getFemale: getFemale,
         getMales: getMales,
         getFemales: getFemales,
+        getMalesSortedByName: getMalesSortedByName,
+        getFemalesSortedByName: getFemalesSortedByName,
         getMembersSortedByRating: getMembersSortedByRating,
         addMember: addMember,
         updateMember: updateMember,

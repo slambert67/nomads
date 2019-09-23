@@ -32,7 +32,7 @@ var members = (function () {
 
     function buildMalesSelect(pSelect) {
 
-        var members = db.getMales();
+        var members = db.getMalesSortedByName();
         var context = { "members": [] };
         members.forEach(function (doc) {
             var member = {};
@@ -49,7 +49,7 @@ var members = (function () {
 
     function buildMaleSubmittersSelect( pSelect ) {
 
-        var members = db.getMales();
+        var members = db.getMalesSortedByName();
         var context = { "members": [] };
         members.forEach(function (doc) {
             var member = {};
