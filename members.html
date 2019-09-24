@@ -243,26 +243,23 @@
                             
                                             <!-- login panel -->
                                             <div id="medLoginPanel" class="hide">
-                                                <div class="row">
-                                                    <div class="col-sm-12 col-xl-6">
-                                                        <select id="medsubmitters"></select>
-                                                    </div>
-                                                    <div class="col-sm-12 col-xl-6">
-                                                        <input type="password" value="" id="medpwd" required placeholder="Password"></input>
-                                                    </div>
-                                                </div>
+                                                <h1>Login to submit result</h1>
                                                 <hr>
                                                 <div class="row">
-                                                    <div class="col-sm-12 col-xl-6">
-                                                        <div id="medLoginBtn"><button type="button" class="btn btn-success">Login</button></div>
+                                                    <div class="col-xl-6">
+                                                        <select id="medsubmitters" style="margin-bottom:10px;"></select>
                                                     </div>
-                                                    <div class="col-sm-12 col-xl-6">
-                                                        <div id="medCancelLoginBtn"><button type="button" class="btn btn-danger">Cancel</button>
-                                                        </div>
+                                                    <div class="col-xl-6">
+                                                        <input type="password" value="" id="medpwd" required placeholder="Password"></input>
                                                     </div>
-                                                </div>
+                                               </div>
+                                               <hr>
+                                               <div style="display:flex; justify-content:left;">
+                                                    <div id="medLoginBtn"><button type="button" class="btn btn-success" style="margin-right:20px;">Login</button></div>
+                                                    <div id="medCancelLoginBtn"><button type="button" class="btn btn-danger">Cancel</button></div>
+                                               </div>
                                             </div>
-                            
+
                                             <!-- enter result panel -->
                                             <div id="medResultPanel" class="hide">
                                                 <h2>Winners</h2>
@@ -307,7 +304,13 @@
                                                     </div>
                                                 </div>
                                             </div>
-                            
+                                            <div id="invalidMedPanel" class="hide">
+                                                <h1>Invalid Match</h1>
+                                                <hr>
+                                                <h2>All players must be different!</h2>
+                                                <hr>
+                                                <button id="invalidMedBtn" type="button" class="btn btn-success">OK</button>
+                                            </div>
                                             <!-- result summary panel -->
                                             <div id="medResultSummaryPanel" class="hide">
                                                 <h4>Result summary</h4>
@@ -335,7 +338,86 @@
                                     </div>
                                     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
                                         <div class="card-body">
-                                            <div id="wodladder"></div>
+                                            <!-- ladder panel -->
+                                            <div id="wodLadderPanel">
+                                                <div id="wodladder"></div>
+                                                <div id="wodEnterResultBtn"><button type="button" class="btn btn-dark">Enter New Result</button>
+                                                </div>
+                                            </div>
+                                            
+                                            <!-- login panel -->
+                                            <div id="wodLoginPanel" class="hide">
+                                                <h1>Login to submit result</h1>
+                                                <hr>
+                                                <div class="row">
+                                                    <div class="col-xl-6">
+                                                        <select id="wodsubmitters" style="margin-bottom:10px;"></select>
+                                                    </div>
+                                                    <div class="col-xl-6">
+                                                        <input type="password" value="" id="wodpwd" required placeholder="Password"></input>
+                                                    </div>
+                                                </div>
+                                                <hr>
+                                                <div style="display:flex; justify-content:left;">
+                                                    <div id="wodLoginBtn"><button type="button" class="btn btn-success" style="margin-right:20px;">Login</button>
+                                                    </div>
+                                                    <div id="wodCancelLoginBtn"><button type="button" class="btn btn-danger">Cancel</button></div>
+                                                </div>
+                                            </div>
+                                            
+                                            <!-- enter result panel -->
+                                            <div id="wodResultPanel" class="hide">
+                                                <h2>Winners</h2>
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-lg-6">
+                                                        <div style="display:flex; align-items:center; margin-top:20px">
+                                                            <select id="wodt1p1"></select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-lg-6">
+                                                        <div style="display:flex; align-items:center; margin-top:20px">
+                                                            <select id="wodt1p2"></select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <hr>
+                                                <h2>Losers</h2>
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-lg-6">
+                                                        <div style="display:flex; align-items:center; margin-top:20px">
+                                                            <select id="wodt2p1"></select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-lg-6">
+                                                        <div style="display:flex; align-items:center; margin-top:20px">
+                                                            <select id="wodt2p2"></select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-lg-6">
+                                                        <div style="display:flex; align-items:center; margin-top:20px">
+                                                            <div id="wodSubmitBtn"><button type="button" class="btn btn-success">Submit</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-lg-6">
+                                                        <div style="display:flex; align-items:center; margin-top:20px">
+                                                            <div id="wodCancelSubmitBtn"><button type="button" class="btn btn-danger">Cancel</button></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <!-- result summary panel -->
+                                            <div id="wodResultSummaryPanel" class="hide">
+                                                <h4>Result summary</h4>
+                                                <div id="wodt1Summary"></div>
+                                                <br>
+                                                <div id="wodt2Summary"></div>
+                                                <hr>
+                                                <td><button id="wodSummaryBtn" type="button" class="btn btn-success">OK</button></td>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -404,6 +486,7 @@
             <div class="col-lg-1 col-xl-2"></div>
         </div>
     </div>
+
 
     <!--
                                 <div class="accordion" id="accordionExample">

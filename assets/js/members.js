@@ -30,9 +30,15 @@ var members = (function () {
         $("#" + pLadder.element).html(html);
     }
 
-    function buildMalesSelect(pSelect) {
+    function buildSelect(pSelect, pGender) {
 
-        var members = db.getMalesSortedByName();
+        var members;
+        if (pGender == "M") {
+            members = db.getMalesSortedByName();
+        } else {
+            members = db.getFemalesSortedByName();
+        }
+        
         var context = { "members": [] };
         members.forEach(function (doc) {
             var member = {};
@@ -47,9 +53,15 @@ var members = (function () {
         $("#" + pSelect.ele).html(html);
     }
 
-    function buildMaleSubmittersSelect( pSelect ) {
+    function buildSubmittersSelect( pSelect, pGender ) {
 
-        var members = db.getMalesSortedByName();
+        var members;
+        if (pGender == "M") {
+            members = db.getMalesSortedByName();
+        } else {
+            members = db.getFemalesSortedByName();
+        }
+ 
         var context = { "members": [] };
         members.forEach(function (doc) {
             var member = {};
@@ -66,8 +78,8 @@ var members = (function () {
 
     return {
         buildLadder: buildLadder,
-        buildMalesSelect: buildMalesSelect,
-        buildMaleSubmittersSelect: buildMaleSubmittersSelect,
+        buildSelect: buildSelect,
+        buildSubmittersSelect: buildSubmittersSelect,
         getSubmitter: getSubmitter,
         setSubmitter: setSubmitter
     };
@@ -88,7 +100,8 @@ jQuery(document).ready(function ($) {
             members.buildLadder( { "ladder": "mes", "element": "mesladder", "template": "ladderTemplate" });
             members.buildLadder( { "ladder": "wos", "element": "wosladder", "template": "ladderTemplate" });
 
-            members.buildMaleSubmittersSelect( {"ele": "medsubmitters"}, "Select a submitter" );
+            members.buildSubmittersSelect( {"ele": "medsubmitters"}, "M" );
+            members.buildSubmittersSelect({ "ele": "wodsubmitters" }, "F");
         },
 
         //rejection handler
@@ -97,6 +110,7 @@ jQuery(document).ready(function ($) {
         }
     );
 
+    // med
     $("#medEnterResultBtn").on("click", function() {
         $("#medLadderPanel").addClass("hide");
         $("#medLoginPanel").removeClass("hide");
@@ -122,16 +136,53 @@ jQuery(document).ready(function ($) {
                     members.setSubmitter($("#medsubmitters").val());
                     $("#medLoginPanel").addClass("hide");
                     $("#medResultPanel").removeClass("hide");
-                    members.buildMalesSelect({ "ele": "medt1p1" }, "Select Player");
-                    members.buildMalesSelect({ "ele": "medt1p2" }, "Select Player");
-                    members.buildMalesSelect({ "ele": "medt2p1" }, "Select Player");
-                    members.buildMalesSelect({ "ele": "medt2p2" }, "Select Player");
+                    members.buildSelect({ "ele": "medt1p1" }, "M");
+                    members.buildSelect({ "ele": "medt1p2" }, "M");
+                    members.buildSelect({ "ele": "medt2p1" }, "M");
+                    members.buildSelect({ "ele": "medt2p2" }, "M");
                 //} else {
                     //console.log("invalid");
                 //}
             }
         );
     });
+
+    // wod
+    $("#wodEnterResultBtn").on("click", function () {
+        $("#wodLadderPanel").addClass("hide");
+        $("#wodLoginPanel").removeClass("hide");
+    });
+
+    $("#wodCancelLoginBtn").on("click", function () {
+        $("#wodLoginPanel").addClass("hide");
+        $("#wodLadderPanel").removeClass("hide");
+    });
+
+    $("#wodLoginBtn").on("click", function () {
+
+        console.log("submitter = " + $("#wodsubmitters").val());
+        console.log("entered password = " + $("#wodpwd").val());
+
+        db.getCredentials($("#wodsubmitters").val(), $("#wodpwd").val())
+            .then(
+
+                function (docs) {
+
+                    // if (docs.size === 1 && docs.docs[0].data().password === $("#medpwd").val()) {
+                    console.log("valid");
+                    members.setSubmitter($("#wodsubmitters").val());
+                    $("#wodLoginPanel").addClass("hide");
+                    $("#wodResultPanel").removeClass("hide");
+                    members.buildSelect({ "ele": "wodt1p1" }, "F");
+                    members.buildSelect({ "ele": "wodt1p2" }, "F");
+                    members.buildSelect({ "ele": "wodt2p1" }, "F");
+                    members.buildSelect({ "ele": "wodt2p2" }, "F");
+                    //} else {
+                    //console.log("invalid");
+                    //}
+                }
+            );
+    });   
 
     /*
     ********************************************************************************
@@ -141,6 +192,11 @@ jQuery(document).ready(function ($) {
     $("#medCancelSubmitBtn").on("click", function () {
         $("#medResultPanel").addClass("hide");
         $("#medLadderPanel").removeClass("hide");
+    });
+
+    $("#invalidMedBtn").on("click", function () {
+        $("#invalidMedPanel").addClass("hide");
+        $("#medResultPanel").removeClass("hide");
     });
 
     $("#medSubmitBtn").on("click", function(){
@@ -181,7 +237,8 @@ jQuery(document).ready(function ($) {
                     }
                 )
         } else {
-            alert("invalid match");
+            $("#medResultPanel").addClass("hide");
+            $("#invalidMedPanel").removeClass("hide");
         }
     });
 
