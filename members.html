@@ -237,7 +237,8 @@
                                             <!-- ladder panel -->
                                             <div id="medLadderPanel">
                                                 <div id="medladder"></div>
-                                                <div id="medEnterResultBtn"><button type="button" class="btn btn-dark">Enter New Result</button>
+                                                <div id="medEnterResultBtn" class="enterresultbtn" data-match="med">
+                                                    <button type="button" class="btn btn-dark">Enter New Result</button>
                                                 </div>
                                             </div>
                             
@@ -255,8 +256,10 @@
                                                </div>
                                                <hr>
                                                <div style="display:flex; justify-content:left;">
-                                                    <div id="medLoginBtn"><button type="button" class="btn btn-success" style="margin-right:20px;">Login</button></div>
-                                                    <div id="medCancelLoginBtn"><button type="button" class="btn btn-danger">Cancel</button></div>
+                                                    <div id="medLoginBtn" class="loginbtn" data-match="med"><button type="button" class="btn btn-success" style="margin-right:20px;">Login</button></div>
+                                                    <div id="medCancelLoginBtn" class="cancelloginbtn" data-match="med">
+                                                        <button type="button" class="btn btn-danger">Cancel</button>
+                                                    </div>
                                                </div>
                                             </div>
 
@@ -298,13 +301,13 @@
                                                     </div>
                                                     <div class="col-sm-12 col-lg-6">
                                                         <div style="display:flex; align-items:center; margin-top:20px">
-                                                            <div id="medCancelSubmitBtn"><button type="button"
+                                                            <div id="medCancelSubmitBtn" class="cancelsubmitbtn" data-match="med"><button type="button"
                                                                     class="btn btn-danger">Cancel</button></div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div id="invalidMedPanel" class="hide">
+                                            <div id="invalidMedPanel" class="hide invalidmatchbtn" data-match="Med">
                                                 <h1>Invalid Match</h1>
                                                 <hr>
                                                 <h2>All players must be different!</h2>
@@ -341,7 +344,8 @@
                                             <!-- ladder panel -->
                                             <div id="wodLadderPanel">
                                                 <div id="wodladder"></div>
-                                                <div id="wodEnterResultBtn"><button type="button" class="btn btn-dark">Enter New Result</button>
+                                                <div id="wodEnterResultBtn" class="enterresultbtn" data-match="wod">
+                                                    <button type="button" class="btn btn-dark">Enter New Result</button>
                                                 </div>
                                             </div>
                                             
@@ -359,9 +363,11 @@
                                                 </div>
                                                 <hr>
                                                 <div style="display:flex; justify-content:left;">
-                                                    <div id="wodLoginBtn"><button type="button" class="btn btn-success" style="margin-right:20px;">Login</button>
+                                                    <div id="wodLoginBtn" class="loginbtn" data-match="wod"><button type="button" class="btn btn-success" style="margin-right:20px;">Login</button>
                                                     </div>
-                                                    <div id="wodCancelLoginBtn"><button type="button" class="btn btn-danger">Cancel</button></div>
+                                                    <div id="wodCancelLoginBtn" class="cancelloginbtn" data-match="wod">
+                                                        <button type="button" class="btn btn-danger">Cancel</button>
+                                                    </div>
                                                 </div>
                                             </div>
                                             
@@ -403,12 +409,20 @@
                                                     </div>
                                                     <div class="col-sm-12 col-lg-6">
                                                         <div style="display:flex; align-items:center; margin-top:20px">
-                                                            <div id="wodCancelSubmitBtn"><button type="button" class="btn btn-danger">Cancel</button></div>
+                                                            <div id="wodCancelSubmitBtn" class="cancelsubmitbtn" data-match="wod"><button type="button" class="btn btn-danger">Cancel</button></div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            
+
+                                            <div id="invalidWodPanel" class="hide invalidmatchbtn" data-match="Wod">
+                                                <h1>Invalid Match</h1>
+                                                <hr>
+                                                <h2>All players must be different!</h2>
+                                                <hr>
+                                                <button id="invalidWodBtn" type="button" class="btn btn-success">OK</button>
+                                            </div>
+
                                             <!-- result summary panel -->
                                             <div id="wodResultSummaryPanel" class="hide">
                                                 <h4>Result summary</h4>
@@ -435,7 +449,98 @@
                                     </div>
                                     <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
                                         <div class="card-body">
-                                            <div id="midladder"></div>
+                                            <!-- ladder panel -->
+                                            <div id="midLadderPanel">
+                                                <div id="midladder"></div>
+                                                <div id="midEnterResultBtn" class="enterresultbtn" data-match="mid">
+                                                    <button type="button" class="btn btn-dark">Enter New Result</button>
+                                                </div>
+                                            </div>
+                                        
+                                            <!-- login panel -->
+                                            <div id="midLoginPanel" class="hide">
+                                                <h1>Login to submit result</h1>
+                                                <hr>
+                                                <div class="row">
+                                                    <div class="col-xl-6">
+                                                        <select id="midsubmitters" style="margin-bottom:10px;"></select>
+                                                    </div>
+                                                    <div class="col-xl-6">
+                                                        <input type="password" value="" id="midpwd" required placeholder="Password"></input>
+                                                    </div>
+                                                </div>
+                                                <hr>
+                                                <div style="display:flex; justify-content:left;">
+                                                    <div id="midLoginBtn" class="loginbtn" data-match="mid"><button type="button" class="btn btn-success"
+                                                            style="margin-right:20px;">Login</button>
+                                                    </div>
+                                                    <div id="midCancelLoginBtn" class="cancelloginbtn" data-match="mid">
+                                                        <button type="button" class="btn btn-danger">Cancel</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        
+                                            <!-- enter result panel -->
+                                            <div id="midResultPanel" class="hide">
+                                                <h2>Winners</h2>
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-lg-6">
+                                                        <div style="display:flex; align-items:center; margin-top:20px">
+                                                            <select id="midt1p1"></select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-lg-6">
+                                                        <div style="display:flex; align-items:center; margin-top:20px">
+                                                            <select id="midt1p2"></select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <hr>
+                                                <h2>Losers</h2>
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-lg-6">
+                                                        <div style="display:flex; align-items:center; margin-top:20px">
+                                                            <select id="midt2p1"></select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-lg-6">
+                                                        <div style="display:flex; align-items:center; margin-top:20px">
+                                                            <select id="midt2p2"></select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-lg-6">
+                                                        <div style="display:flex; align-items:center; margin-top:20px">
+                                                            <div id="midSubmitBtn"><button type="button" class="btn btn-success">Submit</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-lg-6">
+                                                        <div style="display:flex; align-items:center; margin-top:20px">
+                                                            <div id="midCancelSubmitBtn" class="cancelsubmitbtn" data-match="mid"><button type="button" class="btn btn-danger">Cancel</button></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div id="invalidMidPanel" class="hide invalidmatchbtn" data-match="Mid">
+                                                <h1>Invalid Match</h1>
+                                                <hr>
+                                                <h2>All players must be different!</h2>
+                                                <hr>
+                                                <button id="invalidMidBtn" type="button" class="btn btn-success">OK</button>
+                                            </div>
+
+                                            <!-- result summary panel -->
+                                            <div id="midResultSummaryPanel" class="hide">
+                                                <h4>Result summary</h4>
+                                                <div id="midt1Summary"></div>
+                                                <br>
+                                                <div id="midt2Summary"></div>
+                                                <hr>
+                                                <td><button id="midSummaryBtn" type="button" class="btn btn-success">OK</button></td>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -453,8 +558,88 @@
                                     </div>
                                     <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
                                         <div class="card-body">
-                                            <div id="mesladder"></div>
-                            
+                                            <!-- ladder panel -->
+                                            <div id="mesLadderPanel">
+                                                <div id="mesladder"></div>
+                                                <div id="mesEnterResultBtn" class="enterresultbtn" data-match="mes">
+                                                    <button type="button" class="btn btn-dark">Enter New Result</button>
+                                                </div>
+                                            </div>
+                                        
+                                            <!-- login panel -->
+                                            <div id="mesLoginPanel" class="hide">
+                                                <h1>Login to submit result</h1>
+                                                <hr>
+                                                <div class="row">
+                                                    <div class="col-xl-6">
+                                                        <select id="messubmitters" style="margin-bottom:10px;"></select>
+                                                    </div>
+                                                    <div class="col-xl-6">
+                                                        <input type="password" value="" id="mespwd" required placeholder="Password"></input>
+                                                    </div>
+                                                </div>
+                                                <hr>
+                                                <div style="display:flex; justify-content:left;">
+                                                    <div id="mesLoginBtn" class="loginbtn" data-match="mes"><button type="button" class="btn btn-success"
+                                                            style="margin-right:20px;">Login</button>
+                                                    </div>
+                                                    <div id="mesCancelLoginBtn" class="cancelloginbtn" data-match="mes">
+                                                        <button type="button" class="btn btn-danger">Cancel</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        
+                                            <!-- enter result panel -->
+                                            <div id="mesResultPanel" class="hide">
+                                                <h2>Winner</h2>
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-lg-6">
+                                                        <div style="display:flex; align-items:center; margin-top:20px">
+                                                            <select id="mesp1"></select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <hr>
+                                                <h2>Losers</h2>
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-lg-6">
+                                                        <div style="display:flex; align-items:center; margin-top:20px">
+                                                            <select id="mesp2"></select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-lg-6">
+                                                        <div style="display:flex; align-items:center; margin-top:20px">
+                                                            <div id="mesSubmitBtn"><button type="button" class="btn btn-success">Submit</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-lg-6">
+                                                        <div style="display:flex; align-items:center; margin-top:20px">
+                                                            <div id="mesCancelSubmitBtn" class="cancelsubmitbtn" data-match="mes"><button type="button" class="btn btn-danger">Cancel</button></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div id="invalidMesPanel" class="hide invalidmatchbtn" data-match="Mes">
+                                                <h1>Invalid Match</h1>
+                                                <hr>
+                                                <h2>All players must be different!</h2>
+                                                <hr>
+                                                <button id="invalidMesBtn" type="button" class="btn btn-success">OK</button>
+                                            </div>
+
+                                            <!-- result summary panel -->
+                                            <div id="mesResultSummaryPanel" class="hide">
+                                                <h4>Result summary</h4>
+                                                <div id="mesp1Summary"></div>
+                                                <br>
+                                                <div id="mesp2Summary"></div>
+                                                <hr>
+                                                <td><button id="mesSummaryBtn" type="button" class="btn btn-success">OK</button></td>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -472,7 +657,88 @@
                                     </div>
                                     <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
                                         <div class="card-body">
-                                            <div id="wosladder"></div>
+                                            <!-- ladder panel -->
+                                            <div id="wosLadderPanel">
+                                                <div id="wosladder"></div>
+                                                <div id="wosEnterResultBtn" class="enterresultbtn" data-match="wos">
+                                                    <button type="button" class="btn btn-dark">Enter New Result</button>
+                                                </div>
+                                            </div>
+                                        
+                                            <!-- login panel -->
+                                            <div id="wosLoginPanel" class="hide">
+                                                <h1>Login to submit result</h1>
+                                                <hr>
+                                                <div class="row">
+                                                    <div class="col-xl-6">
+                                                        <select id="wossubmitters" style="margin-bottom:10px;"></select>
+                                                    </div>
+                                                    <div class="col-xl-6">
+                                                        <input type="password" value="" id="wospwd" required placeholder="Password"></input>
+                                                    </div>
+                                                </div>
+                                                <hr>
+                                                <div style="display:flex; justify-content:left;">
+                                                    <div id="wosLoginBtn" class="loginbtn" data-match="wos"><button type="button" class="btn btn-success"
+                                                            style="margin-right:20px;">Login</button>
+                                                    </div>
+                                                    <div id="wosCancelLoginBtn" class="cancelloginbtn" data-match="wos">
+                                                        <button type="button" class="btn btn-danger">Cancel</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        
+                                            <!-- enter result panel -->
+                                            <div id="wosResultPanel" class="hide">
+                                                <h2>Winner</h2>
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-lg-6">
+                                                        <div style="display:flex; align-items:center; margin-top:20px">
+                                                            <select id="wosp1"></select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <hr>
+                                                <h2>Losers</h2>
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-lg-6">
+                                                        <div style="display:flex; align-items:center; margin-top:20px">
+                                                            <select id="wosp2"></select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-lg-6">
+                                                        <div style="display:flex; align-items:center; margin-top:20px">
+                                                            <div id="wosSubmitBtn"><button type="button" class="btn btn-success">Submit</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-lg-6">
+                                                        <div style="display:flex; align-items:center; margin-top:20px">
+                                                            <div id="wosCancelSubmitBtn" class="cancelsubmitbtn" data-match="wos"><button type="button" class="btn btn-danger">Cancel</button></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+ 
+                                            <div id="invalidWosPanel" class="hide invalidmatchbtn" data-match="Wos">
+                                                <h1>Invalid Match</h1>
+                                                <hr>
+                                                <h2>All players must be different!</h2>
+                                                <hr>
+                                                <button id="invalidWosBtn" type="button" class="btn btn-success">OK</button>
+                                            </div>
+
+                                            <!-- result summary panel -->
+                                            <div id="wosResultSummaryPanel" class="hide">
+                                                <h4>Result summary</h4>
+                                                <div id="wosp1Summary"></div>
+                                                <br>
+                                                <div id="wosp2Summary"></div>
+                                                <hr>
+                                                <td><button id="wosSummaryBtn" type="button" class="btn btn-success">OK</button></td>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -487,94 +753,6 @@
         </div>
     </div>
 
-
-    <!--
-                                <div class="accordion" id="accordionExample">
-                        <nav>
-                            <div class="nav nav-tabs nav-fill" id="headingOne" style="margin-bottom:5px;">
-                                <div style="padding:18px">
-                                    <span class="icon-caret-right"></span><a data-toggle="collapse" data-target="#collapseOne"
-                                        style="margin:20px;">Men's Doubles</a>
-                                </div>
-                            </div>
-                        </nav>
-                        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
-                    
-                            <div class="tab-content py-3 px-3 px-sm-0" id="medladder"></div>
-                    
-                            <div class="col-sm-12 col-lg-4">
-                                <input type="button" value="Enter New Result" id="entermedresult"></input>
-                            </div>
-                            <br>
-                            <div class="row">
-                                <div class="col-sm-12 col-xl-6">
-                                    <select id="medsubmitters"></select>
-                                </div>
-                                <div class="col-sm-12 col-xl-6">
-                                    <input type="text" value="Enter Password" id="medpwd"></input>
-                                </div>
-                    
-                            </div>
-                    
-                        </div>
-                    
-                        <nav>
-                            <div class="nav nav-tabs nav-fill" id="headingTwo" style="margin-top:5px; margin-bottom:5px;">
-                                <div style="padding:18px">
-                                    <span class="icon-caret-right"></span><a data-toggle="collapse" data-target="#collapseTwo"
-                                        style="margin:20px">Mixed Doubles</a>
-                                </div>
-                            </div>
-                        </nav>
-                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-                            <div class="tab-content py-3 px-3 px-sm-0" id="midladder">
-                                <p>Mixed doubles</p>
-                            </div>
-                        </div>
-                    
-                        <nav>
-                            <div class="nav nav-tabs nav-fill" id="headingThree" style="margin-top:5px">
-                                <div style="padding:18px">
-                                    <span class="icon-caret-right"></span><a data-toggle="collapse" data-target="#collapseThree"
-                                        style="margin:20px">Women's Doubles</a>
-                                </div>
-                            </div>
-                        </nav>
-                        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-                            <div class="tab-content py-3 px-3 px-sm-0" id="wodladder">
-                                <p>Women's doubles</p>
-                            </div>
-                        </div>
-                    
-                        <nav>
-                            <div class="nav nav-tabs nav-fill" id="headingFour" style="margin-top:5px">
-                                <div style="padding:18px">
-                                    <span class="icon-caret-right"></span><a data-toggle="collapse" data-target="#collapseFour"
-                                        style="margin:20px">Men's Singles</a>
-                                </div>
-                            </div>
-                        </nav>
-                        <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
-                            <div class="tab-content py-3 px-3 px-sm-0" id="mesladder">
-                                <p>Men's Singles</p>
-                            </div>
-                        </div>
-                    
-                        <nav>
-                            <div class="nav nav-tabs nav-fill" id="headingFive" style="margin-top:5px">
-                                <div style="padding:18px">
-                                    <span class="icon-caret-right"></span><a data-toggle="collapse" data-target="#collapseFive"
-                                        style="margin:20px">Women's Singles</a>
-                                </div>
-                            </div>
-                        </nav>
-                        <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
-                            <div class="tab-content py-3 px-3 px-sm-0" id="wosladder">
-                                <p>Women's Singles</p>
-                            </div>
-                        </div>
-                        </div>
-    -->
 <!-- Templates-->
 
 <!-- ladders -->

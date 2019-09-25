@@ -102,6 +102,9 @@ jQuery(document).ready(function ($) {
 
             members.buildSubmittersSelect( {"ele": "medsubmitters"}, "M" );
             members.buildSubmittersSelect({ "ele": "wodsubmitters" }, "F");
+            members.buildSubmittersSelect({ "ele": "midsubmitters" }, "F");
+            members.buildSubmittersSelect({ "ele": "messubmitters" }, "M");
+            members.buildSubmittersSelect({ "ele": "wossubmitters" }, "F");
         },
 
         //rejection handler
@@ -110,96 +113,70 @@ jQuery(document).ready(function ($) {
         }
     );
 
-    // med
-    $("#medEnterResultBtn").on("click", function() {
-        $("#medLadderPanel").addClass("hide");
-        $("#medLoginPanel").removeClass("hide");
+    // enter results
+    $(".enterresultbtn").on("click", function(){
+        var matchType = $(this).attr("data-match");
+        $("#" + matchType + "LadderPanel").addClass("hide");
+        $("#" + matchType + "LoginPanel").removeClass("hide");
+
     });
 
-    $("#medCancelLoginBtn").on("click", function () {
-        $("#medLoginPanel").addClass("hide");
-        $("#medLadderPanel").removeClass("hide");        
+    // cancel login
+    $(".cancelloginbtn").on("click", function () {
+        var matchType = $(this).attr("data-match");
+        $("#" + matchType + "LoginPanel").addClass("hide");
+        $("#" + matchType + "LadderPanel").removeClass("hide");
+
     });
 
-    $("#medLoginBtn").on("click", function() {
 
-        console.log("submitter = " + $("#medsubmitters").val());
-        console.log("entered password = " + $("#medpwd").val());
+    // login
+    $(".loginbtn").on("click", function () {
+        var matchType = $(this).attr("data-match");
+        var player;
+        var gender;
 
-        db.getCredentials($("#medsubmitters").val(), $("#medpwd").val())
-        .then (
+        if (matchType == "med") {
+            gender = "M";
+        } else {
+            gender = "F";
+        }
 
-            function(docs) {
-                                  
-               // if (docs.size === 1 && docs.docs[0].data().password === $("#medpwd").val()) {
-                    console.log("valid");
-                    members.setSubmitter($("#medsubmitters").val());
-                    $("#medLoginPanel").addClass("hide");
-                    $("#medResultPanel").removeClass("hide");
-                    members.buildSelect({ "ele": "medt1p1" }, "M");
-                    members.buildSelect({ "ele": "medt1p2" }, "M");
-                    members.buildSelect({ "ele": "medt2p1" }, "M");
-                    members.buildSelect({ "ele": "medt2p2" }, "M");
-                //} else {
-                    //console.log("invalid");
-                //}
-            }
-        );
-    });
-
-    // wod
-    $("#wodEnterResultBtn").on("click", function () {
-        $("#wodLadderPanel").addClass("hide");
-        $("#wodLoginPanel").removeClass("hide");
-    });
-
-    $("#wodCancelLoginBtn").on("click", function () {
-        $("#wodLoginPanel").addClass("hide");
-        $("#wodLadderPanel").removeClass("hide");
-    });
-
-    $("#wodLoginBtn").on("click", function () {
-
-        console.log("submitter = " + $("#wodsubmitters").val());
-        console.log("entered password = " + $("#wodpwd").val());
-
-        db.getCredentials($("#wodsubmitters").val(), $("#wodpwd").val())
+        db.getCredentials($("#" + matchType + "submitters").val(), $("#" + matchType + "pwd").val())
             .then(
 
                 function (docs) {
 
                     // if (docs.size === 1 && docs.docs[0].data().password === $("#medpwd").val()) {
                     console.log("valid");
-                    members.setSubmitter($("#wodsubmitters").val());
-                    $("#wodLoginPanel").addClass("hide");
-                    $("#wodResultPanel").removeClass("hide");
-                    members.buildSelect({ "ele": "wodt1p1" }, "F");
-                    members.buildSelect({ "ele": "wodt1p2" }, "F");
-                    members.buildSelect({ "ele": "wodt2p1" }, "F");
-                    members.buildSelect({ "ele": "wodt2p2" }, "F");
+                    members.setSubmitter($("#" + matchType + "submitters").val());
+                    $("#" + matchType + "LoginPanel").addClass("hide");
+                    $("#" + matchType + "ResultPanel").removeClass("hide");
+                    player = matchType + "t1p1";
+                    members.buildSelect({ "ele": player }, gender);
+                    player = matchType + "t1p2";
+                    members.buildSelect({ "ele": player }, gender);
+                    player = matchType + "t2p1";
+                    members.buildSelect({ "ele": player }, gender);
+                    player = matchType + "t2p2";
+                    members.buildSelect({ "ele": player }, gender);
                     //} else {
                     //console.log("invalid");
                     //}
                 }
             );
-    });   
-
-    /*
-    ********************************************************************************
-    Submit final results
-    ********************************************************************************
-    */
-    $("#medCancelSubmitBtn").on("click", function () {
-        $("#medResultPanel").addClass("hide");
-        $("#medLadderPanel").removeClass("hide");
     });
 
-    $("#invalidMedBtn").on("click", function () {
-        $("#invalidMedPanel").addClass("hide");
-        $("#medResultPanel").removeClass("hide");
+    $(".cancelsubmitbtn").on("click", function () {
+        var matchType = $(this).attr("data-match");
+        $("#" + matchType + "ResultPanel").addClass("hide");
+        $("#" + matchType + "LadderPanel").removeClass("hide");
+
     });
 
-    $("#medSubmitBtn").on("click", function(){
+
+    //Submit final results
+    $("#medSubmitBtn").on("click", function () {
         /*$("#medresultpanel").addClass("hide");
         $("#medladder").removeClass("hide");
         $("#medEnterResultBtn").removeClass("hide");*/
@@ -242,17 +219,22 @@ jQuery(document).ready(function ($) {
         }
     });
 
+    
+    // invalid match
+    $(".invalidmatchbtn").on("click", function () {
+        var matchType = $(this).attr("data-match");
+        $("#invalid" + matchType + "Panel").addClass("hide");
+        $("#" + matchType + "ResultPanel").removeClass("hide");
+
+    });
+
+
+    // results summary
     $("#medSummaryBtn").on("click", function () {
         location.reload(true);
     });
-    
-    /*$("#medCancelBtn").on("click", function () {
-        $("#medresultpanel").addClass("hide");
-        $("#medladder").removeClass("hide");
-        $("#medEnterResultBtn").removeClass("hide");
-    });*/
 
+   
 
-    
 
 });
