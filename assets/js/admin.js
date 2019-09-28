@@ -131,6 +131,11 @@ jQuery(document).ready(function ($) {
                     ad.resetStats(doc, "wos");
                 });
             });
+
+            $(".dellogs").on("click", function() {
+                var matchType = $(this).attr("data-match");
+                db.deleteSubmissionLogs(matchType);
+            });
         }
     );
 

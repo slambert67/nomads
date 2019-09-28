@@ -51,52 +51,74 @@ var match = (function () {
         var wp2 = null;
         var lp1 = null;
         var lp2 = null;
+        var winner1;
+        var winner2;
+        var loser1;
+        var loser2;
 
         if (matchType === "med") {
             winningPlayer1Data = db.getMale(winningPlayer1DocId).data();
+            winner1 = winningPlayer1Data.id.forename + " " + winningPlayer1Data.id.surname;
             winningPlayer1CurrentRating = winningPlayer1Data.ladder.med.currentRating;
             winningPlayer2Data = db.getMale(winningPlayer2DocId).data();
+            winner2 = winningPlayer2Data.id.forename + " " + winningPlayer2Data.id.surname;
             winningPlayer2CurrentRating = winningPlayer2Data.ladder.med.currentRating;
             losingPlayer1Data = db.getMale(losingPlayer1DocId).data();
+            loser1 = losingPlayer1Data.id.forename + " " + losingPlayer1Data.id.surname;
             losingPlayer1CurrentRating = losingPlayer1Data.ladder.med.currentRating;
             losingPlayer2Data = db.getMale(losingPlayer2DocId).data();
+            loser2 = losingPlayer2Data.id.forename + " " + losingPlayer2Data.id.surname;
             losingPlayer2CurrentRating = losingPlayer2Data.ladder.med.currentRating;
         } else if (matchType === "mid") {
             winningPlayer1Data = db.getMale(winningPlayer1DocId).data();
+            winner1 = winningPlayer1Data.id.forename + " " + winningPlayer1Data.id.surname;
             winningPlayer1CurrentRating = winningPlayer1Data.ladder.mid.currentRating;
             winningPlayer2Data = db.getFemale(winningPlayer2DocId).data();
+            winner2 = winningPlayer2Data.id.forename + " " + winningPlayer2Data.id.surname;
             winningPlayer2CurrentRating = winningPlayer2Data.ladder.mid.currentRating;
             losingPlayer1Data = db.getMale(losingPlayer1DocId).data();
+            loser1 = losingPlayer1Data.id.forename + " " + losingPlayer1Data.id.surname;
             losingPlayer1CurrentRating = losingPlayer1Data.ladder.mid.currentRating;
             losingPlayer2Data = db.getFemale(losingPlayer2DocId).data();
+            loser2 = losingPlayer2Data.id.forename + " " + losingPlayer2Data.id.surname;
             losingPlayer2CurrentRating = losingPlayer2Data.ladder.mid.currentRating;
         } else if (matchType === "mes") {
             winningPlayer1Data = db.getMale(winningPlayer1DocId).data();
+            winner1 = winningPlayer1Data.id.forename + " " + winningPlayer1Data.id.surname;
             winningPlayer1CurrentRating = winningPlayer1Data.ladder.mes.currentRating;
             losingPlayer1Data = db.getMale(losingPlayer1DocId).data();
+            loser1 = losingPlayer1Data.id.forename + " " + losingPlayer1Data.id.surname;
             losingPlayer1CurrentRating = losingPlayer1Data.ladder.mes.currentRating;
         } else if (matchType === "wod") {
             winningPlayer1Data = db.getFemale(winningPlayer1DocId).data();
+            winner1 = winningPlayer1Data.id.forename + " " + winningPlayer1Data.id.surname;
             winningPlayer1CurrentRating = winningPlayer1Data.ladder.wod.currentRating;
             winningPlayer2Data = db.getFemale(winningPlayer2DocId).data();
+            winner2 = winningPlayer2Data.id.forename + " " + winningPlayer2Data.id.surname;
             winningPlayer2CurrentRating = winningPlayer2Data.ladder.wod.currentRating;
             losingPlayer1Data = db.getFemale(losingPlayer1DocId).data();
-            losingPlayer2CurrentRating = losingPlayer2Data.ladder.wod.currentRating;
+            loser1 = losingPlayer1Data.id.forename + " " + losingPlayer1Data.id.surname;
+            losingPlayer1CurrentRating = losingPlayer1Data.ladder.wod.currentRating;
             losingPlayer2Data = db.getFemale(losingPlayer2DocId).data();
+            loser2 = losingPlayer2Data.id.forename + " " + losingPlayer2Data.id.surname;
             losingPlayer2CurrentRating = losingPlayer2Data.ladder.wod.currentRating;
         } else {  //wos
             winningPlayer1Data = db.getFemale(winningPlayer1DocId).data();
+            winner1 = winningPlayer1Data.id.forename + " " + winningPlayer1Data.id.surname;
             winningPlayer1CurrentRating = winningPlayer1Data.ladder.wos.currentRating;
             losingPlayer1Data = db.getFemale(losingPlayer1DocId).data();
+            loser1 = losingPlayer1Data.id.forename + " " + losingPlayer1Data.id.surname;
             losingPlayer1CurrentRating = losingPlayer1Data.ladder.wos.currentRating;
         }
 
         if (matchType === "med" || matchType === "mid" || matchType === "wod") {
+            // doubles
             winningTeamAvgRating = Math.round((winningPlayer1CurrentRating + winningPlayer2CurrentRating) / 2);
             losingTeamAvgRating = Math.round((losingPlayer1CurrentRating + losingPlayer2CurrentRating) / 2);
             pointsWonOrLost = ratingDelta(winningTeamAvgRating, losingTeamAvgRating);
             //pointsWonOrLost = Math.round(delta / 2);
         } else {
+            // singles
             pointsWonOrLost = ratingDelta(winningPlayer1CurrentRating, losingPlayer1CurrentRating);
         }
 
@@ -117,28 +139,38 @@ var match = (function () {
             lp2 = db.updateMember(losingPlayer2DocId, losingPlayer2Data);
         }
 
+        var when = new Date();
         if (wp2 === null) {
             // singles match
-            //var statsUpdated = Promise.all([wp1, lp1]);
+
 
             // update match submission log
             submitter = members.getSubmitter();
+            log = {
+                "submitter": submitter,
+                "winner": winner1,
+                "loser": loser1,
+                "delta": pointsWonOrLost,
+                "when": when
+            }
+            logUpdated = db.updateSubmissionLog(log, matchType);
+
             return [Promise.all([wp1, lp1]), pointsWonOrLost];
 
         } else {
             // doubles match
-            //return [Promise.all([wp1, wp2, lp1, lp2]), pointsWonOrLost];
 
             submitter = members.getSubmitter();
             log = {
                 "submitter": submitter,
-                "winner1": winningPlayer1DocId,
-                "winner2": winningPlayer2DocId,
-                "loser1": losingPlayer1DocId,
-                "loser2": losingPlayer2DocId,
-                "delta": pointsWonOrLost
+                "winner1": winner1,
+                "winner2": winner2,
+                "loser1": loser1,
+                "loser2": loser2,
+                "delta": pointsWonOrLost,
+                "when": when
             }
-            logUpdated = db.updateMedSubmissionLog(log);
+            logUpdated = db.updateSubmissionLog(log, matchType);
 
             return [Promise.all([wp1, wp2, lp1, lp2, logUpdated]), pointsWonOrLost];
 

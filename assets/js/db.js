@@ -172,17 +172,46 @@ var db = (function () {
 
     function getCredentials(name, pwd) {
 
-        console.log("in credentials name = " + name);
-        console.log("in credentials password = " + pwd);
-
         return fdb.collection("credentials")
             .where("name", "==", name)
             .where("password", "==", pwd)
             .get();
     }
 
-    function updateMedSubmissionLog(log) {
-        return fdb.collection("med_submission_log").add(log);
+    function updateSubmissionLog(pLog, matchType) {
+
+        var log = matchType + "_submission_log";
+        return fdb.collection(log).add(pLog);
+    }
+
+    function deleteSubmissionLogs(pMatchType) {
+
+        var logs = pMatchType + "_submission_log"
+        var docs = fdb.collection(logs)
+            .get()
+            .then(
+                // fulfillment handler
+                function (myDocs) {
+
+                    myLogs = myDocs;
+                    myLogs.forEach( function(pLog){
+                        fdb.collection(logs).doc(pLog.id).delete()
+                            .then(
+                                function () {
+                                    console.log("doc deleted");
+                                },
+                                function () {
+                                    console.log("error deleting doc");
+                                }
+                            )
+                    })
+                },
+
+                // rejection handler
+                function (err) {
+                    console.error("error retrieving logs");
+                }
+            );
     }
 
     return {
@@ -198,7 +227,8 @@ var db = (function () {
         addMember: addMember,
         updateMember: updateMember,
         getCredentials: getCredentials,
-        updateMedSubmissionLog: updateMedSubmissionLog
+        updateSubmissionLog: updateSubmissionLog,
+        deleteSubmissionLogs: deleteSubmissionLogs
     };
 
 
