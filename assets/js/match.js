@@ -3,12 +3,20 @@ var match = (function () {
     function validMatch(t1p1, t1p2, t2p1, t2p2) {
 
         var players = {};
-        players[t1p1] = null;
-        players[t1p2] = null;
-        players[t2p1] = null;
-        players[t2p2] = null;
 
-        return (Object.keys(players).length == 4) ? true : false;
+        if (t1p2 == null) {
+            // singles
+            players[t1p1] = null;
+            players[t2p1] = null;
+            return (Object.keys(players).length == 2) ? true : false;
+        } else {
+            // doubles
+            players[t1p1] = null;
+            players[t1p2] = null;
+            players[t2p1] = null;
+            players[t2p2] = null;
+            return (Object.keys(players).length == 4) ? true : false;
+        }
     }
 
 
@@ -36,6 +44,9 @@ var match = (function () {
         var winningTeamAvgRating;
         var losingTeamAvgRating;
         var delta;
+        var submitter;
+        var logUpdated;
+        var log;
         var wp1 = null;
         var wp2 = null;
         var lp1 = null;
@@ -62,8 +73,8 @@ var match = (function () {
         } else if (matchType === "mes") {
             winningPlayer1Data = db.getMale(winningPlayer1DocId).data();
             winningPlayer1CurrentRating = winningPlayer1Data.ladder.mes.currentRating;
-            winningPlayer2Data = db.getMale(winningPlayer2DocId).data();
-            winningPlayer2CurrentRating = winningPlayer2Data.ladder.mes.currentRating;
+            losingPlayer1Data = db.getMale(losingPlayer1DocId).data();
+            losingPlayer1CurrentRating = losingPlayer1Data.ladder.mes.currentRating;
         } else if (matchType === "wod") {
             winningPlayer1Data = db.getFemale(winningPlayer1DocId).data();
             winningPlayer1CurrentRating = winningPlayer1Data.ladder.wod.currentRating;
@@ -83,8 +94,8 @@ var match = (function () {
         if (matchType === "med" || matchType === "mid" || matchType === "wod") {
             winningTeamAvgRating = Math.round((winningPlayer1CurrentRating + winningPlayer2CurrentRating) / 2);
             losingTeamAvgRating = Math.round((losingPlayer1CurrentRating + losingPlayer2CurrentRating) / 2);
-            delta = ratingDelta(winningTeamAvgRating, losingTeamAvgRating);
-            pointsWonOrLost = Math.round(delta / 2);
+            pointsWonOrLost = ratingDelta(winningTeamAvgRating, losingTeamAvgRating);
+            //pointsWonOrLost = Math.round(delta / 2);
         } else {
             pointsWonOrLost = ratingDelta(winningPlayer1CurrentRating, losingPlayer1CurrentRating);
         }
@@ -111,13 +122,15 @@ var match = (function () {
             //var statsUpdated = Promise.all([wp1, lp1]);
 
             // update match submission log
+            submitter = members.getSubmitter();
+            return [Promise.all([wp1, lp1]), pointsWonOrLost];
 
         } else {
             // doubles match
             //return [Promise.all([wp1, wp2, lp1, lp2]), pointsWonOrLost];
 
-            var submitter = members.getSubmitter();
-            var log = {
+            submitter = members.getSubmitter();
+            log = {
                 "submitter": submitter,
                 "winner1": winningPlayer1DocId,
                 "winner2": winningPlayer2DocId,
@@ -125,7 +138,7 @@ var match = (function () {
                 "loser2": losingPlayer2DocId,
                 "delta": pointsWonOrLost
             }
-            var logUpdated = db.updateMedSubmissionLog(log);
+            logUpdated = db.updateMedSubmissionLog(log);
 
             return [Promise.all([wp1, wp2, lp1, lp2, logUpdated]), pointsWonOrLost];
 

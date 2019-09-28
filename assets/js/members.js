@@ -33,12 +33,19 @@ var members = (function () {
     function buildSelect(pSelect, pGender) {
 
         var members;
-        if (pGender == "M") {
-            members = db.getMalesSortedByName();
-        } else {
-            members = db.getFemalesSortedByName();
+
+        switch (pGender) {
+            case "M":
+                members = db.getMalesSortedByName();
+                break;
+            case "F":
+                members = db.getFemalesSortedByName();
+                break;
+            case "B":
+                members = db.getMembersSortedByName();
+                break;
         }
-        
+      
         var context = { "members": [] };
         members.forEach(function (doc) {
             var member = {};
@@ -56,10 +63,16 @@ var members = (function () {
     function buildSubmittersSelect( pSelect, pGender ) {
 
         var members;
-        if (pGender == "M") {
-            members = db.getMalesSortedByName();
-        } else {
-            members = db.getFemalesSortedByName();
+        switch (pGender) {
+            case "M":
+                members = db.getMalesSortedByName();
+                break;
+            case "F":
+                members = db.getFemalesSortedByName();
+                break;
+            case "B":
+                members = db.getMembersSortedByName();
+                break;
         }
  
         var context = { "members": [] };
@@ -102,7 +115,7 @@ jQuery(document).ready(function ($) {
 
             members.buildSubmittersSelect( {"ele": "medsubmitters"}, "M" );
             members.buildSubmittersSelect({ "ele": "wodsubmitters" }, "F");
-            members.buildSubmittersSelect({ "ele": "midsubmitters" }, "F");
+            members.buildSubmittersSelect({ "ele": "midsubmitters" }, "B");
             members.buildSubmittersSelect({ "ele": "messubmitters" }, "M");
             members.buildSubmittersSelect({ "ele": "wossubmitters" }, "F");
         },
@@ -132,34 +145,48 @@ jQuery(document).ready(function ($) {
 
     // login
     $(".loginbtn").on("click", function () {
+
         var matchType = $(this).attr("data-match");
-        var player;
-        var gender;
-
-        if (matchType == "med") {
-            gender = "M";
-        } else {
-            gender = "F";
-        }
-
         db.getCredentials($("#" + matchType + "submitters").val(), $("#" + matchType + "pwd").val())
             .then(
 
                 function (docs) {
 
                     // if (docs.size === 1 && docs.docs[0].data().password === $("#medpwd").val()) {
-                    console.log("valid");
+                    switch (matchType) {
+                        case "med":
+                            gender = "M";
+                            members.buildSelect({ "ele": "medt1p1" }, "M");
+                            members.buildSelect({ "ele": "medt1p2" }, "M");
+                            members.buildSelect({ "ele": "medt2p1" }, "M");
+                            members.buildSelect({ "ele": "medt2p2" }, "M");
+                        case "mes":
+                            members.buildSelect({ "ele": "mesp1" }, "M");
+                            members.buildSelect({ "ele": "mesp2" }, "M");
+                            break;
+                        case "wod":
+                            members.buildSelect({ "ele": "wodt1p1" }, "F");
+                            members.buildSelect({ "ele": "wodt1p2" }, "F");
+                            members.buildSelect({ "ele": "wodt2p1" }, "F");
+                            members.buildSelect({ "ele": "wodt2p2" }, "F");
+                        case "wos":
+                            members.buildSelect({ "ele": "wosp1" }, "F");
+                            members.buildSelect({ "ele": "wosp2" }, "F");
+                            break;
+                        case "mid":
+                            members.buildSelect({ "ele": "midt1p1" }, "M");
+                            members.buildSelect({ "ele": "midt1p2" }, "F");
+                            members.buildSelect({ "ele": "midt2p1" }, "M");
+                            members.buildSelect({ "ele": "midt2p2" }, "F");
+                            break;
+                        default:
+                            break;
+                    }
+
                     members.setSubmitter($("#" + matchType + "submitters").val());
                     $("#" + matchType + "LoginPanel").addClass("hide");
                     $("#" + matchType + "ResultPanel").removeClass("hide");
-                    player = matchType + "t1p1";
-                    members.buildSelect({ "ele": player }, gender);
-                    player = matchType + "t1p2";
-                    members.buildSelect({ "ele": player }, gender);
-                    player = matchType + "t2p1";
-                    members.buildSelect({ "ele": player }, gender);
-                    player = matchType + "t2p2";
-                    members.buildSelect({ "ele": player }, gender);
+
                     //} else {
                     //console.log("invalid");
                     //}
@@ -176,46 +203,114 @@ jQuery(document).ready(function ($) {
 
 
     //Submit final results
-    $("#medSubmitBtn").on("click", function () {
-        /*$("#medresultpanel").addClass("hide");
-        $("#medladder").removeClass("hide");
-        $("#medEnterResultBtn").removeClass("hide");*/
+    $(".submitbtn").on("click", function () {
 
+        var t1p1DocId;
+        var t1p2DocId;
+        var t2p1DocId;
+        var t2p2DocId;
+
+        var matchType = $(this).attr("data-match");
+        
         // get player ids
-        var medt1p1DocId = $("#medt1p1").val();
-        var medt1p2DocId = $("#medt1p2").val();
-        var medt2p1DocId = $("#medt2p1").val();
-        var medt2p2DocId = $("#medt2p2").val();
+        switch (matchType) {
+            case "med":
+            case "wod":
+            case "mid":
+                t1p1DocId = $("#" + matchType + "t1p1").val();
+                t1p2DocId = $("#" + matchType + "t1p2").val();
+                t2p1DocId = $("#" + matchType + "t2p1").val();
+                t2p2DocId = $("#" + matchType + "t2p2").val();
+                break;
+            case "mes":
+            case "wos":
+                t1p1DocId = $("#" + matchType + "p1").val();
+                t1p2DocId = null
+                t2p1DocId = $("#" + matchType + "p2").val();
+                t2p2DocId = null;
+            break;
+        }
+
 
         // all players must be different for valid match
-        if (match.validMatch(medt1p1DocId, medt1p2DocId, medt2p1DocId, medt2p2DocId)) {
+        if (match.validMatch(t1p1DocId, t1p2DocId, t2p1DocId, t2p2DocId)) {
 
-            $("#medResultPanel").addClass("hide");
-            $("#medResultSummaryPanel").removeClass("hide");
+            $("#" + matchType + "ResultPanel").addClass("hide");
+            $("#" + matchType + "ResultSummaryPanel").removeClass("hide");
+
             // update player statistics
             var txt;
             var male;
-            var result = match.updateMatchStats("med", medt1p1DocId, medt1p2DocId, medt2p1DocId, medt2p2DocId);
+            var female;
+            var result = match.updateMatchStats(matchType, t1p1DocId, t1p2DocId, t2p1DocId, t2p2DocId);
             result[0]
                 .then(
                     function () {
-                        male = db.getMale(medt1p1DocId).data();
-                        txt = male.id.forename + " " + male.id.surname + " and ";
-                        male = db.getMale(medt1p2DocId).data();
-                        txt = txt + male.id.forename + " " + male.id.surname;
-                        txt = txt + " gained " + result[1] + " rating points";
-                        $("#medt1Summary").html(txt);
-                        male = db.getMale(medt2p1DocId).data();
-                        txt = male.id.forename + " " + male.id.surname + " and ";
-                        male = db.getMale(medt2p2DocId).data();
-                        txt = txt + male.id.forename + " " + male.id.surname;
-                        txt = txt + " lost " + result[1] + " rating points";
-                        $("#medt2Summary").html(txt);
+                        switch (matchType) {
+                            case "med":
+                                male = db.getMale(t1p1DocId).data();
+                                txt = male.id.forename + " " + male.id.surname + " and ";
+                                male = db.getMale(t1p2DocId).data();
+                                txt = txt + male.id.forename + " " + male.id.surname;
+                                txt = txt + " gained " + result[1] + " rating points";
+                                $("#medt1Summary").html(txt);
+                                male = db.getMale(t2p1DocId).data();
+                                txt = male.id.forename + " " + male.id.surname + " and ";
+                                male = db.getMale(t2p2DocId).data();
+                                txt = txt + male.id.forename + " " + male.id.surname;
+                                txt = txt + " lost " + result[1] + " rating points";
+                                $("#medt2Summary").html(txt);
+                                break;
+                            case "wod":
+                                female = db.getFemale(t1p1DocId).data();
+                                txt = female.id.forename + " " + female.id.surname + " and ";
+                                female = db.getFemale(t1p2DocId).data();
+                                txt = txt + female.id.forename + " " + female.id.surname;
+                                txt = txt + " gained " + result[1] + " rating points";
+                                $("#wodt1Summary").html(txt);
+                                female = db.getFemale(t2p1DocId).data();
+                                txt = female.id.forename + " " + female.id.surname + " and ";
+                                female = db.getFemale(t2p2DocId).data();
+                                txt = txt + female.id.forename + " " + female.id.surname;
+                                txt = txt + " lost " + result[1] + " rating points";
+                                $("#wodt2Summary").html(txt);
+                                break;  
+                            case "mid":
+                                male = db.getMale(t1p1DocId).data();
+                                txt = male.id.forename + " " + male.id.surname + " and ";                                                              
+                                female = db.getFemale(t1p2DocId).data();
+                                txt = txt + female.id.forename + " " + female.id.surname;
+                                txt = txt + " gained " + result[1] + " rating points";
+                                $("#midt1Summary").html(txt);
+                                male = db.getMale(t2p1DocId).data();
+                                txt = male.id.forename + " " + male.id.surname + " and ";
+                                female = db.getFemale(t2p2DocId).data();
+                                txt = txt + female.id.forename + " " + female.id.surname;
+                                txt = txt + " lost " + result[1] + " rating points"; 
+                                $("#midt2Summary").html(txt);
+                                break;  
+                            case "mes":
+                                male = db.getMale(t1p1DocId).data();
+                                txt = male.id.forename + " " + male.id.surname + " gained " + result[1] + " rating points";    
+                                $("#mesp1Summary").html(txt);                            
+                                male = db.getMale(t2p1DocId).data();
+                                txt = male.id.forename + " " + male.id.surname + " lost " + result[1] + " rating points";   
+                                $("#mesp2Summary").html(txt);
+                                break; 
+                            case "wos":
+                                female = db.getFemale(t1p1DocId).data();
+                                txt = female.id.forename + " " + female.id.surname + " gained " + result[1] + " rating points";
+                                $("#wosp1Summary").html(txt);
+                                female = db.getFemale(t2p1DocId).data();
+                                txt = female.id.forename + " " + female.id.surname + " lost " + result[1] + " rating points";
+                                $("#wosp2Summary").html(txt);
+                                break; 
+                        }
                     }
                 )
         } else {
-            $("#medResultPanel").addClass("hide");
-            $("#invalidMedPanel").removeClass("hide");
+            $("#" + matchType + "ResultPanel").addClass("hide");
+            $("#" + matchType + "InvalidPanel").removeClass("hide");
         }
     });
 
@@ -223,14 +318,14 @@ jQuery(document).ready(function ($) {
     // invalid match
     $(".invalidmatchbtn").on("click", function () {
         var matchType = $(this).attr("data-match");
-        $("#invalid" + matchType + "Panel").addClass("hide");
+        $("#" + matchType +"InvalidPanel").addClass("hide");
         $("#" + matchType + "ResultPanel").removeClass("hide");
 
     });
 
 
     // results summary
-    $("#medSummaryBtn").on("click", function () {
+    $(".summaryBtn").on("click", function () {
         location.reload(true);
     });
 

@@ -102,6 +102,24 @@ var db = (function () {
         });
     }
 
+    function getMembersSortedByName() {
+        var unsorted = [];
+        males.forEach(function (doc) {
+            unsorted.push(doc);
+        }); 
+        females.forEach(function (doc) {
+            unsorted.push(doc);
+        });
+
+        return unsorted.sort(function (a, b) {
+            if ((a.data().id.forename + a.data().id.surname) <= (b.data().id.forename + b.data().id.surname)) {
+                return -1;
+            } else {
+                return 1;
+            }
+        });
+    }
+
     function getMembersSortedByRating(pLadder) {
         var unsorted = [];
 
@@ -134,6 +152,7 @@ var db = (function () {
             return b.data().ladder[pLadder].currentRating - a.data().ladder[pLadder].currentRating;
         });
     }
+
 
     function addMember( pMember ) {
 
@@ -173,6 +192,7 @@ var db = (function () {
         getMales: getMales,
         getFemales: getFemales,
         getMalesSortedByName: getMalesSortedByName,
+        getMembersSortedByName: getMembersSortedByName,
         getFemalesSortedByName: getFemalesSortedByName,
         getMembersSortedByRating: getMembersSortedByRating,
         addMember: addMember,

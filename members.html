@@ -295,7 +295,7 @@
                                                 <div class="row">
                                                     <div class="col-sm-12 col-lg-6">
                                                         <div style="display:flex; align-items:center; margin-top:20px">
-                                                            <div id="medSubmitBtn"><button type="button" class="btn btn-success">Submit</button>
+                                                            <div id="medSubmitBtn" class="submitbtn" data-match="med"><button type="button" class="btn btn-success">Submit</button>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -307,12 +307,12 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div id="invalidMedPanel" class="hide invalidmatchbtn" data-match="Med">
+                                            <div id="medInvalidPanel" class="hide" data-match="Med">
                                                 <h1>Invalid Match</h1>
                                                 <hr>
                                                 <h2>All players must be different!</h2>
                                                 <hr>
-                                                <button id="invalidMedBtn" type="button" class="btn btn-success">OK</button>
+                                                <button id="invalidMedBtn" type="button" class="btn btn-success invalidmatchbtn" data-match="med">OK</button>
                                             </div>
                                             <!-- result summary panel -->
                                             <div id="medResultSummaryPanel" class="hide">
@@ -321,7 +321,7 @@
                                                 <br>
                                                 <div id="medt2Summary"></div>
                                                 <hr>
-                                                <td><button id="medSummaryBtn" type="button" class="btn btn-success">OK</button></td>
+                                                <td><button id="medSummaryBtn" type="button" class="btn btn-success summaryBtn">OK</button></td>
                                             </div>
                             
                                         </div>
@@ -403,7 +403,7 @@
                                                 <div class="row">
                                                     <div class="col-sm-12 col-lg-6">
                                                         <div style="display:flex; align-items:center; margin-top:20px">
-                                                            <div id="wodSubmitBtn"><button type="button" class="btn btn-success">Submit</button>
+                                                            <div id="wodSubmitBtn" class="submitbtn" data-match="wod"><button type="button" class="btn btn-success">Submit</button>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -415,12 +415,12 @@
                                                 </div>
                                             </div>
 
-                                            <div id="invalidWodPanel" class="hide invalidmatchbtn" data-match="Wod">
+                                            <div id="wodInvalidPanel" class="hide" data-match="Wod">
                                                 <h1>Invalid Match</h1>
                                                 <hr>
                                                 <h2>All players must be different!</h2>
                                                 <hr>
-                                                <button id="invalidWodBtn" type="button" class="btn btn-success">OK</button>
+                                                <button id="invalidWodBtn" type="button" class="btn btn-success invalidmatchbtn" data-match="wod">OK</button>
                                             </div>
 
                                             <!-- result summary panel -->
@@ -430,7 +430,7 @@
                                                 <br>
                                                 <div id="wodt2Summary"></div>
                                                 <hr>
-                                                <td><button id="wodSummaryBtn" type="button" class="btn btn-success">OK</button></td>
+                                                <td><button id="wodSummaryBtn" type="button" class="btn btn-success summaryBtn">OK</button></td>
                                             </div>
                                         </div>
                                     </div>
@@ -512,7 +512,7 @@
                                                 <div class="row">
                                                     <div class="col-sm-12 col-lg-6">
                                                         <div style="display:flex; align-items:center; margin-top:20px">
-                                                            <div id="midSubmitBtn"><button type="button" class="btn btn-success">Submit</button>
+                                                            <div id="midSubmitBtn" class="submitbtn" data-match="mid"><button type="button" class="btn btn-success">Submit</button>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -524,12 +524,12 @@
                                                 </div>
                                             </div>
 
-                                            <div id="invalidMidPanel" class="hide invalidmatchbtn" data-match="Mid">
+                                            <div id="midInvalidPanel" class="hide" data-match="Mid">
                                                 <h1>Invalid Match</h1>
                                                 <hr>
                                                 <h2>All players must be different!</h2>
                                                 <hr>
-                                                <button id="invalidMidBtn" type="button" class="btn btn-success">OK</button>
+                                                <button id="invalidMidBtn" type="button" class="btn btn-success invalidmatchbtn" data-match="mid">OK</button>
                                             </div>
 
                                             <!-- result summary panel -->
@@ -539,7 +539,7 @@
                                                 <br>
                                                 <div id="midt2Summary"></div>
                                                 <hr>
-                                                <td><button id="midSummaryBtn" type="button" class="btn btn-success">OK</button></td>
+                                                <td><button id="midSummaryBtn" type="button" class="btn btn-success summaryBtn">OK</button></td>
                                             </div>
                                         </div>
                                     </div>
@@ -600,7 +600,7 @@
                                                     </div>
                                                 </div>
                                                 <hr>
-                                                <h2>Losers</h2>
+                                                <h2>Loser</h2>
                                                 <div class="row">
                                                     <div class="col-sm-12 col-lg-6">
                                                         <div style="display:flex; align-items:center; margin-top:20px">
@@ -611,7 +611,7 @@
                                                 <div class="row">
                                                     <div class="col-sm-12 col-lg-6">
                                                         <div style="display:flex; align-items:center; margin-top:20px">
-                                                            <div id="mesSubmitBtn"><button type="button" class="btn btn-success">Submit</button>
+                                                            <div id="mesSubmitBtn" class="submitbtn" data-match="mes"><button type="button" class="btn btn-success">Submit</button>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -623,12 +623,12 @@
                                                 </div>
                                             </div>
 
-                                            <div id="invalidMesPanel" class="hide invalidmatchbtn" data-match="Mes">
+                                            <div id="mesInvalidPanel" class="hide" data-match="Mes">
                                                 <h1>Invalid Match</h1>
                                                 <hr>
                                                 <h2>All players must be different!</h2>
                                                 <hr>
-                                                <button id="invalidMesBtn" type="button" class="btn btn-success">OK</button>
+                                                <button id="invalidMesBtn" type="button" class="btn btn-success invalidmatchbtn" data-match="mes">OK</button>
                                             </div>
 
                                             <!-- result summary panel -->
@@ -638,7 +638,7 @@
                                                 <br>
                                                 <div id="mesp2Summary"></div>
                                                 <hr>
-                                                <td><button id="mesSummaryBtn" type="button" class="btn btn-success">OK</button></td>
+                                                <td><button id="mesSummaryBtn" type="button" class="btn btn-success summaryBtn">OK</button></td>
                                             </div>
                                         </div>
                                     </div>
@@ -699,7 +699,7 @@
                                                     </div>
                                                 </div>
                                                 <hr>
-                                                <h2>Losers</h2>
+                                                <h2>Loser</h2>
                                                 <div class="row">
                                                     <div class="col-sm-12 col-lg-6">
                                                         <div style="display:flex; align-items:center; margin-top:20px">
@@ -710,7 +710,7 @@
                                                 <div class="row">
                                                     <div class="col-sm-12 col-lg-6">
                                                         <div style="display:flex; align-items:center; margin-top:20px">
-                                                            <div id="wosSubmitBtn"><button type="button" class="btn btn-success">Submit</button>
+                                                            <div id="wosSubmitBtn" class="submitbtn" data-match="wos"><button type="button" class="btn btn-success">Submit</button>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -722,12 +722,12 @@
                                                 </div>
                                             </div>
  
-                                            <div id="invalidWosPanel" class="hide invalidmatchbtn" data-match="Wos">
+                                            <div id="wosInvalidPanel" class="hide" data-match="Wos">
                                                 <h1>Invalid Match</h1>
                                                 <hr>
                                                 <h2>All players must be different!</h2>
                                                 <hr>
-                                                <button id="invalidWosBtn" type="button" class="btn btn-success">OK</button>
+                                                <button id="invalidWosBtn" type="button" class="btn btn-success invalidmatchbtn" data-match="wos">OK</button>
                                             </div>
 
                                             <!-- result summary panel -->
@@ -737,7 +737,7 @@
                                                 <br>
                                                 <div id="wosp2Summary"></div>
                                                 <hr>
-                                                <td><button id="wosSummaryBtn" type="button" class="btn btn-success">OK</button></td>
+                                                <td><button id="wosSummaryBtn" type="button" class="btn btn-success summaryBtn">OK</button></td>
                                             </div>
                                         </div>
                                     </div>
