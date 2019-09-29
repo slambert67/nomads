@@ -125,23 +125,45 @@ var db = (function () {
 
         switch (pLadder) {
             case "med":
+                males.forEach(function (doc) {
+                    if (doc.data().ladder.med.won + doc.data().ladder.med.lost > 0) {
+                        unsorted.push(doc);
+                    }
+                    
+                });
+                break;
             case "mes":
                 males.forEach(function (doc) {
-                    unsorted.push(doc);
+                    if (doc.data().ladder.mes.won + doc.data().ladder.mes.lost > 0) {
+                        unsorted.push(doc);
+                    }
                 });
                 break;
             case "wod":
+                females.forEach(function (doc) {
+                    if (doc.data().ladder.wod.won + doc.data().ladder.wod.lost > 0) {
+                        unsorted.push(doc);
+                    }
+                });
+                break;
             case "wos":
                 females.forEach(function (doc) {
-                    unsorted.push(doc);
+                    if (doc.data().ladder.wos.won + doc.data().ladder.wos.lost > 0) {
+                        unsorted.push(doc);
+                    }
                 });
                 break;
             case "mid":
                 males.forEach(function (doc) {
-                    unsorted.push(doc);
+                    if (doc.data().ladder.mid.won + doc.data().ladder.mid.lost > 0) {
+                        unsorted.push(doc);
+                    }
+
                 });   
                 females.forEach(function (doc) {
-                    unsorted.push(doc);
+                    if (doc.data().ladder.mid.won + doc.data().ladder.mid.lost > 0) {
+                        unsorted.push(doc);
+                    }
                 });
                 break;
             default:

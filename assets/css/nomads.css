@@ -49,8 +49,14 @@ nav > div a.nav-item.nav-link.active
     border-radius:0;
 }
 
+
+nav > div a.nav-item.nav-link[aria-selected="true"]
+{
+    background-color: #e74c3c;
+}
+
 nav > div a.nav-item.nav-link.active:after
- {
+{
   content: "";
   position: relative;
   bottom: -60px;

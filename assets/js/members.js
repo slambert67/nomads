@@ -1,13 +1,51 @@
 var members = (function () {
 
-    var submitter;
+    var medSubmitter;
+    var wodSubmitter;
+    var midSubmitter;
+    var mesSubmitter;
+    var wosSubmitter;
 
-    function setSubmitter( pSubmitter ) {
-        submitter = pSubmitter;
+    function setSubmitter( pSubmitter, pMatchType ) {
+        switch (pMatchType) {
+            case "med":
+                medSubmitter = pSubmitter;
+                break;
+            case "wod":
+                wodSubmitter = pSubmitter;
+                break;
+            case "mid":
+                midSubmitter = pSubmitter;
+                break;
+            case "mes":
+                mesSubmitter = pSubmitter;
+                break;
+            case "wos":
+                wosSubmitter = pSubmitter;
+                break;
+        }
     }
 
-    function getSubmitter() {
-        return submitter;
+    function getSubmitter(pMatchType) {
+        var submitter;
+        switch (pMatchType) {
+            case "med":
+                submitter = medSubmitter;
+                break;
+            case "wod":
+                submitter = wodSubmitter;
+                break;
+            case "mid":
+                submitter = midSubmitter;
+                break;
+            case "mes":
+                submitter = mesSubmitter;
+                break;
+            case "wos":
+                submitter = wosSubmitter;
+                break;
+        }
+        return submitter
     }
 
     function buildLadder( pLadder ) {
@@ -153,6 +191,18 @@ jQuery(document).ready(function ($) {
                 function (docs) {
 
                     // if (docs.size === 1 && docs.docs[0].data().password === $("#medpwd").val()) {
+
+                    if (matchType == "mes") {
+                        if (docs.size === 1 && docs.docs[0].data().password === $("#mespwd").val()) {
+                            members.buildSelect({ "ele": "mesp1" }, "M");
+                            members.buildSelect({ "ele": "mesp2" }, "M");
+                            members.setSubmitter($("#" + matchType + "submitters").val(), matchType);
+                            $("#" + matchType + "LoginPanel").addClass("hide");
+                            $("#" + matchType + "ResultPanel").removeClass("hide");
+                        } else {
+                            alert("invalid credentials");
+                        }
+                    } else {
                     switch (matchType) {
                         case "med":
                             gender = "M";
@@ -182,10 +232,12 @@ jQuery(document).ready(function ($) {
                         default:
                             break;
                     }
+                    
 
-                    members.setSubmitter($("#" + matchType + "submitters").val());
+                    members.setSubmitter($("#" + matchType + "submitters").val(), matchType);
                     $("#" + matchType + "LoginPanel").addClass("hide");
                     $("#" + matchType + "ResultPanel").removeClass("hide");
+                }
 
                     //} else {
                     //console.log("invalid");

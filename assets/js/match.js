@@ -57,6 +57,7 @@ var match = (function () {
         var loser2;
 
         if (matchType === "med") {
+            submitter = members.getSubmitter("med");
             winningPlayer1Data = db.getMale(winningPlayer1DocId).data();
             winner1 = winningPlayer1Data.id.forename + " " + winningPlayer1Data.id.surname;
             winningPlayer1CurrentRating = winningPlayer1Data.ladder.med.currentRating;
@@ -70,6 +71,7 @@ var match = (function () {
             loser2 = losingPlayer2Data.id.forename + " " + losingPlayer2Data.id.surname;
             losingPlayer2CurrentRating = losingPlayer2Data.ladder.med.currentRating;
         } else if (matchType === "mid") {
+            submitter = members.getSubmitter("mid");
             winningPlayer1Data = db.getMale(winningPlayer1DocId).data();
             winner1 = winningPlayer1Data.id.forename + " " + winningPlayer1Data.id.surname;
             winningPlayer1CurrentRating = winningPlayer1Data.ladder.mid.currentRating;
@@ -83,6 +85,7 @@ var match = (function () {
             loser2 = losingPlayer2Data.id.forename + " " + losingPlayer2Data.id.surname;
             losingPlayer2CurrentRating = losingPlayer2Data.ladder.mid.currentRating;
         } else if (matchType === "mes") {
+            submitter = members.getSubmitter("mes");
             winningPlayer1Data = db.getMale(winningPlayer1DocId).data();
             winner1 = winningPlayer1Data.id.forename + " " + winningPlayer1Data.id.surname;
             winningPlayer1CurrentRating = winningPlayer1Data.ladder.mes.currentRating;
@@ -90,6 +93,7 @@ var match = (function () {
             loser1 = losingPlayer1Data.id.forename + " " + losingPlayer1Data.id.surname;
             losingPlayer1CurrentRating = losingPlayer1Data.ladder.mes.currentRating;
         } else if (matchType === "wod") {
+            submitter = members.getSubmitter("wod");
             winningPlayer1Data = db.getFemale(winningPlayer1DocId).data();
             winner1 = winningPlayer1Data.id.forename + " " + winningPlayer1Data.id.surname;
             winningPlayer1CurrentRating = winningPlayer1Data.ladder.wod.currentRating;
@@ -103,6 +107,7 @@ var match = (function () {
             loser2 = losingPlayer2Data.id.forename + " " + losingPlayer2Data.id.surname;
             losingPlayer2CurrentRating = losingPlayer2Data.ladder.wod.currentRating;
         } else {  //wos
+            submitter = members.getSubmitter("wos");
             winningPlayer1Data = db.getFemale(winningPlayer1DocId).data();
             winner1 = winningPlayer1Data.id.forename + " " + winningPlayer1Data.id.surname;
             winningPlayer1CurrentRating = winningPlayer1Data.ladder.wos.currentRating;
@@ -145,7 +150,6 @@ var match = (function () {
 
 
             // update match submission log
-            submitter = members.getSubmitter();
             log = {
                 "submitter": submitter,
                 "winner": winner1,
@@ -160,7 +164,6 @@ var match = (function () {
         } else {
             // doubles match
 
-            submitter = members.getSubmitter();
             log = {
                 "submitter": submitter,
                 "winner1": winner1,
