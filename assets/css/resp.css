@@ -30,6 +30,16 @@ header {
     padding: 0.25rem;
 }
 
+#xsmap {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+}
+
+#othermap {
+    display: none;
+}
+
 /* sm */
 /*@media (min-width: 576px) {
     #div1 {background-color: grey;
@@ -48,6 +58,8 @@ header {
     #xshdr {display:none;}
     #lghdr {display:none;}
     #xlhdr {display:none;}
+    #xsmap {display: none;}
+    #othermap {display:block;}
 }
 
 /* lg */
@@ -56,6 +68,8 @@ header {
     #mdhdr {display:none;}
     #lghdr {display: block;}
     #xlhdr {display:none;}
+    #xsmap {display: none;}
+    #othermap {display:block;}
 }
 
 /* xl */
@@ -64,4 +78,6 @@ header {
     #mdhdr {display:none;}
     #lghdr {display:none;}
     #xlhdr {display:block;}
+    #xsmap {display: none;}
+    #othermap {display:block;}
 }
