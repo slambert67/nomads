@@ -34,8 +34,9 @@ var ad = (function () {
         playerData.ladder[pLadder].currentRating = 1500;
         playerData.ladder[pLadder].won = 0;
         playerData.ladder[pLadder].lost = 0;
-
+        db.openBatch();
         db.updateMember(doc.id, playerData);
+        db.commitBatch();
     }
 
     return {

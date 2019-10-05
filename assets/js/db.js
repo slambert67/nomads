@@ -3,6 +3,7 @@ var db = (function () {
     var fdb;
     var males;
     var females;
+    var batch;
 
     // initialise firebase and retrieve all members
     function init() {
@@ -189,7 +190,8 @@ var db = (function () {
     }
 
     function updateMember(memberId, memberData) {
-        return fdb.collection("members").doc(memberId).set(memberData);
+        //return fdb.collection("members").doc(memberId).set(memberData);
+        batch.update(fdb.collection("members").doc(memberId), memberData);
     }
 
     function getCredentials(name, pwd) {
@@ -203,7 +205,8 @@ var db = (function () {
     function updateSubmissionLog(pLog, matchType) {
 
         var log = matchType + "_submission_log";
-        return fdb.collection(log).add(pLog);
+        //return fdb.collection(log).add(pLog);
+        batch.set(fdb.collection(log).doc(), pLog);
     }
 
     function deleteSubmissionLogs(pMatchType) {
@@ -236,6 +239,14 @@ var db = (function () {
             );
     }
 
+    function openBatch() {
+        batch = fdb.batch();
+    }
+
+    function commitBatch() {
+        return batch.commit();
+    }
+
     return {
         init: init,
         getMale: getMale,
@@ -250,7 +261,9 @@ var db = (function () {
         updateMember: updateMember,
         getCredentials: getCredentials,
         updateSubmissionLog: updateSubmissionLog,
-        deleteSubmissionLogs: deleteSubmissionLogs
+        deleteSubmissionLogs: deleteSubmissionLogs,
+        openBatch: openBatch,
+        commitBatch: commitBatch
     };
 
 

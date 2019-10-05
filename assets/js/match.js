@@ -127,6 +127,7 @@ var match = (function () {
             pointsWonOrLost = ratingDelta(winningPlayer1CurrentRating, losingPlayer1CurrentRating);
         }
 
+        db.openBatch();
         winningPlayer1Data.ladder[matchType].currentRating = winningPlayer1Data.ladder[matchType].currentRating + pointsWonOrLost;
         winningPlayer1Data.ladder[matchType].won = winningPlayer1Data.ladder[matchType].won + 1;
         wp1 = db.updateMember(winningPlayer1DocId, winningPlayer1Data);
@@ -159,7 +160,8 @@ var match = (function () {
             }
             logUpdated = db.updateSubmissionLog(log, matchType);
 
-            return [Promise.all([wp1, lp1]), pointsWonOrLost];
+            //return [Promise.all([wp1, lp1]), pointsWonOrLost];
+            return [db.commitBatch(),pointsWonOrLost];
 
         } else {
             // doubles match
@@ -175,7 +177,8 @@ var match = (function () {
             }
             logUpdated = db.updateSubmissionLog(log, matchType);
 
-            return [Promise.all([wp1, wp2, lp1, lp2, logUpdated]), pointsWonOrLost];
+            //return [Promise.all([wp1, wp2, lp1, lp2, logUpdated]), pointsWonOrLost];
+            return [db.commitBatch(),pointsWonOrLost];
 
         }
     }
