@@ -48,6 +48,32 @@ var members = (function () {
         return submitter
     }
 
+    function buildMembersList( pDetails ) {
+
+        var members;
+        var context = { "members": [] };
+
+        switch( pDetails.gender ) {
+            case "M":
+                members = db.getMalesSortedByName();
+                break;
+            case "F":
+                members = db.getFemalesSortedByName();
+                break;
+        }
+
+        members.forEach( function(doc) {
+            var member = {};
+            member.name = doc.data().id.forename + " " + doc.data().id.surname;
+            context.members.push(member);
+        });
+
+        var templateSrc = $("#" + pDetails.template).html();
+        var template = Handlebars.compile(templateSrc);
+        var html = template(context);
+        $("#" + pDetails.element).html(html);
+    }
+
     function buildLadder( pLadder ) {
 
         var members = db.getMembersSortedByRating(pLadder.ladder);
@@ -128,6 +154,7 @@ var members = (function () {
     }
 
     return {
+        buildMembersList: buildMembersList,
         buildLadder: buildLadder,
         buildSelect: buildSelect,
         buildSubmittersSelect: buildSubmittersSelect,
@@ -145,6 +172,10 @@ jQuery(document).ready(function ($) {
     .then(
         // fulfillment handler
         function () {
+
+            members.buildMembersList( { "gender":"M", "element":"maleMembersPanel", "template":"membersTemplate"} );
+            members.buildMembersList( { "gender":"F", "element":"femaleMembersPanel", "template":"membersTemplate"});
+
             members.buildLadder( { "ladder": "med", "element": "medladder", "template": "ladderTemplate"} );
             members.buildLadder( { "ladder": "mid", "element": "midladder", "template": "ladderTemplate" });
             members.buildLadder( { "ladder": "wod", "element": "wodladder", "template": "ladderTemplate" });

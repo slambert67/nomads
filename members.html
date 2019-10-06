@@ -49,11 +49,11 @@
                         <li>
                             <a href="index.html">Home</a>
                         </li>
+                        <li>
+                            <a href="location.html">Location</a>
+                        </li>
                         <li class="active">
                             <a href="members.html">Members</a>
-                        </li>
-                        <li>
-                            <a href="#">Guests</a>
                         </li>
                     </ul>
                 </nav>
@@ -62,7 +62,7 @@
                 <nav>
                     <ul class="nav">
                         <li class>
-                            <a href="#">Contact</a>
+                            <a href="guests.html">Guests</a>
                         </li>
                         <li>
                             <a href="#">Club Admin</a>
@@ -86,15 +86,16 @@
                         <li>
                             <a href="index.html">Home</a>
                         </li>
+                        <li>
+                            <a href="location.html">Location</a>
+                        </li>
                         <li class="active">
                             <a href="members.html">Members</a>
                         </li>
                         <li>
-                            <a href="#">Guests</a>
+                            <a href="guests.html">Guests</a>
                         </li>
-                        <li>
-                            <a href="#">Contact</a>
-                        </li>
+
                         <li>
                             <a href="#">Club Admin</a>
                         </li>
@@ -118,14 +119,14 @@
                             <li>
                                 <a href="index.html">Home</a>
                             </li>
+                            <li>
+                                <a href="location.html">Location</a>
+                            </li>
                             <li class="active">
                                 <a href="members.html">Members</a>
                             </li>
                             <li>
-                                <a href="#">Guests</a>
-                            </li>
-                            <li>
-                                <a href="#">Contact</a>
+                                <a href="guests.html">Guests</a>
                             </li>
                             <li>
                                 <a href="#">Club Admin</a>
@@ -152,14 +153,14 @@
                             <li>
                                 <a href="index.html">Home</a>
                             </li>
+                            <li>
+                                <a href="location.html">Location</a>
+                            </li>
                             <li class="active">
                                 <a href="members.html">Members</a>
                             </li>
                             <li>
-                                <a href="#">Guests</a>
-                            </li>
-                            <li>
-                                <a href="#">Contact</a>
+                                <a href="guests.html">Guests</a>
                             </li>
                             <li>
                                 <a href="#">Club Admin</a>
@@ -194,10 +195,53 @@
                 </nav>
                 <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
                     <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                        Member details here
+
+                        <div class="accordion" id="members">
+                            <div class="card">
+                                <div class="card-header" id="men">
+                                    <div class="ladder">
+                                        <button id="menbtn" class="btn btn-dark" type="button" data-toggle="collapse"
+                                                data-target="#maleMembers" aria-controls="maleMembers">
+                                            Men
+                                        </button>
+                                    </div>
+                                </div>                                
+
+                                <div id="maleMembers" class="collapse" aria-labelledby="maleMembers" data-parent="#members">
+                                    <div class="card-body">
+                                        <div id="maleMembersPanel">
+                                            men
+                                        </div>
+                                    </div>
+                                </div> 
+                            </div>                         
+                            <br>
+                            <div class="card">
+                                    <div class="card-header" id="women">
+                                        <div class="ladder">
+                                            <button id="womenbtn" class="btn btn-dark" type="button" data-toggle="collapse"
+                                                    data-target="#femaleMembers" aria-controls="femaleMembers">
+                                                Women
+                                            </button>
+                                        </div>
+                                    </div>                                
+    
+                                    <div id="femaleMembers" class="collapse" aria-labelledby="femaleMembers" data-parent="#members">
+                                        <div class="card-body">
+                                            <div id="femaleMembersPanel">
+                                                women
+                                            </div>
+                                        </div>
+                                    </div> 
+                                </div> 
+                        </div>
+
                     </div>
                     <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-                        Equipment details here
+                        <h6>Club equipment is stored in 2 boxes</h6>
+                        <h6>Currently we are unable to store these at the club location - hopefully this will change</h6>
+                        <h6>The large blue box is for knock up shuttles and peg board etc</h6>
+                        <h6>The smaller box is for new shuttles. The code is 5147</h6>
                     </div>
                     <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
                         Rules stuff
@@ -790,6 +834,26 @@
     {{#each members}}
         <option value="{{this.id}}">{{this.name}}</option>
     {{/each}}
+</script>
+
+<!-- members list-->
+<script id="membersTemplate" type="text/x-handlebars-template">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Member</th>
+                <th>Paid Up</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each members}}
+                <tr>
+                    <td>{{this.name}}</td>
+                    <td class="paid"></td>
+                </tr>
+            {{/each}}
+        </tbody>
+    </table>
 </script>
 
  
