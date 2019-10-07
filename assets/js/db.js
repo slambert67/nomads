@@ -3,6 +3,8 @@ var db = (function () {
     var fdb;
     var males;
     var females;
+    var guests;
+    var nomads_globals;
     var batch;
 
     // initialise firebase and retrieve all members
@@ -51,7 +53,37 @@ var db = (function () {
                 }
             );
 
-        return Promise.all([m, w]);
+        // retrieve guests
+        var g = fdb.collection("guests")
+            .get()
+            .then(
+                // fulfillment handler
+                function (myData) {
+                    guests = myData;
+                },
+
+                // rejection handler
+                function (err) {
+                    console.error("get guests error");
+                }
+            );
+
+        // retrieve globals
+        var globs = fdb.collection("globals")
+            .get()
+            .then(
+                // fulfillment handler
+                function (myData) {
+                    nomads_globals = myData;
+                },
+
+                // rejection handler
+                function (err) {
+                    console.error("get guests error");
+                }
+            );
+
+        return Promise.all([m, w, g, globs]);
     }
 
     function getMale(id) {
@@ -239,6 +271,24 @@ var db = (function () {
             );
     }
 
+    function addGuest(pGuest) {
+        fdb.collection("guests").add(pGuest)
+            .then(function (docRef) {
+                console.log("Document written with ID: ", docRef.id);
+            })
+            .catch(function (error) {
+                console.error("Error adding document: ", error);
+            });
+    }
+
+    function getGuests() {
+        return guests;
+    }
+
+    function getGlobals() {
+        return nomads_globals;
+    }
+
     function openBatch() {
         batch = fdb.batch();
     }
@@ -263,7 +313,10 @@ var db = (function () {
         updateSubmissionLog: updateSubmissionLog,
         deleteSubmissionLogs: deleteSubmissionLogs,
         openBatch: openBatch,
-        commitBatch: commitBatch
+        commitBatch: commitBatch,
+        addGuest: addGuest,
+        getGuests: getGuests,
+        getGlobals: getGlobals
     };
 
 
