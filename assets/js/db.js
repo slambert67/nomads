@@ -86,6 +86,13 @@ var db = (function () {
         return Promise.all([m, w, g, globs]);
     }
 
+    function updateGlobals(pData) {
+        nomads_globals.forEach ( function(doc){
+            console.log("docid = " + doc.id);
+            fdb.collection("globals").doc(doc.id).set(pData;           
+        }); 
+    }
+
     function getMale(id) {
         var member = males.docs.find(el => el.id === id);
         return member;
@@ -316,7 +323,8 @@ var db = (function () {
         commitBatch: commitBatch,
         addGuest: addGuest,
         getGuests: getGuests,
-        getGlobals: getGlobals
+        getGlobals: getGlobals,
+        updateGlobals: updateGlobals
     };
 
 

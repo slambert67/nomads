@@ -137,6 +137,12 @@ jQuery(document).ready(function ($) {
                 var matchType = $(this).attr("data-match");
                 db.deleteSubmissionLogs(matchType);
             });
+
+            $("#numguestsbtn").on("click", function() {
+                var globs = db.getGlobals();
+                globs.num_guests_allowed = 9;
+                db.updateGlobals(globs);
+            });
         }
     );
 
