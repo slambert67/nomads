@@ -1,3 +1,23 @@
+/*
+fdb.collection('collection name').get() -> collection
+eg
+var m = fdb.collection("members").get()
+
+access:
+males.forEach( function(doc){
+    doc is member of collection
+
+    pk is doc.id
+
+    property access:
+      doc.data().property-name
+
+    update member
+      fdb.collection('collection name').doc(doc.id).set(memberData);
+      -- memberData is normal JSON object
+
+})
+*/
 var db = (function () {
 
     var fdb;
@@ -86,11 +106,19 @@ var db = (function () {
         return Promise.all([m, w, g, globs]);
     }
 
-    function updateGlobals(pData) {
+    /*function updateGlobals(pData) {
         nomads_globals.forEach ( function(doc){
             console.log("docid = " + doc.id);
             fdb.collection("globals").doc(doc.id).set(pData;           
         }); 
+        fdb.collection('collection name').doc(doc.id).set(memberData);
+    }*/
+
+    function updateGlobals(pData) {
+        nomads_globals.forEach(function (doc) {
+            console.log("docid = " + doc.id);
+            fdb.collection("globals").doc(doc.id).set(pData);
+        });
     }
 
     function getMale(id) {

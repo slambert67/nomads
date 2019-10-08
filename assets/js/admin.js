@@ -139,9 +139,17 @@ jQuery(document).ready(function ($) {
             });
 
             $("#numguestsbtn").on("click", function() {
+                var newglobs = {};
                 var globs = db.getGlobals();
-                globs.num_guests_allowed = 9;
-                db.updateGlobals(globs);
+                var numguests;
+                globs.forEach( function(doc) {
+                    //newglobs.num_guests_allowed = doc.data().num_guests_allowed;
+                    numguests = $("#numguests").val();
+                    numguests = parseInt(numguests,10);
+                    newglobs.num_guests_allowed = numguests;
+                    db.updateGlobals(newglobs);
+                })
+                
             });
         }
     );
