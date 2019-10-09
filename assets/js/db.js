@@ -316,6 +316,34 @@ var db = (function () {
             });
     }
 
+    function deleteGuests() {
+        var docs = fdb.collection("guests")
+            .get()
+            .then(
+                // fulfillment handler
+                function (myDocs) {
+
+                    myLogs = myDocs;
+                    myLogs.forEach(function (pLog) {
+                        fdb.collection("guests").doc(pLog.id).delete()
+                            .then(
+                                function () {
+                                    console.log("guest deleted");
+                                },
+                                function () {
+                                    console.log("error deleting guest");
+                                }
+                            )
+                    })
+                },
+
+                // rejection handler
+                function (err) {
+                    console.error("error retrieving guests");
+                }
+            );       
+    }
+
     function getGuests() {
         return guests;
     }
@@ -352,7 +380,8 @@ var db = (function () {
         addGuest: addGuest,
         getGuests: getGuests,
         getGlobals: getGlobals,
-        updateGlobals: updateGlobals
+        updateGlobals: updateGlobals,
+        deleteGuests: deleteGuests
     };
 
 

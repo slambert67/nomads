@@ -173,43 +173,45 @@
 
     <div class="container-fluid">
         <div class="row">
+
             <div class="col-lg-1 col-xl-2" style="padding-bottom:30px;"></div>
-            <div id="slot1" class="col-lg-5 col-xl-4" style="padding-bottom:30px;">
+            <div id="slot1" class="col-lg-5 col-xl-4 hide" style="padding-bottom:30px;">
                 <div style="background-color: #e74c3c; padding:20px;">
                     <button type="button" class="btn btn-dark">Book this slot</button>
                 </div>
-            </div>
-            <div id="slot2" class="col-lg-5 col-xl-4" style="padding-bottom:30px;">
-                <div style="background-color: #e74c3c; padding:20px;">
-                    <button type="button" class="btn btn-dark">Book this slot</button>
-                </div>
-            </div>
-            <div class="col-lg-1 col-xl-2" style="padding-bottom:30px;"></div>
-            <div class="col-lg-1 col-xl-2" style="padding-bottom:30px;"></div>
-            <div id="slot3" class="col-lg-5 col-xl-4" style="padding-bottom:30px;">
-                <div style="background-color: #e74c3c; padding:20px;">
-                    <button type="button" class="btn btn-dark">Book this slot</button>
-                </div>
-            </div>
-            <div id="slot4" class="col-lg-5 col-xl-4" style="padding-bottom:30px;">
+            </div>            
+            <div id="slot2" class="col-lg-5 col-xl-4 hide" style="padding-bottom:30px;">
                 <div style="background-color: #e74c3c; padding:20px;">
                     <button type="button" class="btn btn-dark">Book this slot</button>
                 </div>
             </div>
             <div class="col-lg-1 col-xl-2" style="padding-bottom:30px;"></div>
 
-            <div class="col-lg-1 col-xl-2"></div>
-            <div id="slot5" class="col-lg-5 col-xl-4">
+            <div class="col-lg-1 col-xl-2" style="padding-bottom:30px;"></div>
+            <div id="slot3" class="col-lg-5 col-xl-4 hide" style="padding-bottom:30px;">
                 <div style="background-color: #e74c3c; padding:20px;">
                     <button type="button" class="btn btn-dark">Book this slot</button>
                 </div>
             </div>
-            <div id="slot6" class="col-lg-5 col-xl-4">
+            <div id="slot4" class="col-lg-5 col-xl-4 hide" style="padding-bottom:30px;">
                 <div style="background-color: #e74c3c; padding:20px;">
                     <button type="button" class="btn btn-dark">Book this slot</button>
                 </div>
             </div>
-            <div class="col-lg-1 col-xl-2"></div>
+            <div class="col-lg-1 col-xl-2" style="padding-bottom:30px;"></div>
+
+            <div class="col-lg-1 col-xl-2" style="padding-bottom:30px;"></div>
+            <div id="slot5" class="col-lg-5 col-xl-4 hide" style="padding-bottom:30px;">
+                <div style="background-color: #e74c3c; padding:20px;">
+                    <button type="button" class="btn btn-dark">Book this slot</button>
+                </div>
+            </div>
+            <div id="slot6" class="col-lg-5 col-xl-4 hide" style="padding-bottom:30px;">
+                <div style="background-color: #e74c3c; padding:20px;">
+                    <button type="button" class="btn btn-dark">Book this slot</button>
+                </div>
+            </div>
+            <div class="col-lg-1 col-xl-2" style="padding-bottom:30px;"></div>
 
         </div>
     </div>
@@ -249,14 +251,12 @@
 
 <!-- guests -->
 <script id="guestsTemplate" type="text/x-handlebars-template">
-    {{#each guests}}
-        <div>
-            <h4>{{this.fullname}}</h4>
-            <div>Email: {{this.email}}</div>
-            <div>Tel: {{this.tel}}</div>
-            <div>About: {{this.bio}}</div>
-        </div>
-    {{/each}}
+    <div>
+        <h4>{{guest.fullname}}</h4>
+        <div>Email: {{guest.email}}</div>
+        <div>Tel: {{guest.tel}}</div>
+        <div>About: {{guest.bio}}</div>
+    </div>
 </script>
 
 </body>

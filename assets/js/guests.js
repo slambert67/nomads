@@ -33,6 +33,8 @@ jQuery(document).ready(function ($) {
 
         function() {
 
+            var numGuestsAllowed;
+
             $("#addguest").on("click", function () {
                 var guest = $("#addguestform").toObject();
                 db.addGuest(guest);
@@ -40,18 +42,30 @@ jQuery(document).ready(function ($) {
 
             var globs = db.getGlobals();
             globs.forEach( function(doc) {
-                console.log("num guests allowed = " + doc.data().num_guests_allowed);
+                numGuestsAllowed = doc.data().num_guests_allowed;
+                console.log("num guests allowed = " + numGuestsAllowed);
             });
 
-            var context = { "guests": [] };
-            guests = db.getGuests();
-            guests.forEach(function (doc) {
-                context.guests.push(doc.data());
-            }); 
+            for (i=1; i<=numGuestsAllowed; i++) {
+                $("#" + "slot" + i).removeClass("hide");
+            }
+
             var templateSrc = $("#guestsTemplate").html();
             var template = Handlebars.compile(templateSrc);
-            var html = template(context);
-            $("#guestlist").html(html);  
+            var html;
+
+            var context;
+            var guest;
+            var guests = db.getGuests();
+            var i=0;
+            guests.forEach(function (doc) {
+                i++;
+                guest = doc.data();
+                context = {"guest": guest};
+                html = template(context);
+                $("#" + "slot" + i).removeClass("hide");
+                $("#" + "slot" + i).html(html);
+            }); 
         }
     );
 });

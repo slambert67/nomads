@@ -139,6 +139,8 @@ jQuery(document).ready(function ($) {
             });
 
             $("#numguestsbtn").on("click", function() {
+                // delete existing guests
+                db.deleteGuests();
                 var newglobs = {};
                 var globs = db.getGlobals();
                 var numguests;
