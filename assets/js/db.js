@@ -114,12 +114,7 @@ var db = (function () {
         fdb.collection('collection name').doc(doc.id).set(memberData);
     }*/
 
-    function updateGlobals(pData) {
-        nomads_globals.forEach(function (doc) {
-            console.log("docid = " + doc.id);
-            fdb.collection("globals").doc(doc.id).set(pData);
-        });
-    }
+
 
     function getMale(id) {
         var member = males.docs.find(el => el.id === id);
@@ -309,7 +304,7 @@ var db = (function () {
     function addGuest(pGuest) {
         fdb.collection("guests").add(pGuest)
             .then(function (docRef) {
-                console.log("Document written with ID: ", docRef.id);
+                location.reload(true);
             })
             .catch(function (error) {
                 console.error("Error adding document: ", error);
@@ -350,6 +345,13 @@ var db = (function () {
 
     function getGlobals() {
         return nomads_globals;
+    }
+
+    function updateGlobals(pData) {
+        nomads_globals.forEach(function (doc) {
+            console.log("docid = " + doc.id);
+            fdb.collection("globals").doc(doc.id).set(pData);
+        });
     }
 
     function openBatch() {

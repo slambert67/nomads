@@ -34,13 +34,55 @@ jQuery(document).ready(function ($) {
         function() {
 
             var numGuestsAllowed;
+            var guestTimestamp;
 
             $("#addguest").on("click", function () {
                 var guest = $("#addguestform").toObject();
                 db.addGuest(guest);
             });
 
+            $("#canceladdguest").on("click", function () {
+                $("#addguestform").addClass("hide");
+            });
+
+            $("#bookslot").on("click", function () {
+                $("#addguestform").removeClass("hide");
+            });
+
             var globs = db.getGlobals();
+            globs.forEach(function (doc) {
+                numGuestsAllowed = doc.data().num_guests_allowed;
+                guestTimestamp = doc.data().guest_date;//.to_date().to_String().substr(1,16);
+            });
+            var guestDate = guestTimestamp.toDate().toString().substr(0,16); 
+            $("#slotsmsg").html("We have " + numGuestsAllowed + " slots available for " + guestDate);
+           
+            // guests already booked
+            var templateSrc = $("#guestsTemplate").html();
+            var template = Handlebars.compile(templateSrc);
+            var html;
+
+            var context;
+            var guest;
+            var guests = db.getGuests();
+            if ( guests.size == 0) {
+                $("#guestsbooked").append('<div class="central">None</div>');
+            } else {
+                guests.forEach(function (doc) {
+                    guest = doc.data();
+                    context = { "guest": guest };
+                    html = template(context);
+                    $("#guestsbooked").append(html);
+                });  
+            }
+
+            if (guests.size < numGuestsAllowed) {
+                $("#bookslot").css("display:flex");
+            } else {
+                $("#bookslot").css("display:none");
+            }
+          
+            /*var globs = db.getGlobals();
             globs.forEach( function(doc) {
                 numGuestsAllowed = doc.data().num_guests_allowed;
                 console.log("num guests allowed = " + numGuestsAllowed);
@@ -65,7 +107,7 @@ jQuery(document).ready(function ($) {
                 html = template(context);
                 $("#" + "slot" + i).removeClass("hide");
                 $("#" + "slot" + i).html(html);
-            }); 
+            }); */
         }
     );
 });

@@ -15,6 +15,7 @@
     <!-- Project stylesheets -->   
     <link rel="stylesheet" href="assets/css/nomads.css">
     <link rel="stylesheet" href="assets/css/resp.css">
+    <link rel="stylesheet" href="assets/css/guests.css">
 
     <!-- CDN Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -171,92 +172,100 @@
     </header>
     <br>
 
-    <div class="container-fluid">
-        <div class="row">
-
-            <div class="col-lg-1 col-xl-2" style="padding-bottom:30px;"></div>
-            <div id="slot1" class="col-lg-5 col-xl-4 hide" style="padding-bottom:30px;">
-                <div style="background-color: #e74c3c; padding:20px;">
-                    <button type="button" class="btn btn-dark">Book this slot</button>
-                </div>
-            </div>            
-            <div id="slot2" class="col-lg-5 col-xl-4 hide" style="padding-bottom:30px;">
-                <div style="background-color: #e74c3c; padding:20px;">
-                    <button type="button" class="btn btn-dark">Book this slot</button>
-                </div>
-            </div>
-            <div class="col-lg-1 col-xl-2" style="padding-bottom:30px;"></div>
-
-            <div class="col-lg-1 col-xl-2" style="padding-bottom:30px;"></div>
-            <div id="slot3" class="col-lg-5 col-xl-4 hide" style="padding-bottom:30px;">
-                <div style="background-color: #e74c3c; padding:20px;">
-                    <button type="button" class="btn btn-dark">Book this slot</button>
-                </div>
-            </div>
-            <div id="slot4" class="col-lg-5 col-xl-4 hide" style="padding-bottom:30px;">
-                <div style="background-color: #e74c3c; padding:20px;">
-                    <button type="button" class="btn btn-dark">Book this slot</button>
-                </div>
-            </div>
-            <div class="col-lg-1 col-xl-2" style="padding-bottom:30px;"></div>
-
-            <div class="col-lg-1 col-xl-2" style="padding-bottom:30px;"></div>
-            <div id="slot5" class="col-lg-5 col-xl-4 hide" style="padding-bottom:30px;">
-                <div style="background-color: #e74c3c; padding:20px;">
-                    <button type="button" class="btn btn-dark">Book this slot</button>
-                </div>
-            </div>
-            <div id="slot6" class="col-lg-5 col-xl-4 hide" style="padding-bottom:30px;">
-                <div style="background-color: #e74c3c; padding:20px;">
-                    <button type="button" class="btn btn-dark">Book this slot</button>
-                </div>
-            </div>
-            <div class="col-lg-1 col-xl-2" style="padding-bottom:30px;"></div>
-
-        </div>
+    <div class="central">
+        We're very open to having guests visit us but we also need to limit numbers on a given club night
+    </div>
+    <div class="central">
+        As such, we're trying out a basic booking system. If a slot is available, simply enter your name
+    </div>
+    <div class="central">
+        and a few details to reserve that slot then just turn up and introduce yourself
+    </div>
+    <div class="central">
+        Cheers
+    </div>
+    <hr>
+    <div id="slotsmsg" class="central">
     </div>
 
-    <div id="guestlistx">
-    </div>
+    <h2 class="central">Slots booked so far</h2>
+    <hr>
+
+    <!-- guest booked so far -->
+    <div id="guestsbooked"></div>
 
     <hr>
-    <form id="addguestform">
-        <label for="fullname" style="display:block;">Full name</label>
-        <input type="text" id="fullname" name="fullname">
+    <div id="bookslot" class="central">
+      <button type="button" class="btn btn-dark">Book a slot</button>
+    </div>
+    <br>
 
-        <label for="gender" style="display:block;">Gender</label>
-        <select id="gender" name="gender">
-            <option>Male</option>
-            <option>Female</option>
-            <option>Other</option>
-        </select>
+    <form id="addguestform" class="hide">
 
-        <label for="email" style="display:block;">email address</label>
-        <input type="email" id="email" name="email">
+        <div class="central">
+            <label for="fullname"><h6>Full name</h6></label>
+        </div>
+        <div class="central">
+            <input type="text" id="fullname" name="fullname">
+        </div>
+        <br>
 
-        <label for="tel" style="display:block;">telephone number</label>
-        <input type="tel" id="tel" name="tel">
+        <div class="central">
+            <!--<label for="gender" style="display:block;">Gender</label>-->
+            <select id="gender" name="gender">
+                <option>Male</option>
+                <option>Female</option>
+                <option>Other</option>
+            </select>
+        </div>
+        <br>
 
-        <div>
-            <label for="bio" style="display:block;">About yourself?</label>
+        <div class="central">
+            <label for="fullname">
+                <h6>Email address</h6>
+            </label>
+        </div>
+        <div class="central">
+            <input class="central" type="email" id="email" name="email">
+        </div>
+        <br>
+
+        <div class="central">
+            <label for="fullname">
+                <h6>Phone number</h6>
+            </label>
+        </div>
+        <div class="central">
+            <input class="central" type="tel" id="tel" name="tel">
+        </div>
+        <br>
+
+        <div class="central">
+            <label for="fullname">
+                <h6>Any comments?</h6>
+            </label>
+        </div>
+        <div class="central">
             <textarea id="bio" name="bio" cols="40" rows="3"></textarea>
         </div>
+        <br>
 
-        <div>
-            <input type="button" id="addguest" value="Submit">
+        <div class="central">
+            <button type="button" id="addguest" class="btn btn-dark" style="margin-right:100px;">Submit</button>
+            <button type="button" id="canceladdguest" class="btn btn-dark">Cancel</button>
         </div>
     </form>
+
 
 <!-- Templates-->
 
 <!-- guests -->
 <script id="guestsTemplate" type="text/x-handlebars-template">
-    <div>
-        <h4>{{guest.fullname}}</h4>
-        <div>Email: {{guest.email}}</div>
-        <div>Tel: {{guest.tel}}</div>
-        <div>About: {{guest.bio}}</div>
-    </div>
+        <h4 class="central">{{guest.fullname}}</h4>
+        <div class="central">Email: {{guest.email}}</div>
+        <div class="central">Tel: {{guest.tel}}</div>
+        <div class="central">About: {{guest.bio}}</div>
+        <hr>
 </script>
 
 </body>
