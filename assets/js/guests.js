@@ -66,21 +66,23 @@ jQuery(document).ready(function ($) {
             var guest;
             var guests = db.getGuests();
             if ( guests.size == 0) {
-                $("#guestsbooked").append('<div class="central">None</div>');
+                $("#bookedmsg").append('<h3 class="central">All slots currently available</h3>');
+            } else if (guests.size == numGuestsAllowed) {
+                $("#bookedmsg").append('<h3 class="central">All slots taken - sorry. Please try again next week.</h3>');
             } else {
-                guests.forEach(function (doc) {
-                    guest = doc.data();
-                    context = { "guest": guest };
-                    html = template(context);
-                    $("#guestsbooked").append(html);
-                });  
+                $("#bookedmsg").append('<h3 class="central">Slots still available</h3>');
             }
+            guests.forEach(function (doc) {
+                guest = doc.data();
+                context = { "guest": guest };
+                html = template(context);
+                $("#guestsbooked").append(html);
+            });  
 
             if (guests.size < numGuestsAllowed) {
-                $("#bookslot").css("display:flex");
-            } else {
-                $("#bookslot").css("display:none");
-            }
+                $("#bookslot").removeClass("hide");
+                $("#bookslot").addClass("central");
+            } 
           
             /*var globs = db.getGlobals();
             globs.forEach( function(doc) {
