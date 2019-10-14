@@ -17,6 +17,8 @@
 
     <!-- Project stylesheets -->
     <link rel="stylesheet" href="assets/css/nomads.css">
+    <link rel="stylesheet" href="assets/css/resp.css">
+    <link rel="stylesheet" href="assets/css/admin.css">
 
     <!-- CDN Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -35,45 +37,202 @@
 
 <body>
 
+    <header>
+        <!-- xs and sm -->
+        <div id="xshdr">
+            <h1>Nomads</h1>
+            <h1>Badminton Club</h1>
+            <div>
+                <nav>
+                    <ul class="nav">
+                        <li>
+                            <a href="index.html">Home</a>
+                        </li>
+                        <li>
+                            <a href="location.html">Location</a>
+                        </li>
+                        <li>
+                            <a href="members.html">Members</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <div>
+                <nav>
+                    <ul class="nav">
+                        <li>
+                            <a href="guests.html">Guests</a>
+                        </li>
+                        <li class="active">
+                            <a href="admin.html">Club Admin</a>
+                        </li>
+                        <li>
+                            <a href="#">Web Admin</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <hr>
+        </div>
+
+        <!-- md -->
+        <div id="mdhdr">
+            <h1 style="padding-top: 10px;">Nomads Badminton Club</h1>
+           
+            <div style="padding-bottom:10px;">
+                <nav>
+                    <ul class="nav">
+                        <li>
+                            <a href="index.html">Home</a>
+                        </li>
+                        <li>
+                            <a href="location.html">Location</a>
+                        </li>
+                        <li>
+                            <a href="members.html">Members</a>
+                        </li>
+                        <li>
+                            <a href="guests.html">Guests</a>
+                        </li>
+                        <li class="active">
+                            <a href="admin.html">Club Admin</a>
+                        </li>
+                        <li>
+                            <a href="#">Web Admin</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+
+        <!-- lg -->
+        <div id="lghdr" class="container-fluid">
+            <div class="row">
+                <div class="col-lg-6" style="display:flex; justify-content:left; padding-top:20px; padding-bottom:20px;">
+                    <h1>Nomads Badminton Club</h1>
+                </div>
+                <div class="col-lg-6" style="display:flex; justify-content:center; align-items:center">
+                <nav>
+                    <ul class="nav">
+                        <li>
+                            <a href="index.html">Home</a>
+                        </li>
+                        <li>
+                            <a href="location.html">Location</a>
+                        </li>
+                        <li>
+                            <a href="members.html">Members</a>
+                        </li>
+                        <li>
+                            <a href="guests.html">Guests</a>
+                        </li>
+                        <li class="active">
+                            <a href="admin.html">Club Admin</a>
+                        </li>
+                        <li>
+                            <a href="#">Web Admin</a>
+                        </li>
+                    </ul>
+                </nav>
+                </div>
+            </div>        
+        </div>
+
+        <!-- xl -->
+        <div id="xlhdr" class="container-fluid">
+            <div class="row">
+                <div class="col-xl-2"></div>
+                <div class="col-xl-4" style="display:flex; justify-content:center; padding-top:20px; padding-bottom:20px;">
+                    <h1>Nomads Badminton Club</h1>
+                </div>
+                <div class="col-xl-4" style="display:flex; justify-content:center; align-items:center">
+                    <nav>
+                        <ul class="nav">
+                            <li>
+                                <a href="index.html">Home</a>
+                            </li>
+                            <li>
+                                <a href="location.html">Location</a>
+                            </li>
+                            <li>
+                                <a href="members.html">Members</a>
+                            </li>
+                            <li>
+                                <a href="guests.html">Guests</a>
+                            </li>
+                            <li class="active">
+                                <a href="admin.html">Club Admin</a>
+                            </li>
+                            <li>
+                                <a href="#">Web Admin</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="col-xl-2"></div>
+            </div>
+        </div>
+    </header>
+    <br>
+
     <form id="addmemberform">
-        <div>
-            <label for="forename">Forename:</label>
-            <input type="text" id="forename" name="forename" required minlength="1" maxlength="20" size="20">
-            <label for="surname">Surname:</label>
-            <input type="text" id="surname" name="surname" required minlength="1" maxlength="20" size="20">
-            <label for="middleName">Middlename:</label>
-            <input type="text" id="middleName" name="middleName" minlength="1" maxlength="20" size="20">
-            <label for="gender">Gender:</label>
-            <input type="text" id="gender" name="gender" required minlength="1" maxlength="1" size="1">
+        <div class="central">
+            <input type="text" id="forename" name="forename" placeholder="forename" required minlength="1" maxlength="20" size="20">
+            <input type="text" id="surname" name="surname" placeholder="surname" required minlength="1" maxlength="20" size="20">      
         </div>
-
-        <div>
-            <label for="houseNumber">House Number (1-1000):</label>           
-            <input type="number" id="houseNumber" name="houseNumber" min="1" max="1000">
-            <label for="street">Street:</label>
-            <input type="text" id="street" name="street" minlength="1" maxlength="20" size="20">
-            <label for="area">Area:</label>
-            <input type="text" id="area" name="area" minlength="1" maxlength="20" size="20">
-            <label for="city">City:</label>
-            <input type="text" id="city" name="city" minlength="1" maxlength="20" size="20">
-            <label for="postcode">Postcode:</label>
-            <input type="text" id="postcode" name="postcode" minlength="1" maxlength="10" size="10">
+        <div class="central">
+            <input type="text" id="middleName" name="middleName" placeholder="middlename" minlength="1" maxlength="20" size="20">             
+            <select id="gender" name="gender">
+                <option>Male</option>
+                <option>Female</option>
+            </select>   
         </div>
-
-        <div>
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" size="40">
-            <label for="landline">Landline:</label>
-            <input type="text" id="landline" name="landline" minlength="10" maxlength="20" size="20">
-            <label for="mobile">Mobile:</label>
-            <input type="text" id="mobile" name="mobile" minlength="10" maxlength="20" size="20">
+        <div class="central">
+            <input type="number" id="house" name="houseNumber" placeholder="house #" min="1" max="1000">
+            <input type="text" id="street" name="street" placeholder="street" minlength="1" maxlength="20" size="20">          
+        </div>
+        <div class="central">
+            <input type="text" id="area" name="area" placeholder="area" minlength="1" maxlength="20" size="20">
+            <input type="text" id="city" name="city" placeholder="city" minlength="1" maxlength="20" size="20">
+        </div>
+        <div class="central">
+            <input type="text" id="postcode" name="postcode" placeholder="postcode" minlength="1" maxlength="10" size="10">
+        </div>
+        <div class="central">
+            <input type="email" id="email" name="email" placeholder="email" size="40">
+        </div>
+        <div class="central">
+            <input type="text" id="landline" name="landline" placeholder="landline" minlength="10" maxlength="20" size="20">
+            <input type="text" id="mobile" name="mobile" placeholder="mobile" minlength="10" maxlength="20" size="20">
+            </div>
+        <div class="central">
+            <input type="button" id="addmember" value="Add Member">
         </div>
     </form>
+    <hr>
 
-    <div>
-        <input type="button" id="addmember" value="Add Member">
+    <div class="central">
+        <label for="clubnight">Next Club Night:</label>
+        <input type="date" id="clubnight" name="club-night">
     </div>
+    <div class="central">
+        <label for="numguests">Number of guests:</label>
+        <select id="numguests" name="numguests">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+        </select>
+    </div>
+    <div class="central">
+        <input type="button" id="numguestsbtn" value="Submit">
+    </div>
+    <hr>
 
+
+
+
+<!--
     <div>
         <input type="button" id="resetmed" value="Reset MED stats">
         <input type="button" id="resetmes" value="Reset MES stats">
@@ -88,12 +247,8 @@
         <input type="button" id="delmidlogs" class="dellogs" data-match="mid" value="Delete MID logs">
         <input type="button" id="delmeslogs" class="dellogs" data-match="mes" value="Delete MES logs">
         <input type="button" id="delwoslogs" class="dellogs" data-match="wos" value="Delete WOS logs">
-    </div>
+    </div> -->
 
-    <div>
-        <input type="number" id="numguests" min=1 max=5 step=1 value=1>
-        <input type="button" id="numguestsbtn" value="Number of guests">
-    </div>
 </body>
 
 </html>
