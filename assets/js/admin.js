@@ -144,14 +144,23 @@ jQuery(document).ready(function ($) {
                 var newglobs = {};
                 var globs = db.getGlobals();
                 var numguests;
+                var clubNight;
+                var clubNightDate;
                 globs.forEach( function(doc) {
                     //newglobs.num_guests_allowed = doc.data().num_guests_allowed;
                     numguests = $("#numguests").val();
                     numguests = parseInt(numguests,10);
+                    clubNight = $("#clubnight").val();
+                    clubNightDate = new Date(clubNight);
                     newglobs.num_guests_allowed = numguests;
+                    newglobs.guest_date = firebase.firestore.Timestamp.fromDate(clubNightDate);
                     db.updateGlobals(newglobs);
                 })
                 
+            });
+
+            $("#noticebtn").on("click", function() {
+                // write to db
             });
         }
     );

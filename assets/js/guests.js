@@ -55,7 +55,7 @@ jQuery(document).ready(function ($) {
                 guestTimestamp = doc.data().guest_date;//.to_date().to_String().substr(1,16);
             });
             var guestDate = guestTimestamp.toDate().toString().substr(0,16); 
-            $("#slotsmsg").html("We have " + numGuestsAllowed + " slots available for " + guestDate);
+            $("#slotsmsg").html("We have " + numGuestsAllowed + " slots for " + guestDate);
            
             // guests already booked
             var templateSrc = $("#guestsTemplate").html();
