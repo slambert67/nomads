@@ -6,6 +6,7 @@ jQuery(document).ready(function ($) {
         projectId: 'nomads-d85b5'
     });
 
+<<<<<<< HEAD
     $("#submitemail").on("click", function () {
 
         var actionCodeSettings = {
@@ -41,4 +42,7 @@ jQuery(document).ready(function ($) {
             });
 
     });
+=======
+
+>>>>>>> wip
 });
