@@ -7,6 +7,9 @@ jQuery(document).ready(function ($) {
     });
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> auth added
     $("#submitemail").on("click", function () {
 
         var actionCodeSettings = {
@@ -42,7 +45,10 @@ jQuery(document).ready(function ($) {
             });
 
     });
+<<<<<<< HEAD
 =======
 
 >>>>>>> wip
+=======
+>>>>>>> auth added
 });
