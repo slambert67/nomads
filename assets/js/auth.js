@@ -15,10 +15,10 @@ jQuery(document).ready(function ($) {
         var actionCodeSettings = {
             // URL you want to redirect back to. The domain (www.example.com) for this
             // URL must be whitelisted in the Firebase Console.
-            url: 'https://https://slambert67.github.io/nomads/members.html',
+            url: 'http://slambert67.github.io/nomads/members.html',
             // This must be true.
-            handleCodeInApp: true,
-            iOS: {
+            handleCodeInApp: true
+            /*iOS: {
                 bundleId: 'com.example.ios'
             },
             android: {
@@ -26,7 +26,7 @@ jQuery(document).ready(function ($) {
                 installApp: true,
                 minimumVersion: '12'
             },
-            dynamicLinkDomain: 'example.page.link'
+            dynamicLinkDomain: 'example.page.link'*/
         };
 
         var email = $("#email").val();
