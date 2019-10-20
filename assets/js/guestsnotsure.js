@@ -66,11 +66,37 @@ jQuery(document).ready(function ($) {
             var guest;
             var guests = db.getGuests();
             if ( guests.size == 0) {
+<<<<<<< HEAD:assets/js/guests.js
                 $("#bookedmsg").append('<h3 class="central">All slots currently available</h3>');
             } else if (guests.size == numGuestsAllowed) {
                 $("#bookedmsg").append('<h3 class="central">All slots taken - sorry. Please try again next week.</h3>');
             } else {
                 $("#bookedmsg").append('<h3 class="central">Slots still available</h3>');
+=======
+                $("#bookslot").removeClass("hide");
+                $("#bookslot").addClass("central");
+                $("#guestsbookedmsg").html('<div class="central">All slots available</div>');
+            } else if (guests.size == numGuestsAllowed) {
+                $("#bookslot").removeClass("central");
+                $("#bookslot").addClass("hide");
+                $("#guestsbookedmsg").html('<div class="central"><h4>Fully booked - Sorry</h4></div>');
+                guests.forEach(function (doc) {
+                    guest = doc.data();
+                    context = { "guest": guest };
+                    html = template(context);
+                    $("#guestsbooked").append(html);
+                });  
+            } else {
+                $("#bookslot").removeClass("hide");
+                $("#bookslot").addClass("central");
+                $("#guestsbookedmsg").html('<div class="central"><h4>Some slots available</h4></div>');
+                guests.forEach(function (doc) {
+                    guest = doc.data();
+                    context = { "guest": guest };
+                    html = template(context);
+                    $("#guestsbooked").append(html);
+                });  
+>>>>>>> not sure:assets/js/guestsnotsure.js
             }
             guests.forEach(function (doc) {
                 guest = doc.data();
