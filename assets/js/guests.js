@@ -98,12 +98,12 @@ jQuery(document).ready(function ($) {
                 });  
 >>>>>>> not sure:assets/js/guestsnotsure.js
             }
-            guests.forEach(function (doc) {
+            /*guests.forEach(function (doc) {
                 guest = doc.data();
                 context = { "guest": guest };
                 html = template(context);
                 $("#guestsbooked").append(html);
-            });  
+            });  */
 
             if (guests.size < numGuestsAllowed) {
                 $("#bookslot").removeClass("hide");
