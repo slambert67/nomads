@@ -8,25 +8,21 @@ jQuery(document).ready(function ($) {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> auth added
     $("#submitemail").on("click", function () {
+=======
+    $("#submitcred").on("click", function () {
+>>>>>>> email and pwd auth
 
-        var actionCodeSettings = {
+        /*var actionCodeSettings = {
             // URL you want to redirect back to. The domain (www.example.com) for this
             // URL must be whitelisted in the Firebase Console.
             url: 'http://slambert67.github.io/nomads/members.html',
             // This must be true.
             handleCodeInApp: true
-            /*iOS: {
-                bundleId: 'com.example.ios'
-            },
-            android: {
-                packageName: 'com.example.android',
-                installApp: true,
-                minimumVersion: '12'
-            },
-            dynamicLinkDomain: 'example.page.link'*/
+
         };
 
         var email = $("#email").val();
@@ -42,13 +38,57 @@ jQuery(document).ready(function ($) {
             })
             .catch(function (error) {
                 // Some error occurred, you can inspect the code: error.code
-            });
+            });*/
+
+        var email = $("#email").val();
+        var password = $("#userpwd").val();
+
+        firebase.auth().createUserWithEmailAndPassword(email, password).catch(function (error) {
+            // Handle Errors here.
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            console.log("create user error");
+            // ...
+        });
+        console.log("user created");
 
     });
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 
 >>>>>>> wip
 =======
 >>>>>>> auth added
+=======
+
+    $("#signin").on("click", function () {
+        var email = $("#email").val();
+        var password = $("#userpwd").val();
+
+        firebase.auth().signInWithEmailAndPassword(email, password).catch(function (error) {
+            // Handle Errors here.
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            // ...
+            console.log("sign in error");
+        });
+        console.log("user signed in");
+    });
+
+    $("#signout").on("click", function () {
+        var email = $("#email").val();
+        var password = $("#userpwd").val();
+
+        firebase.auth().signOut().then(function () {
+            // Sign-out successful.
+            console.log("signed out");
+        }).catch(function (error) {
+            // An error happened.
+            console.log("error signing out");
+        });
+        console.log("user signed out");
+    });
+
+>>>>>>> email and pwd auth
 });
