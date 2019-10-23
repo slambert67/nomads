@@ -1,10 +1,30 @@
 jQuery(document).ready(function ($) {
 
-    firebase.initializeApp({
-        apiKey: 'AIzaSyDxgEiXAJEvXAA4CDsF1yXlQaIczU3skgo',
-        authDomain: 'nomads-d85b5.firebaseapp.com',
-        projectId: 'nomads-d85b5'
-    });
+    db2.init();
+    console.log("db2 initialised");
+
+    db2.auth()
+    .then (
+        function(){
+            console.log("authorised");
+
+            db2.getData()
+            .then (
+                function() {
+                    console.log("successfully got data");
+
+                    var aothmales = db2.getMales();
+                    console.log("got males");
+                },
+                function () {
+                    console.log("failed to get data");
+                },               
+            );
+        },
+        function(){
+            console.log("authorisation error");
+        }
+    );
 
 <<<<<<< HEAD
 <<<<<<< HEAD
