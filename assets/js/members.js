@@ -168,32 +168,41 @@ var members = (function () {
 
 jQuery(document).ready(function ($) {
 
-    db.init()
-    .then(
-        // fulfillment handler
-        function () {
+    db.init();
+    console.log("db initialised");
 
-            members.buildMembersList( { "gender":"M", "element":"maleMembersPanel", "template":"membersTemplate"} );
-            members.buildMembersList( { "gender":"F", "element":"femaleMembersPanel", "template":"membersTemplate"});
+    db.auth()
+        .then(
+            function () {
+                console.log("authorised");
 
-            members.buildLadder( { "ladder": "med", "element": "medladder", "template": "ladderTemplate"} );
-            members.buildLadder( { "ladder": "mid", "element": "midladder", "template": "ladderTemplate" });
-            members.buildLadder( { "ladder": "wod", "element": "wodladder", "template": "ladderTemplate" });
-            members.buildLadder( { "ladder": "mes", "element": "mesladder", "template": "ladderTemplate" });
-            members.buildLadder( { "ladder": "wos", "element": "wosladder", "template": "ladderTemplate" });
+                db.getData()
+                    .then(
+                        function () {
+                            members.buildMembersList({ "gender": "M", "element": "maleMembersPanel", "template": "membersTemplate" });
+                            members.buildMembersList({ "gender": "F", "element": "femaleMembersPanel", "template": "membersTemplate" });
 
-            members.buildSubmittersSelect( {"ele": "medsubmitters"}, "M" );
-            members.buildSubmittersSelect({ "ele": "wodsubmitters" }, "F");
-            members.buildSubmittersSelect({ "ele": "midsubmitters" }, "B");
-            members.buildSubmittersSelect({ "ele": "messubmitters" }, "M");
-            members.buildSubmittersSelect({ "ele": "wossubmitters" }, "F");
-        },
+                            members.buildLadder({ "ladder": "med", "element": "medladder", "template": "ladderTemplate" });
+                            members.buildLadder({ "ladder": "mid", "element": "midladder", "template": "ladderTemplate" });
+                            members.buildLadder({ "ladder": "wod", "element": "wodladder", "template": "ladderTemplate" });
+                            members.buildLadder({ "ladder": "mes", "element": "mesladder", "template": "ladderTemplate" });
+                            members.buildLadder({ "ladder": "wos", "element": "wosladder", "template": "ladderTemplate" });
 
-        //rejection handler
-        function (err) {
-            console.error("init error");
-        }
-    );
+                            members.buildSubmittersSelect({ "ele": "medsubmitters" }, "M");
+                            members.buildSubmittersSelect({ "ele": "wodsubmitters" }, "F");
+                            members.buildSubmittersSelect({ "ele": "midsubmitters" }, "B");
+                            members.buildSubmittersSelect({ "ele": "messubmitters" }, "M");
+                            members.buildSubmittersSelect({ "ele": "wossubmitters" }, "F");
+                        },
+                        function () {
+                            console.log("failed to get data");
+                        },
+                    );
+            },
+            function () {
+                console.log("authorisation error");
+            }
+        );
 
     // enter results
     $(".enterresultbtn").on("click", function(){

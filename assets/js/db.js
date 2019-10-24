@@ -27,19 +27,36 @@ var db = (function () {
     var nomads_globals;
     var batch;
 
-    // initialise firebase and retrieve all members
     function init() {
+        console.log("calling initialize app");
         firebase.initializeApp({
             apiKey: 'AIzaSyDxgEiXAJEvXAA4CDsF1yXlQaIczU3skgo',
             authDomain: 'nomads-d85b5.firebaseapp.com',
             projectId: 'nomads-d85b5'
         });
+        console.log("called initialize app");
 
         fdb = firebase.firestore();
 
         fdb.settings({
             timestampsInSnapshots: true
-        }); 
+        });
+        console.log("initialised");
+    }
+
+    function auth() {
+        var email = "steve.lambert67@gmail.com";
+        var password = "514726";
+
+        return firebase.auth().signInWithEmailAndPassword(email, password)
+            .catch(function (error) {
+                console.log("auth error");
+                throw error;
+            });
+    }
+
+    // initialise firebase and retrieve all members
+    function getData() {
 
         // retrieve male members
         var m = fdb.collection("members")
@@ -364,6 +381,8 @@ var db = (function () {
 
     return {
         init: init,
+        auth: auth,
+        getData: getData,
         getMale: getMale,
         getFemale: getFemale,
         getMales: getMales,
