@@ -26,6 +26,7 @@ var db = (function () {
     var guests;
     var nomads_globals;
     var batch;
+    var logged_in_member;
 
     function init() {
         console.log("calling initialize app");
@@ -44,9 +45,9 @@ var db = (function () {
         console.log("initialised");
     }
 
-    function auth() {
-        var email = "steve.lambert67@gmail.com";
-        var password = "514726";
+    function auth(email,password) {
+       /* var email = "steve.lambert67@gmail.com";
+        var password = "514725";*/
 
         return firebase.auth().signInWithEmailAndPassword(email, password)
             .catch(function (error) {
@@ -102,6 +103,7 @@ var db = (function () {
                 // rejection handler
                 function (err) {
                     console.error("get guests error");
+                    console.log(err);
                 }
             );
 
@@ -116,12 +118,51 @@ var db = (function () {
 
                 // rejection handler
                 function (err) {
-                    console.error("get guests error");
+                    console.error("get globs error");
                 }
             );
 
         return Promise.all([m, w, g, globs]);
     }
+
+    function readGlobals() {
+        // retrieve globals
+        var globs = fdb.collection("globals")
+            .get()
+            .then(
+                // fulfillment handler
+                function (myData) {
+                    nomads_globals = myData;
+                },
+
+                // rejection handler
+                function (err) {
+                    console.error("get globs error");
+                    console.log(err);
+                }
+            );
+        return globs;    
+    }
+
+    // retrieve guests
+    function readGuests() {
+        var g = fdb.collection("guests")
+            .get()
+            .then(
+                // fulfillment handler
+                function (myData) {
+                    guests = myData;
+                },
+
+                // rejection handler
+                function (err) {
+                    console.error("get guests error");
+                    console.log(err);
+                }
+            );
+        return g;
+    }
+
 
     /*function updateGlobals(pData) {
         nomads_globals.forEach ( function(doc){
@@ -379,10 +420,20 @@ var db = (function () {
         return batch.commit();
     }
 
+    function setLoggedInMember(pMember) {
+        logged_in_member = pMember;
+    }
+
+    function getLoggedInMember() {
+        return logged_in_member;
+    }
+
     return {
         init: init,
         auth: auth,
         getData: getData,
+        readGlobals: readGlobals,
+        readGuests: readGuests,
         getMale: getMale,
         getFemale: getFemale,
         getMales: getMales,
@@ -402,7 +453,9 @@ var db = (function () {
         getGuests: getGuests,
         getGlobals: getGlobals,
         updateGlobals: updateGlobals,
-        deleteGuests: deleteGuests
+        deleteGuests: deleteGuests,
+        getLoggedInMember,
+        setLoggedInMember
     };
 
 

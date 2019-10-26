@@ -29,7 +29,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prettyPhoto/3.1.6/js/jquery.prettyPhoto.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.5.5/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.5.5/firebase-firestore.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/5.5.5/firebase-auth.js"></script>
 
     <!-- Project Scripts -->
     <script src="assets/js/db.js"></script>
@@ -176,18 +175,46 @@
     </header>
     <br>
 
-    <div id="getcreds">
-        <div class="central"><input type="email" id="email" name="email" placeholder="email" size="40"></div><br>
-        <div class="central"><input type="password" value="" id="userpwd" required placeholder="Password"></input></div><br>
-        <div class="central"><input type="button" id="signin" value="Sign in"></div>
-    </div>
+    <form id="addmemberform">
+        <div class="central">
+            <input type="text" id="forename" name="forename" placeholder="forename" required minlength="1" maxlength="20" size="20">
+            <input type="text" id="surname" name="surname" placeholder="surname" required minlength="1" maxlength="20" size="20">      
+        </div>
+        <div class="central">
+            <input type="text" id="middleName" name="middleName" placeholder="middlename" minlength="1" maxlength="20" size="20">             
+            <select id="gender" name="gender">
+                <option>Male</option>
+                <option>Female</option>
+            </select>   
+        </div>
+        <div class="central">
+            <input type="number" id="house" name="houseNumber" placeholder="house #" min="1" max="1000">
+            <input type="text" id="street" name="street" placeholder="street" minlength="1" maxlength="20" size="20">          
+        </div>
+        <div class="central">
+            <input type="text" id="area" name="area" placeholder="area" minlength="1" maxlength="20" size="20">
+            <input type="text" id="city" name="city" placeholder="city" minlength="1" maxlength="20" size="20">
+        </div>
+        <div class="central">
+            <input type="text" id="postcode" name="postcode" placeholder="postcode" minlength="1" maxlength="10" size="10">
+        </div>
+        <div class="central">
+            <input type="email" id="email" name="email" placeholder="email" size="40">
+        </div>
+        <div class="central">
+            <input type="text" id="landline" name="landline" placeholder="landline" minlength="10" maxlength="20" size="20">
+            <input type="text" id="mobile" name="mobile" placeholder="mobile" minlength="10" maxlength="20" size="20">
+        </div>
+        <div class="central">
+            <input type="button" id="addmember" value="Add Member">
+        </div>
+    </form>
+    <hr>
 
-    <div id="adminmain" class="hide">
     <div class="central">
         <label for="clubnight">Next Club Night:</label>
         <input type="date" id="clubnight" name="club-night">
     </div>
-    <br>
     <div class="central">
         <label for="numguests">Number of guests:</label>
         <select id="numguests" name="numguests">
@@ -198,21 +225,36 @@
             <option>5</option>
         </select>
     </div>
-    <br>
     <div class="central">
         <button id="numguestsbtn" type="button" class="btn btn-success">Submit</button>
     </div>
     <hr>
-    
+
     <div class="central">
         <input type="text" id="notice" name="notice" placeholder="Important notice" maxlength="100" size="100">
     </div>
-    <br>
     <div class="central">
         <button id="noticebtn" type="button" class="btn btn-success">Submit</button>
     </div>
+
+
+
+<!--
+    <div>
+        <input type="button" id="resetmed" value="Reset MED stats">
+        <input type="button" id="resetmes" value="Reset MES stats">
+        <input type="button" id="resetmid" value="Reset MID stats">
+        <input type="button" id="resetwod" value="Reset WOD stats">
+        <input type="button" id="resetwos" value="Reset WOS stats">
     </div>
 
+    <div>
+        <input type="button" id="delmedlogs" class="dellogs" data-match="med" value="Delete MED logs">
+        <input type="button" id="delwodlogs" class="dellogs" data-match="wod" value="Delete WOD logs">
+        <input type="button" id="delmidlogs" class="dellogs" data-match="mid" value="Delete MID logs">
+        <input type="button" id="delmeslogs" class="dellogs" data-match="mes" value="Delete MES logs">
+        <input type="button" id="delwoslogs" class="dellogs" data-match="wos" value="Delete WOS logs">
+    </div> -->
 
 </body>
 

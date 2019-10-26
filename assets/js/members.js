@@ -171,38 +171,48 @@ jQuery(document).ready(function ($) {
     db.init();
     console.log("db initialised");
 
-    db.auth()
-        .then(
-            function () {
-                console.log("authorised");
 
-                db.getData()
-                    .then(
-                        function () {
-                            members.buildMembersList({ "gender": "M", "element": "maleMembersPanel", "template": "membersTemplate" });
-                            members.buildMembersList({ "gender": "F", "element": "femaleMembersPanel", "template": "membersTemplate" });
+    // enter results
+    $("#signin").on("click", function () {
+        var email = $("#email").val();
+        var password = $("#userpwd").val();
 
-                            members.buildLadder({ "ladder": "med", "element": "medladder", "template": "ladderTemplate" });
-                            members.buildLadder({ "ladder": "mid", "element": "midladder", "template": "ladderTemplate" });
-                            members.buildLadder({ "ladder": "wod", "element": "wodladder", "template": "ladderTemplate" });
-                            members.buildLadder({ "ladder": "mes", "element": "mesladder", "template": "ladderTemplate" });
-                            members.buildLadder({ "ladder": "wos", "element": "wosladder", "template": "ladderTemplate" });
+        db.auth(email,password)
+            .then(
+                function () {
+                    console.log("authorised");
+                    db.setLoggedInMember(email);
+                    db.getData()
+                        .then(
+                            function () {
+                                members.buildMembersList({ "gender": "M", "element": "maleMembersPanel", "template": "membersTemplate" });
+                                members.buildMembersList({ "gender": "F", "element": "femaleMembersPanel", "template": "membersTemplate" });
 
-                            members.buildSubmittersSelect({ "ele": "medsubmitters" }, "M");
-                            members.buildSubmittersSelect({ "ele": "wodsubmitters" }, "F");
-                            members.buildSubmittersSelect({ "ele": "midsubmitters" }, "B");
-                            members.buildSubmittersSelect({ "ele": "messubmitters" }, "M");
-                            members.buildSubmittersSelect({ "ele": "wossubmitters" }, "F");
-                        },
-                        function () {
-                            console.log("failed to get data");
-                        },
-                    );
-            },
-            function () {
-                console.log("authorisation error");
-            }
-        );
+                                members.buildLadder({ "ladder": "med", "element": "medladder", "template": "ladderTemplate" });
+                                members.buildLadder({ "ladder": "mid", "element": "midladder", "template": "ladderTemplate" });
+                                members.buildLadder({ "ladder": "wod", "element": "wodladder", "template": "ladderTemplate" });
+                                members.buildLadder({ "ladder": "mes", "element": "mesladder", "template": "ladderTemplate" });
+                                members.buildLadder({ "ladder": "wos", "element": "wosladder", "template": "ladderTemplate" });
+
+                                members.buildSubmittersSelect({ "ele": "medsubmitters" }, "M");
+                                members.buildSubmittersSelect({ "ele": "wodsubmitters" }, "F");
+                                members.buildSubmittersSelect({ "ele": "midsubmitters" }, "B");
+                                members.buildSubmittersSelect({ "ele": "messubmitters" }, "M");
+                                members.buildSubmittersSelect({ "ele": "wossubmitters" }, "F");
+
+                                $("#membermain").removeClass("hide");
+                                $("#getcreds").addClass("hide");
+                            },
+                            function () {
+                                console.log("failed to get data");
+                            },
+                        );
+                },
+                function () {
+                    console.log("authorisation error");
+                }
+            );
+    });
 
     // enter results
     $(".enterresultbtn").on("click", function(){
@@ -421,7 +431,30 @@ jQuery(document).ready(function ($) {
         location.reload(true);
     });
 
-   
+    $("#numguestsbtn").on("click", function () {
+        // delete existing guests
+        db.deleteGuests();
+        var newglobs = {};
+        var globs = db.getGlobals();
+        var numguests;
+        var clubNight;
+        var clubNightDate;
+        globs.forEach(function (doc) {
+            //newglobs.num_guests_allowed = doc.data().num_guests_allowed;
+            numguests = $("#numguests").val();
+            numguests = parseInt(numguests, 10);
+            clubNight = $("#clubnight").val();
+            clubNightDate = new Date(clubNight);
+            newglobs.num_guests_allowed = numguests;
+            newglobs.guest_date = firebase.firestore.Timestamp.fromDate(clubNightDate);
+            db.updateGlobals(newglobs);
+        })
+
+    });
+
+    $("#noticebtn").on("click", function () {
+        // write to db
+    }); 
 
 
 });

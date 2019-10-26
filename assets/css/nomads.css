@@ -150,6 +150,13 @@ button[aria-expanded="true"] {
     content: "\f0da";
 }
 
+.central {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
 
 
 

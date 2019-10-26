@@ -178,11 +178,18 @@
     </header>
     <br>
 
-    <div class="container-fluid">
+    <div id="getcreds" >
+        <div class="central"><input type="email" id="email" name="email" placeholder="email" size="40"></div><br>
+        <div class="central"><input type="password" value="" id="userpwd" required placeholder="Password"></input></div><br>
+        <div class="central"><input type="button" id="signin" value="Sign in"></div>
+    </div>
+
+
+    <div id="membermain" class="container-fluid hide">
         <div class="row">
             <div class="col-lg-1 col-xl-2"></div>
-            <div class="col-lg-5 col-xl-4" style="padding-bottom:20px;">
-                <nav>
+                <div class="col-lg-5 col-xl-4" style="padding-bottom:20px;">
+                    <nav>
                     <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
                         <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab"
                             aria-controls="nav-home" aria-selected="true">Members</a>
@@ -193,8 +200,8 @@
                         <a class="nav-item nav-link" id="nav-about-tab" data-toggle="tab" href="#nav-about" role="tab" aria-controls="nav-about"
                             aria-selected="false">Other</a>
                     </div>
-                </nav>
-                <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
+                    </nav>
+                    <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
                     <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
 
                         <div class="accordion" id="members">
@@ -250,18 +257,18 @@
                     <div class="tab-pane fade" id="nav-about" role="tabpanel" aria-labelledby="nav-about-tab">
                         Other stuff
                     </div>
-                </div>
-            </div>
-            <div class="col-lg-5 col-xl-4">
-                <nav>
-                    <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
-                        <a class="nav-item nav-link active" id="nav-ladders-tab" data-toggle="tab" href="#nav-ladders" role="tab"
-                            aria-controls="nav-ladders" aria-selected="true">Ladders</a>
-                        <a class="nav-item nav-link" id="nav-help-tab" data-toggle="tab" href="#nav-help" role="tab" aria-controls="nav-help"
-                            aria-selected="false">How it works</a>
                     </div>
-                </nav>
-                <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent2">
+                </div>
+                <div class="col-lg-5 col-xl-4">
+                    <nav>
+                        <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                            <a class="nav-item nav-link active" id="nav-ladders-tab" data-toggle="tab" href="#nav-ladders" role="tab"
+                                aria-controls="nav-ladders" aria-selected="true">Ladders</a>
+                            <a class="nav-item nav-link" id="nav-help-tab" data-toggle="tab" href="#nav-help" role="tab" aria-controls="nav-help"
+                                aria-selected="false">How it works</a>
+                        </div>
+                    </nav>
+                    <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent2">
                     <div class="tab-pane fade show active" id="nav-ladders" role="tabpanel" aria-labelledby="nav-ladders-tab">
                             <div class="accordion" id="accordionExample">
                             
@@ -799,9 +806,42 @@
                         <h6>The men's singles ladder is password protected as some rated games have already taken place</h6>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-1 col-xl-2"></div>
+                </div>
+
         </div>
+        <hr>
+
+        <div>
+            <div class="central">
+                <label for="clubnight">Next Club Night:</label>
+                <input type="date" id="clubnight" name="club-night">
+            </div>
+            <br>
+            <div class="central">
+                <label for="numguests">Number of guests:</label>
+                <select id="numguests" name="numguests">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+             </select>
+            </div>
+            <br>
+            <div class="central">
+                <button id="numguestsbtn" type="button" class="btn btn-success">Submit</button>
+            </div>
+            <hr>
+    
+            <div class="central">
+                <input type="text" id="notice" name="notice" placeholder="Important notice" maxlength="100" size="100">
+            </div>
+            <br>
+            <div class="central">
+                <button id="noticebtn" type="button" class="btn btn-success">Submit</button>
+            </div>
+        </div>
+
     </div>
 
 <!-- Templates-->
