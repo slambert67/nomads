@@ -57,7 +57,8 @@ var match = (function () {
         var loser2;
 
         if (matchType === "med") {
-            submitter = members.getSubmitter("med");
+            //submitter = members.getSubmitter("med");
+            submitter = firebase.auth().currentUser.email;
             winningPlayer1Data = db.getMale(winningPlayer1DocId).data();
             winner1 = winningPlayer1Data.id.forename + " " + winningPlayer1Data.id.surname;
             winningPlayer1CurrentRating = winningPlayer1Data.ladder.med.currentRating;

@@ -218,8 +218,37 @@ jQuery(document).ready(function ($) {
     $(".enterresultbtn").on("click", function(){
         var matchType = $(this).attr("data-match");
         $("#" + matchType + "LadderPanel").addClass("hide");
-        $("#" + matchType + "LoginPanel").removeClass("hide");
-
+        //$("#" + matchType + "LoginPanel").removeClass("hide");
+        $("#" + matchType + "ResultPanel").removeClass("hide");
+        switch (matchType) {
+            case "med":
+                gender = "M";
+                members.buildSelect({ "ele": "medt1p1" }, "M");
+                members.buildSelect({ "ele": "medt1p2" }, "M");
+                members.buildSelect({ "ele": "medt2p1" }, "M");
+                members.buildSelect({ "ele": "medt2p2" }, "M");
+            case "mes":
+                members.buildSelect({ "ele": "mesp1" }, "M");
+                members.buildSelect({ "ele": "mesp2" }, "M");
+                break;
+            case "wod":
+                members.buildSelect({ "ele": "wodt1p1" }, "F");
+                members.buildSelect({ "ele": "wodt1p2" }, "F");
+                members.buildSelect({ "ele": "wodt2p1" }, "F");
+                members.buildSelect({ "ele": "wodt2p2" }, "F");
+            case "wos":
+                members.buildSelect({ "ele": "wosp1" }, "F");
+                members.buildSelect({ "ele": "wosp2" }, "F");
+                break;
+            case "mid":
+                members.buildSelect({ "ele": "midt1p1" }, "M");
+                members.buildSelect({ "ele": "midt1p2" }, "F");
+                members.buildSelect({ "ele": "midt2p1" }, "M");
+                members.buildSelect({ "ele": "midt2p2" }, "F");
+                break;
+            default:
+                break;
+        }
     });
 
     // cancel login
