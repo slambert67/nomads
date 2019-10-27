@@ -60,12 +60,6 @@
                         <li class="active">
                             <a href="guests.html">Guests</a>
                         </li>
-                        <li>
-                            <a href="admin.html">Club Admin</a>
-                        </li>
-                        <li>
-                            <a href="#">Web Admin</a>
-                        </li>
                     </ul>
                 </nav>
             </div>
@@ -90,12 +84,6 @@
                         </li>
                         <li class="active">
                             <a href="guests.html">Guests</a>
-                        </li>
-                        <li>
-                            <a href="admin.html">Club Admin</a>
-                        </li>
-                        <li>
-                            <a href="#">Web Admin</a>
                         </li>
                     </ul>
                 </nav>
@@ -122,12 +110,6 @@
                         </li>
                         <li class="active">
                             <a href="guests.html">Guests</a>
-                        </li>
-                        <li>
-                            <a href="admin.html">Club Admin</a>
-                        </li>
-                        <li>
-                            <a href="#">Web Admin</a>
                         </li>
                     </ul>
                 </nav>
@@ -157,12 +139,6 @@
                             <li class="active">
                                 <a href="guests.html">Guests</a>
                             </li>
-                            <li>
-                                <a href="admin.html">Club Admin</a>
-                            </li>
-                            <li>
-                                <a href="#">Web Admin</a>
-                            </li>
                         </ul>
                     </nav>
                 </div>
@@ -191,11 +167,9 @@
     <div id="slotsmsg" class="central">
     </div>
 
-<<<<<<< HEAD:guests.html
-    <h2 id="bookedmsg" class="central"></h2>
-=======
+
     <h2 id="guestsbookedmsg" class="central"></h2>
->>>>>>> not sure:guestsnotsure.html.html
+
     <hr>
 
     <div id="bookslot" class="hide">
@@ -203,75 +177,74 @@
       </div>
     <br>
 
+<form id="addguestform" class="hide">
+
+    <div class="central">
+        <label for="fullname">
+            <h6>Full name</h6>
+        </label>
+    </div>
+    <div class="central">
+        <input type="text" id="fullname" name="fullname">
+    </div>
+    <br>
+
+    <div class="central">
+        <!--<label for="gender" style="display:block;">Gender</label>-->
+        <select id="gender" name="gender">
+            <option>Male</option>
+            <option>Female</option>
+            <option>Other</option>
+        </select>
+    </div>
+    <br>
+
+    <div class="central">
+        <label for="fullname">
+            <h6>Email address</h6>
+        </label>
+    </div>
+    <div class="central">
+        <input class="central" type="email" id="email" name="email">
+    </div>
+    <br>
+
+    <div class="central">
+        <label for="fullname">
+            <h6>Phone number</h6>
+        </label>
+    </div>
+    <div class="central">
+        <input class="central" type="tel" id="tel" name="tel">
+    </div>
+    <br>
+
+    <div class="central">
+        <label for="fullname">
+            <h6>Any comments?</h6>
+        </label>
+    </div>
+    <div class="central">
+        <textarea id="bio" name="bio" cols="40" rows="3"></textarea>
+    </div>
+    <br>
+
+    <div id="guestbtns" class="central">
+        <button type="button" id="addguest" class="btn btn-dark" style="margin-right:100px;">Submit</button>
+        <button type="button" id="canceladdguest" class="btn btn-dark">Cancel</button>
+    </div>
+    <hr>
+</form>
+
     <!-- guest booked so far -->
     <div id="guestsbooked"></div>
 
-<<<<<<< HEAD:guests.html
 
-=======
     <hr>
     <div id="bookslot" class="hide">
       <button type="button" class="btn btn-dark">Book a slot</button>
     </div>
     <br>
->>>>>>> not sure:guestsnotsure.html.html
-
-    <form id="addguestform" class="hide">
-
-        <div class="central">
-            <label for="fullname"><h6>Full name</h6></label>
-        </div>
-        <div class="central">
-            <input type="text" id="fullname" name="fullname">
-        </div>
-        <br>
-
-        <div class="central">
-            <!--<label for="gender" style="display:block;">Gender</label>-->
-            <select id="gender" name="gender">
-                <option>Male</option>
-                <option>Female</option>
-                <option>Other</option>
-            </select>
-        </div>
-        <br>
-
-        <div class="central">
-            <label for="fullname">
-                <h6>Email address</h6>
-            </label>
-        </div>
-        <div class="central">
-            <input class="central" type="email" id="email" name="email">
-        </div>
-        <br>
-
-        <div class="central">
-            <label for="fullname">
-                <h6>Phone number</h6>
-            </label>
-        </div>
-        <div class="central">
-            <input class="central" type="tel" id="tel" name="tel">
-        </div>
-        <br>
-
-        <div class="central">
-            <label for="fullname">
-                <h6>Any comments?</h6>
-            </label>
-        </div>
-        <div class="central">
-            <textarea id="bio" name="bio" cols="40" rows="3"></textarea>
-        </div>
-        <br>
-
-        <div id="guestbtns">
-            <button type="button" id="addguest" class="btn btn-dark" style="margin-right:100px;">Submit</button>
-            <button type="button" id="canceladdguest" class="btn btn-dark">Cancel</button>
-        </div>
-    </form>
-
 
 <!-- Templates-->
 

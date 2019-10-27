@@ -90,7 +90,7 @@ jQuery(document).ready(function ($) {
                     } else {
                         $("#bookslot").removeClass("hide");
                         $("#bookslot").addClass("central");
-                        $("#guestsbookedmsg").html('<div class="central"><h4>Some slots available</h4></div>');
+                        $("#guestsbookedmsg").html('<div class="central"><h4>Slots still available</h4></div>');
                         guests.forEach(function (doc) {
                             guest = doc.data();
                             context = { "guest": guest };

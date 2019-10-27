@@ -180,7 +180,7 @@ jQuery(document).ready(function ($) {
         db.auth(email,password)
             .then(
                 function () {
-                    console.log("authorised");
+                    console.log("authorised - " + firebase.auth().currentUser.email + "-" + firebase.auth().currentUser.uid);
                     db.setLoggedInMember(email);
                     db.getData()
                         .then(
@@ -448,12 +448,20 @@ jQuery(document).ready(function ($) {
             newglobs.num_guests_allowed = numguests;
             newglobs.guest_date = firebase.firestore.Timestamp.fromDate(clubNightDate);
             db.updateGlobals(newglobs);
-        })
+        });
 
     });
 
     $("#noticebtn").on("click", function () {
         // write to db
+        var newglobs = {};
+        var globs = db.getGlobals();
+        globs.forEach(function (doc) {
+            newglobs.num_guests_allowed = doc.data().num_guests_allowed;
+            newglobs.guest_date = doc.data().guest_date;
+            newglobs.important_notice = $("#notice").val();
+            db.updateGlobals(newglobs);
+        });
     }); 
 
 
