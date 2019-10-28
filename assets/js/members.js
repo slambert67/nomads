@@ -171,9 +171,56 @@ jQuery(document).ready(function ($) {
     db.init();
     console.log("db initialised");
 
+    firebase.auth().onAuthStateChanged(function (user) {
+        if (user) {
+            console.log("user is signed in");
+            $("#memberemail").html(user.email);
+            $("#memberin").removeClass("hide");
+            $("#membermain").removeClass("hide");
+            db.getData()
+                .then(
+                    function () {
+                        members.buildMembersList({ "gender": "M", "element": "maleMembersPanel", "template": "membersTemplate" });
+                        members.buildMembersList({ "gender": "F", "element": "femaleMembersPanel", "template": "membersTemplate" });
+
+                        members.buildLadder({ "ladder": "med", "element": "medladder", "template": "ladderTemplate" });
+                        members.buildLadder({ "ladder": "mid", "element": "midladder", "template": "ladderTemplate" });
+                        members.buildLadder({ "ladder": "wod", "element": "wodladder", "template": "ladderTemplate" });
+                        members.buildLadder({ "ladder": "mes", "element": "mesladder", "template": "ladderTemplate" });
+                        members.buildLadder({ "ladder": "wos", "element": "wosladder", "template": "ladderTemplate" });
+
+                        members.buildSubmittersSelect({ "ele": "medsubmitters" }, "M");
+                        members.buildSubmittersSelect({ "ele": "wodsubmitters" }, "F");
+                        members.buildSubmittersSelect({ "ele": "midsubmitters" }, "B");
+                        members.buildSubmittersSelect({ "ele": "messubmitters" }, "M");
+                        members.buildSubmittersSelect({ "ele": "wossubmitters" }, "F");
+
+                        $("#membermain").removeClass("hide");
+                        $("#getcreds").addClass("hide");
+                    },
+                    function () {
+                        console.log("failed to get data");
+                    },
+                );
+        } else {
+            //$("#membercreds").html("Not signed in");
+            $("#getcreds").removeClass("hide");
+        }
+    });
+
+    $("#signout").on("click", function () {
+        firebase.auth().signOut().
+        then(function () {
+            console.log("Sign-out successful.");
+            db.setLoggedInMember(null);
+            location.reload(true);
+        }).catch(function (error) {
+        console.log("An error happened.");
+    });
+});
 
     // enter results
-    $("#signin").on("click", function () {
+    $("#submitcreds").on("click", function () {
         var email = $("#email").val();
         var password = $("#userpwd").val();
 
@@ -202,6 +249,7 @@ jQuery(document).ready(function ($) {
 
                                 $("#membermain").removeClass("hide");
                                 $("#getcreds").addClass("hide");
+                                $("#memberin").removeClass("hide");
                             },
                             function () {
                                 console.log("failed to get data");
@@ -468,6 +516,7 @@ jQuery(document).ready(function ($) {
         var numguests;
         var clubNight;
         var clubNightDate;
+        var importantNotice;
         globs.forEach(function (doc) {
             //newglobs.num_guests_allowed = doc.data().num_guests_allowed;
             numguests = $("#numguests").val();
@@ -476,6 +525,7 @@ jQuery(document).ready(function ($) {
             clubNightDate = new Date(clubNight);
             newglobs.num_guests_allowed = numguests;
             newglobs.guest_date = firebase.firestore.Timestamp.fromDate(clubNightDate);
+            newglobs.important_notice = doc.data().important_notice;
             db.updateGlobals(newglobs);
         });
 
