@@ -1,53 +1,5 @@
 var members = (function () {
 
-    var medSubmitter;
-    var wodSubmitter;
-    var midSubmitter;
-    var mesSubmitter;
-    var wosSubmitter;
-
-    function setSubmitter( pSubmitter, pMatchType ) {
-        switch (pMatchType) {
-            case "med":
-                medSubmitter = pSubmitter;
-                break;
-            case "wod":
-                wodSubmitter = pSubmitter;
-                break;
-            case "mid":
-                midSubmitter = pSubmitter;
-                break;
-            case "mes":
-                mesSubmitter = pSubmitter;
-                break;
-            case "wos":
-                wosSubmitter = pSubmitter;
-                break;
-        }
-    }
-
-    function getSubmitter(pMatchType) {
-        var submitter;
-        switch (pMatchType) {
-            case "med":
-                submitter = medSubmitter;
-                break;
-            case "wod":
-                submitter = wodSubmitter;
-                break;
-            case "mid":
-                submitter = midSubmitter;
-                break;
-            case "mes":
-                submitter = mesSubmitter;
-                break;
-            case "wos":
-                submitter = wosSubmitter;
-                break;
-        }
-        return submitter
-    }
-
     function buildMembersList( pDetails ) {
 
         var members;
@@ -124,46 +76,12 @@ var members = (function () {
         $("#" + pSelect.ele).html(html);
     }
 
-    function buildSubmittersSelect( pSelect, pGender ) {
-
-        var members;
-        switch (pGender) {
-            case "M":
-                members = db.getMalesSortedByName();
-                break;
-            case "F":
-                members = db.getFemalesSortedByName();
-                break;
-            case "B":
-                members = db.getMembersSortedByName();
-                break;
-        }
- 
-        var context = { "members": [] };
-        members.forEach(function (doc) {
-            var member = {};
-            member.name = doc.data().id.forename + " " + doc.data().id.surname;
-            member.id = member.name;
-            context.members.push(member);
-        });    
-        
-        var templateSrc = $("#namesTemplate").html();
-        var template = Handlebars.compile(templateSrc);
-        var html = template(context);
-        $("#" + pSelect.ele).html(html);
-    }
-
     return {
         buildMembersList: buildMembersList,
         buildLadder: buildLadder,
-        buildSelect: buildSelect,
-        buildSubmittersSelect: buildSubmittersSelect,
-        getSubmitter: getSubmitter,
-        setSubmitter: setSubmitter
+        buildSelect: buildSelect
     };
 })();
-
-
 
 
 jQuery(document).ready(function ($) {
@@ -188,12 +106,6 @@ jQuery(document).ready(function ($) {
                         members.buildLadder({ "ladder": "wod", "element": "wodladder", "template": "ladderTemplate" });
                         members.buildLadder({ "ladder": "mes", "element": "mesladder", "template": "ladderTemplate" });
                         members.buildLadder({ "ladder": "wos", "element": "wosladder", "template": "ladderTemplate" });
-
-                        members.buildSubmittersSelect({ "ele": "medsubmitters" }, "M");
-                        members.buildSubmittersSelect({ "ele": "wodsubmitters" }, "F");
-                        members.buildSubmittersSelect({ "ele": "midsubmitters" }, "B");
-                        members.buildSubmittersSelect({ "ele": "messubmitters" }, "M");
-                        members.buildSubmittersSelect({ "ele": "wossubmitters" }, "F");
 
                         $("#membermain").removeClass("hide");
                         $("#getcreds").addClass("hide");
@@ -241,12 +153,6 @@ jQuery(document).ready(function ($) {
                                 members.buildLadder({ "ladder": "mes", "element": "mesladder", "template": "ladderTemplate" });
                                 members.buildLadder({ "ladder": "wos", "element": "wosladder", "template": "ladderTemplate" });
 
-                                members.buildSubmittersSelect({ "ele": "medsubmitters" }, "M");
-                                members.buildSubmittersSelect({ "ele": "wodsubmitters" }, "F");
-                                members.buildSubmittersSelect({ "ele": "midsubmitters" }, "B");
-                                members.buildSubmittersSelect({ "ele": "messubmitters" }, "M");
-                                members.buildSubmittersSelect({ "ele": "wossubmitters" }, "F");
-
                                 $("#membermain").removeClass("hide");
                                 $("#getcreds").addClass("hide");
                                 $("#memberin").removeClass("hide");
@@ -258,6 +164,12 @@ jQuery(document).ready(function ($) {
                 },
                 function () {
                     console.log("authorisation error");
+                    $.jGrowl.defaults.closer = false;
+                    $.jGrowl.defaults.animateOpen = {width: 'show'};
+                    $.jGrowl.defaults.animateClose = {width: 'hide'};
+
+                    $.jGrowl("authorisation error!", { sticky: true });
+
                 }
             );
     });
@@ -299,79 +211,6 @@ jQuery(document).ready(function ($) {
         }
     });
 
-    // cancel login
-    $(".cancelloginbtn").on("click", function () {
-        var matchType = $(this).attr("data-match");
-        $("#" + matchType + "LoginPanel").addClass("hide");
-        $("#" + matchType + "LadderPanel").removeClass("hide");
-
-    });
-
-
-    // login
-    $(".loginbtn").on("click", function () {
-
-        var matchType = $(this).attr("data-match");
-        db.getCredentials($("#" + matchType + "submitters").val(), $("#" + matchType + "pwd").val())
-            .then(
-
-                function (docs) {
-
-                    // if (docs.size === 1 && docs.docs[0].data().password === $("#medpwd").val()) {
-
-                    if (matchType == "mes") {
-                        if (docs.size === 1 && docs.docs[0].data().password === $("#mespwd").val()) {
-                            members.buildSelect({ "ele": "mesp1" }, "M");
-                            members.buildSelect({ "ele": "mesp2" }, "M");
-                            members.setSubmitter($("#" + matchType + "submitters").val(), matchType);
-                            $("#" + matchType + "LoginPanel").addClass("hide");
-                            $("#" + matchType + "ResultPanel").removeClass("hide");
-                        } else {
-                            alert("invalid credentials");
-                        }
-                    } else {
-                    switch (matchType) {
-                        case "med":
-                            gender = "M";
-                            members.buildSelect({ "ele": "medt1p1" }, "M");
-                            members.buildSelect({ "ele": "medt1p2" }, "M");
-                            members.buildSelect({ "ele": "medt2p1" }, "M");
-                            members.buildSelect({ "ele": "medt2p2" }, "M");
-                        case "mes":
-                            members.buildSelect({ "ele": "mesp1" }, "M");
-                            members.buildSelect({ "ele": "mesp2" }, "M");
-                            break;
-                        case "wod":
-                            members.buildSelect({ "ele": "wodt1p1" }, "F");
-                            members.buildSelect({ "ele": "wodt1p2" }, "F");
-                            members.buildSelect({ "ele": "wodt2p1" }, "F");
-                            members.buildSelect({ "ele": "wodt2p2" }, "F");
-                        case "wos":
-                            members.buildSelect({ "ele": "wosp1" }, "F");
-                            members.buildSelect({ "ele": "wosp2" }, "F");
-                            break;
-                        case "mid":
-                            members.buildSelect({ "ele": "midt1p1" }, "M");
-                            members.buildSelect({ "ele": "midt1p2" }, "F");
-                            members.buildSelect({ "ele": "midt2p1" }, "M");
-                            members.buildSelect({ "ele": "midt2p2" }, "F");
-                            break;
-                        default:
-                            break;
-                    }
-                    
-
-                    members.setSubmitter($("#" + matchType + "submitters").val(), matchType);
-                    $("#" + matchType + "LoginPanel").addClass("hide");
-                    $("#" + matchType + "ResultPanel").removeClass("hide");
-                }
-
-                    //} else {
-                    //console.log("invalid");
-                    //}
-                }
-            );
-    });
 
     $(".cancelsubmitbtn").on("click", function () {
         var matchType = $(this).attr("data-match");

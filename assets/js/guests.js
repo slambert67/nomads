@@ -73,7 +73,12 @@ jQuery(document).ready(function ($) {
                     var context;
                     var guest;
                     var guests = db.getGuests();
-                    if (guests.size == 0) {
+
+                    if (numGuestsAllowed == 0) {
+                        $("#bookslot").removeClass("central");
+                        $("#bookslot").addClass("hide");
+                        $("#guestsbookedmsg").html('<div class="central">Unable to accommodate guests this week - sorry</div>');
+                    } else if (guests.size == 0) {
                         $("#bookslot").removeClass("hide");
                         $("#bookslot").addClass("central");
                         $("#guestsbookedmsg").html('<div class="central">All slots available</div>');

@@ -14,6 +14,7 @@
     <!-- CDN Stylesheets -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css"/>
+    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/jquery-jgrowl/1.4.1/jquery.jgrowl.min.css" />
     
     <!-- Project stylesheets -->
     <link rel="stylesheet" href="assets/css/nomads.css">
@@ -21,6 +22,7 @@
 
     <!-- CDN Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-jgrowl/1.4.6/jquery.jgrowl.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
@@ -65,12 +67,6 @@
                         <li class>
                             <a href="guests.html">Guests</a>
                         </li>
-                        <li>
-                            <a href="admin.html">Club Admin</a>
-                        </li>
-                        <li>
-                            <a href="#">Web Admin</a>
-                        </li>
                     </ul>
                 </nav>
             </div>
@@ -95,13 +91,6 @@
                         </li>
                         <li>
                             <a href="guests.html">Guests</a>
-                        </li>
-
-                        <li>
-                            <a href="admin.html">Club Admin</a>
-                        </li>
-                        <li>
-                            <a href="#">Web Admin</a>
                         </li>
                     </ul>
                 </nav>
@@ -128,12 +117,6 @@
                             </li>
                             <li>
                                 <a href="guests.html">Guests</a>
-                            </li>
-                            <li>
-                                <a href="admin.html">Club Admin</a>
-                            </li>
-                            <li>
-                                <a href="#">Web Admin</a>
                             </li>
                         </ul>
                     </nav>
@@ -162,12 +145,6 @@
                             </li>
                             <li>
                                 <a href="guests.html">Guests</a>
-                            </li>
-                            <li>
-                                <a href="admin.html">Club Admin</a>
-                            </li>
-                            <li>
-                                <a href="#">Web Admin</a>
                             </li>
                         </ul>
                     </nav>
@@ -300,27 +277,6 @@
                                                     <button type="button" class="btn btn-dark">Enter New Result</button>
                                                 </div>
                                             </div>
-                            
-                                            <!-- login panel 
-                                            <div id="medLoginPanel" class="hide">
-                                                <h1>Login to submit result</h1>
-                                                <hr>
-                                                <div class="row">
-                                                    <div class="col-xl-6">
-                                                        <select id="medsubmitters" style="margin-bottom:10px;"></select>
-                                                    </div>
-                                                    <div class="col-xl-6">
-                                                        <input type="password" value="" id="medpwd" required placeholder="Password"></input>
-                                                    </div>
-                                               </div>
-                                               <hr>
-                                               <div style="display:flex; justify-content:left;">
-                                                    <div id="medLoginBtn" class="loginbtn" data-match="med"><button type="button" class="btn btn-success" style="margin-right:20px;">Login</button></div>
-                                                    <div id="medCancelLoginBtn" class="cancelloginbtn" data-match="med">
-                                                        <button type="button" class="btn btn-danger">Cancel</button>
-                                                    </div>
-                                               </div>
-                                            </div> -->
 
                                             <!-- enter result panel -->
                                             <div id="medResultPanel" class="hide">
@@ -407,29 +363,7 @@
                                                     <button type="button" class="btn btn-dark">Enter New Result</button>
                                                 </div>
                                             </div>
-                                            
-                                            <!-- login panel -->
-                                            <div id="wodLoginPanel" class="hide">
-                                                <h1>Login to submit result</h1>
-                                                <hr>
-                                                <div class="row">
-                                                    <div class="col-xl-6">
-                                                        <select id="wodsubmitters" style="margin-bottom:10px;"></select>
-                                                    </div>
-                                                    <div class="col-xl-6">
-                                                        <input type="password" value="" id="wodpwd" required placeholder="Password"></input>
-                                                    </div>
-                                                </div>
-                                                <hr>
-                                                <div style="display:flex; justify-content:left;">
-                                                    <div id="wodLoginBtn" class="loginbtn" data-match="wod"><button type="button" class="btn btn-success" style="margin-right:20px;">Login</button>
-                                                    </div>
-                                                    <div id="wodCancelLoginBtn" class="cancelloginbtn" data-match="wod">
-                                                        <button type="button" class="btn btn-danger">Cancel</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            
+                                                                                       
                                             <!-- enter result panel -->
                                             <div id="wodResultPanel" class="hide">
                                                 <h2>Winners</h2>
@@ -515,30 +449,7 @@
                                                     <button type="button" class="btn btn-dark">Enter New Result</button>
                                                 </div>
                                             </div>
-                                        
-                                            <!-- login panel -->
-                                            <div id="midLoginPanel" class="hide">
-                                                <h1>Login to submit result</h1>
-                                                <hr>
-                                                <div class="row">
-                                                    <div class="col-xl-6">
-                                                        <select id="midsubmitters" style="margin-bottom:10px;"></select>
-                                                    </div>
-                                                    <div class="col-xl-6">
-                                                        <input type="password" value="" id="midpwd" required placeholder="Password"></input>
-                                                    </div>
-                                                </div>
-                                                <hr>
-                                                <div style="display:flex; justify-content:left;">
-                                                    <div id="midLoginBtn" class="loginbtn" data-match="mid"><button type="button" class="btn btn-success"
-                                                            style="margin-right:20px;">Login</button>
-                                                    </div>
-                                                    <div id="midCancelLoginBtn" class="cancelloginbtn" data-match="mid">
-                                                        <button type="button" class="btn btn-danger">Cancel</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        
+                                                                               
                                             <!-- enter result panel -->
                                             <div id="midResultPanel" class="hide">
                                                 <h2>Winners</h2>
@@ -625,29 +536,6 @@
                                                 </div>
                                             </div>
                                         
-                                            <!-- login panel -->
-                                            <div id="mesLoginPanel" class="hide">
-                                                <h1>Login to submit result</h1>
-                                                <hr>
-                                                <div class="row">
-                                                    <div class="col-xl-6">
-                                                        <select id="messubmitters" style="margin-bottom:10px;"></select>
-                                                    </div>
-                                                    <div class="col-xl-6">
-                                                        <input type="password" value="" id="mespwd" required placeholder="Password"></input>
-                                                    </div>
-                                                </div>
-                                                <hr>
-                                                <div style="display:flex; justify-content:left;">
-                                                    <div id="mesLoginBtn" class="loginbtn" data-match="mes"><button type="button" class="btn btn-success"
-                                                            style="margin-right:20px;">Login</button>
-                                                    </div>
-                                                    <div id="mesCancelLoginBtn" class="cancelloginbtn" data-match="mes">
-                                                        <button type="button" class="btn btn-danger">Cancel</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        
                                             <!-- enter result panel -->
                                             <div id="mesResultPanel" class="hide">
                                                 <h2>Winner</h2>
@@ -723,30 +611,7 @@
                                                     <button type="button" class="btn btn-dark">Enter New Result</button>
                                                 </div>
                                             </div>
-                                        
-                                            <!-- login panel -->
-                                            <div id="wosLoginPanel" class="hide">
-                                                <h1>Login to submit result</h1>
-                                                <hr>
-                                                <div class="row">
-                                                    <div class="col-xl-6">
-                                                        <select id="wossubmitters" style="margin-bottom:10px;"></select>
-                                                    </div>
-                                                    <div class="col-xl-6">
-                                                        <input type="password" value="" id="wospwd" required placeholder="Password"></input>
-                                                    </div>
-                                                </div>
-                                                <hr>
-                                                <div style="display:flex; justify-content:left;">
-                                                    <div id="wosLoginBtn" class="loginbtn" data-match="wos"><button type="button" class="btn btn-success"
-                                                            style="margin-right:20px;">Login</button>
-                                                    </div>
-                                                    <div id="wosCancelLoginBtn" class="cancelloginbtn" data-match="wos">
-                                                        <button type="button" class="btn btn-danger">Cancel</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        
+                                                                               
                                             <!-- enter result panel -->
                                             <div id="wosResultPanel" class="hide">
                                                 <h2>Winner</h2>
@@ -827,12 +692,13 @@
             <div class="central">
                 <label for="numguests">Number of guests:</label>
                 <select id="numguests" name="numguests">
+                    <option>0</option>
                     <option>1</option>
                     <option>2</option>
                     <option>3</option>
                     <option>4</option>
-                    <option>5</option>
-             </select>
+                    <option>6</option>
+                </select>
             </div>
             <br>
             <div class="central">
