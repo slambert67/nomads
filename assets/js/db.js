@@ -406,10 +406,11 @@ var db = (function () {
     }
 
     function updateGlobals(pData) {
+        var x;
         nomads_globals.forEach(function (doc) {
-            console.log("docid = " + doc.id);
-            fdb.collection("globals").doc(doc.id).set(pData);
+            x = fdb.collection("globals").doc(doc.id).set(pData);           
         });
+        return x;
     }
 
     function openBatch() {

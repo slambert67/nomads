@@ -158,18 +158,12 @@ jQuery(document).ready(function ($) {
                                 $("#memberin").removeClass("hide");
                             },
                             function () {
-                                console.log("failed to get data");
+                                alert("failed to retrieve data - please retry");
                             },
                         );
                 },
                 function () {
-                    console.log("authorisation error");
-                    $.jGrowl.defaults.closer = false;
-                    $.jGrowl.defaults.animateOpen = {width: 'show'};
-                    $.jGrowl.defaults.animateClose = {width: 'hide'};
-
-                    $.jGrowl("authorisation error!", { sticky: true });
-
+                    alert("authorisation error - please try again");
                 }
             );
     });
@@ -365,7 +359,12 @@ jQuery(document).ready(function ($) {
             newglobs.num_guests_allowed = numguests;
             newglobs.guest_date = firebase.firestore.Timestamp.fromDate(clubNightDate);
             newglobs.important_notice = doc.data().important_notice;
-            db.updateGlobals(newglobs);
+            db.updateGlobals(newglobs)
+            .then(
+                function() {
+                    alert("Guest details updated");
+                }
+            );
         });
 
     });
@@ -378,7 +377,12 @@ jQuery(document).ready(function ($) {
             newglobs.num_guests_allowed = doc.data().num_guests_allowed;
             newglobs.guest_date = doc.data().guest_date;
             newglobs.important_notice = $("#notice").val();
-            db.updateGlobals(newglobs);
+            db.updateGlobals(newglobs)
+            .then(
+                function () {
+                    alert("Home page notice updated");
+                }
+            );
         });
     }); 
 
