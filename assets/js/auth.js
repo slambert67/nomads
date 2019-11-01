@@ -26,15 +26,9 @@ jQuery(document).ready(function ($) {
         }
     );
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> auth added
-    $("#submitemail").on("click", function () {
-=======
+
     $("#submitcred").on("click", function () {
->>>>>>> email and pwd auth
+
 
         /*var actionCodeSettings = {
             // URL you want to redirect back to. The domain (www.example.com) for this
@@ -73,14 +67,6 @@ jQuery(document).ready(function ($) {
         console.log("user created");
 
     });
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-
->>>>>>> wip
-=======
->>>>>>> auth added
-=======
 
     $("#signin").on("click", function () {
         var email = $("#email").val();
@@ -110,5 +96,4 @@ jQuery(document).ready(function ($) {
         console.log("user signed out");
     });
 
->>>>>>> email and pwd auth
 });
