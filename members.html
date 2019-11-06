@@ -753,6 +753,15 @@
 
 <!-- members list-->
 <script id="membersTemplate" type="text/x-handlebars-template">
+    {{#each members}}
+        <div>{{this.name}}</div>
+        <div>{{this.address}}</div>
+        <div>{{this.phones}}</div>
+        <div>{{this.email}}</div>
+        <hr>
+    {{/each}}
+</script>
+<script id="membersTemplateOld" type="text/x-handlebars-template">
     <table class="table table-striped">
         <thead>
             <tr>

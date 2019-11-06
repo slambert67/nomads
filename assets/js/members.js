@@ -17,6 +17,14 @@ var members = (function () {
         members.forEach( function(doc) {
             var member = {};
             member.name = doc.data().id.forename + " " + doc.data().id.surname;
+            member.address = 
+                doc.data().contact.address.houseNumber + ', ' +
+                doc.data().contact.address.street + ', ' +
+                doc.data().contact.address.area + ', ' +
+                doc.data().contact.address.city + ', ' +
+                doc.data().contact.address.postcode;
+            member.phones = '(Landline - ' + doc.data().contact.landline + '), (Mobile - ' + doc.data().contact.mobile + ')';
+            member.email = 'Email - ' + doc.data().contact.email;
             context.members.push(member);
         });
 
