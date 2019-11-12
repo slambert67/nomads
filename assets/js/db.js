@@ -46,8 +46,6 @@ var db = (function () {
     }
 
     function auth(email,password) {
-       /* var email = "steve.lambert67@gmail.com";
-        var password = "514725";*/
 
         return firebase.auth().signInWithEmailAndPassword(email, password)
             .catch(function (error) {
@@ -162,16 +160,6 @@ var db = (function () {
             );
         return g;
     }
-
-
-    /*function updateGlobals(pData) {
-        nomads_globals.forEach ( function(doc){
-            console.log("docid = " + doc.id);
-            fdb.collection("globals").doc(doc.id).set(pData;           
-        }); 
-        fdb.collection('collection name').doc(doc.id).set(memberData);
-    }*/
-
 
 
     function getMale(id) {
