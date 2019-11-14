@@ -180,7 +180,7 @@
                         <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab"
                             aria-controls="nav-contact" aria-selected="false">Club Rules</a>
                         <a class="nav-item nav-link" id="nav-about-tab" data-toggle="tab" href="#nav-about" role="tab" aria-controls="nav-about"
-                            aria-selected="false">Other</a>
+                            aria-selected="false">Guests</a>
                     </div>
                     </nav>
                     <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
@@ -200,7 +200,6 @@
                                 <div id="maleMembers" class="collapse" aria-labelledby="maleMembers" data-parent="#members">
                                     <div class="card-body">
                                         <div id="maleMembersPanel">
-                                            men
                                         </div>
                                     </div>
                                 </div> 
@@ -219,7 +218,6 @@
                                     <div id="femaleMembers" class="collapse" aria-labelledby="femaleMembers" data-parent="#members">
                                         <div class="card-body">
                                             <div id="femaleMembersPanel">
-                                                women
                                             </div>
                                         </div>
                                     </div> 
@@ -237,7 +235,6 @@
                         Rules stuff
                     </div>
                     <div class="tab-pane fade" id="nav-about" role="tabpanel" aria-labelledby="nav-about-tab">
-                        Other stuff
                     </div>
                     </div>
                 </div>
@@ -761,23 +758,14 @@
         <hr>
     {{/each}}
 </script>
-<script id="membersTemplateOld" type="text/x-handlebars-template">
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>Member</th>
-                <th>Paid Up</th>
-            </tr>
-        </thead>
-        <tbody>
-            {{#each members}}
-                <tr>
-                    <td>{{this.name}}</td>
-                    <td class="paid"></td>
-                </tr>
-            {{/each}}
-        </tbody>
-    </table>
+
+<!-- guests -->
+<script id="guestsTemplate" type="text/x-handlebars-template">
+        <h4 class="central">{{guest.fullname}}</h4>
+        <div class="central">Email: {{guest.email}}</div>
+        <div class="central">Tel: {{guest.tel}}</div>
+        <div class="central">About: {{guest.bio}}</div>
+        <hr>
 </script>
 
 

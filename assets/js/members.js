@@ -84,10 +84,26 @@ var members = (function () {
         $("#" + pSelect.ele).html(html);
     }
 
+    function listGuests() {
+        // guests already booked
+        var templateSrc = $("#guestsTemplate").html();
+        var template = Handlebars.compile(templateSrc);
+        var html;       
+        var guests = db.getGuests();
+
+        guests.forEach(function (doc) {
+            guest = doc.data();
+            context = { "guest": guest };
+            html = template(context);
+            $("#nav-about").append(html);
+        });
+    }
+
     return {
         buildMembersList: buildMembersList,
         buildLadder: buildLadder,
-        buildSelect: buildSelect
+        buildSelect: buildSelect,
+        listGuests: listGuests
     };
 })();
 
@@ -114,6 +130,8 @@ jQuery(document).ready(function ($) {
                         members.buildLadder({ "ladder": "wod", "element": "wodladder", "template": "ladderTemplate" });
                         members.buildLadder({ "ladder": "mes", "element": "mesladder", "template": "ladderTemplate" });
                         members.buildLadder({ "ladder": "wos", "element": "wosladder", "template": "ladderTemplate" });
+
+                        members.listGuests();
 
                         $("#membermain").removeClass("hide");
                         $("#getcreds").addClass("hide");
