@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Nomads Badminton Club</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Nomads Badminton Club website">
+    <meta name="author" content="Steve Lambert">
+
+    <!-- Images -->
+    <link rel="shortcut icon" href="assets/img/favicon.png">
+
+    <!-- CDN Stylesheets -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css" />
+
+    <!-- Project stylesheets -->   
+    <link rel="stylesheet" href="assets/css/nomads.css">
+    <link rel="stylesheet" href="assets/css/resp.css">
+    <link rel="stylesheet" href="assets/css/guests.css">
+
+    <!-- CDN Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.5/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.5/firebase-firestore.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.2.0/handlebars.min.js"></script>
+
+    <!-- Project Scripts -->
+    <script src="assets/js/db.js"></script>
+    <script src="assets/js/guests.js"></script>
+
+</head>
+
+<body>
+
+    <header>
+        <!-- xs and sm -->
+        <div id="xshdr">
+            <h1>Nomads</h1>
+            <h1>Badminton Club</h1>
+            <div>
+                <nav>
+                    <ul class="nav">
+                        <li>
+                            <a href="index.html">Home</a>
+                        </li>
+                        <li>
+                            <a href="location.html">Location</a>
+                        </li>
+                        <li>
+                            <a href="members.html">Members</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <div>
+                <nav>
+                    <ul class="nav">
+                        <li class="active">
+                            <a href="guests.html">Guests</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <hr>
+        </div>
+
+        <!-- md -->
+        <div id="mdhdr">
+            <h1 style="padding-top: 10px;">Nomads Badminton Club</h1>
+           
+            <div style="padding-bottom:10px;">
+                <nav>
+                    <ul class="nav">
+                        <li>
+                            <a href="index.html">Home</a>
+                        </li>
+                        <li>
+                            <a href="location.html">Location</a>
+                        </li>
+                        <li>
+                            <a href="members.html">Members</a>
+                        </li>
+                        <li class="active">
+                            <a href="guests.html">Guests</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+
+        <!-- lg -->
+        <div id="lghdr" class="container-fluid">
+            <div class="row">
+                <div class="col-lg-6" style="display:flex; justify-content:left; padding-top:20px; padding-bottom:20px;">
+                    <h1>Nomads Badminton Club</h1>
+                </div>
+                <div class="col-lg-6" style="display:flex; justify-content:center; align-items:center">
+                <nav>
+                    <ul class="nav">
+                        <li>
+                            <a href="index.html">Home</a>
+                        </li>
+                        <li>
+                            <a href="location.html">Location</a>
+                        </li>
+                        <li>
+                            <a href="members.html">Members</a>
+                        </li>
+                        <li class="active">
+                            <a href="guests.html">Guests</a>
+                        </li>
+                    </ul>
+                </nav>
+                </div>
+            </div>        
+        </div>
+
+        <!-- xl -->
+        <div id="xlhdr" class="container-fluid">
+            <div class="row">
+                <div class="col-xl-2"></div>
+                <div class="col-xl-4" style="display:flex; justify-content:center; padding-top:20px; padding-bottom:20px;">
+                    <h1>Nomads Badminton Club</h1>
+                </div>
+                <div class="col-xl-4" style="display:flex; justify-content:center; align-items:center">
+                    <nav>
+                        <ul class="nav">
+                            <li>
+                                <a href="index.html">Home</a>
+                            </li>
+                            <li>
+                                <a href="location.html">Location</a>
+                            </li>
+                            <li>
+                                <a href="members.html">Members</a>
+                            </li>
+                            <li class="active">
+                                <a href="guests.html">Guests</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="col-xl-2"></div>
+            </div>
+        </div>
+    </header>
+    <br>
+
+    <div class="central">
+        We're very open to having guests (but not beginners - sorry) visit us but we also need to limit numbers on a given club night
+    </div>
+    <div class="central">
+        As such, we're trying out a basic booking system. If a slot is available, simply enter your name
+    </div>
+    <div class="central">
+        and a few details to reserve that slot then just turn up and introduce yourself
+    </div>
+    <div class="central">
+        If you'd like to cancel, please text Steve on 07967977357 and I'll clear the slot.
+    </div>
+    <div class="central">
+        Cheers
+    </div>
+    <h5 class="central">Please note: your contact details will not be displayed on the site and will be fully erased after the upcoming club night</h5>
+    <hr>
+    
+    <div id="slotsmsg" class="central">
+    </div>
+
+
+    <h2 id="guestsbookedmsg" class="central"></h2>
+
+    <hr>
+
+    <div id="bookslot" class="hide">
+        <button type="button" class="btn btn-dark">Book a slot</button>
+      </div>
+    <br>
+
+<form id="addguestform" class="hide">
+
+    <div class="central">
+        <label for="fullname">
+            <h6>Full name</h6>
+        </label>
+    </div>
+    <div class="central">
+        <input type="text" id="fullname" name="fullname">
+    </div>
+    <br>
+
+    <div class="central">
+        <!--<label for="gender" style="display:block;">Gender</label>-->
+        <select id="gender" name="gender">
+            <option>Male</option>
+            <option>Female</option>
+            <option>Other</option>
+        </select>
+    </div>
+    <br>
+
+    <div class="central">
+        <label for="fullname">
+            <h6>Email address</h6>
+        </label>
+    </div>
+    <div class="central">
+        <input class="central" type="email" id="email" name="email">
+    </div>
+    <br>
+
+    <div class="central">
+        <label for="fullname">
+            <h6>Phone number</h6>
+        </label>
+    </div>
+    <div class="central">
+        <input class="central" type="tel" id="tel" name="tel">
+    </div>
+    <br>
+
+    <div class="central">
+        <h6>Playing experience</h6>
+    </div>
+    <div class="central">
+        <textarea id="bio" name="bio" cols="40" rows="3"></textarea>
+    </div>
+    <br>
+
+    <div id="guestbtns" class="central">
+        <button type="button" id="addguest" class="btn btn-dark" style="margin-right:100px;">Submit</button>
+        <button type="button" id="canceladdguest" class="btn btn-dark">Cancel</button>
+    </div>
+    <hr>
+</form>
+
+    <!-- guest booked so far -->
+    <div id="guestsbooked"></div>
+
+
+    <hr>
+    <div id="bookslot" class="hide">
+      <button type="button" class="btn btn-dark">Book a slot</button>
+    </div>
+    <br>
+
+<!-- Templates-->
+
+<!-- guests -->
+<script id="guestsTemplate" type="text/x-handlebars-template">
+        <h4 class="central">{{guest.fullname}}</h4>
+        <!--<div class="central">Email: {{guest.email}}</div>
+        <div class="central">Tel: {{guest.tel}}</div>
+        <div class="central">About: {{guest.bio}}</div>-->
+        <hr>
+</script>
+
+</body>
+</html>
