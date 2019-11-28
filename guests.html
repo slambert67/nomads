@@ -157,23 +157,23 @@
             <div class="col-lg-10 col-xl-8">
                 <nav>
                     <div class="nav nav-tabs nav-fill" id="nav-tab-guests" role="tablist">
-                        <a class="nav-item nav-link active" id="nav-about-tab" data-toggle="tab" href="#nav-about" role="tab"
-                            aria-controls="nav-about" aria-selected="true">Club Info</a>
-                        <a class="nav-item nav-link" id="nav-slot-tab" data-toggle="tab" href="#nav-slot" role="tab"
-                            aria-controls="nav-slot" aria-selected="false">Book a slot</a>
+                        <a class="nav-item nav-link" id="nav-about-tab" data-toggle="tab" href="#nav-about" role="tab"
+                            aria-controls="nav-about" aria-selected="false">Club Info</a>
+                        <a class="nav-item nav-link active" id="nav-slot-tab" data-toggle="tab" href="#nav-slot" role="tab"
+                            aria-controls="nav-slot" aria-selected="true">Book a slot</a>
                     </div>
                 </nav>
 
                 <div class="tab-content py-3 px-3 px-sm-0" id="nav-guest-tabContent">
 
-                    <div class="tab-pane fade show active" id="nav-about" role="tabpanel" aria-labelledby="nav-about-tab">
+                    <div class="tab-pane fade" id="nav-about" role="tabpanel" aria-labelledby="nav-about-tab">
             <div style="margin-left:20px; margin-right:20px;">
             <p>Welcome to the home of the Nomads Badminton Club. The club plays on Thursday nights at Stretford Talbot Centre,
                 between 8:00 and 10:00pm. The club is open to all adults of a reasonable standard.</p>
             <p>Why not come along and have a go yourself as a visitor? We are always particularly short of women!</p>
             <h4>When and where is it?</h4>
             <p>We play at Stretford Talbot Centre (opposite Stretford Leisure Centre), between 8.00 and 10:00 on Thursday nights.
-                Click the location link at the top of this page for more details. It&#8217;s easy to find, there&#8217;s and
+                Click the location link at the top of this page for more details. It&#8217;s easy to find and
                 there&#8217;s plenty of parking.</p>
             <h4>Who plays and who&#8217;s welcome?</h4>
             <p>The club consists of up to 40 members of ages ranging from 18 upwards playing mixed and level doubles with feather
@@ -234,7 +234,7 @@
             </div>
                     </div>
 
-                    <div class="tab-pane fade" id="nav-slot" role="tabpanel" aria-labelledby="nav-slot-tab">
+                    <div class="tab-pane fade show active" id="nav-slot" role="tabpanel" aria-labelledby="nav-slot-tab">
     <div class="central">
         We're very open to having guests (but not beginners - sorry) visit us but we also need to limit numbers on a given
         club night
@@ -251,7 +251,7 @@
     <div class="central">
         Cheers
     </div>
-    <h5 class="central">Please note: your contact details will not be displayed on the site and will be fully erased after
+    <h5 class="central">Please note: only your name (NOT contact details) will be displayed on the site and will be fully erased after
         the upcoming club night</h5>
     <hr>
     
@@ -339,7 +339,7 @@
     
     <!-- guests -->
     <script id="guestsTemplate" type="text/x-handlebars-template">
-            <h4 class="central">{{guest.fullname}}</h4>
+            <h4 class="central">Guest {{guestnum}} : {{guest.fullname}}</h4>
             <!--<div class="central">Email: {{guest.email}}</div>
             <div class="central">Tel: {{guest.tel}}</div>
             <div class="central">About: {{guest.bio}}</div>-->

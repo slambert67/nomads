@@ -59,7 +59,7 @@ jQuery(document).ready(function ($) {
                 guestTimestamp = doc.data().guest_date;//.to_date().to_String().substr(1,16);
             });
             var guestDate = guestTimestamp.toDate().toString().substr(0,16); 
-            $("#slotsmsg").html("We have " + numGuestsAllowed + " slots for " + guestDate);
+            $("#slotsmsg").html("We have a TOTAL of " + numGuestsAllowed + " slots available for " + guestDate);
            
             // guests already booked
             var templateSrc = $("#guestsTemplate").html();
@@ -73,6 +73,7 @@ jQuery(document).ready(function ($) {
                     var context;
                     var guest;
                     var guests = db.getGuests();
+                    var i;
 
                     if (numGuestsAllowed == 0) {
                         $("#bookslot").removeClass("central");
@@ -86,9 +87,11 @@ jQuery(document).ready(function ($) {
                         $("#bookslot").removeClass("central");
                         $("#bookslot").addClass("hide");
                         $("#guestsbookedmsg").html('<div class="central"><h4>Fully booked - Sorry</h4></div>');
+                        i = 0;
                         guests.forEach(function (doc) {
+                            i++;
                             guest = doc.data();
-                            context = { "guest": guest };
+                            context = { "guest": guest, "guestnum":i };
                             html = template(context);
                             $("#guestsbooked").append(html);
                         });
@@ -96,9 +99,11 @@ jQuery(document).ready(function ($) {
                         $("#bookslot").removeClass("hide");
                         $("#bookslot").addClass("central");
                         $("#guestsbookedmsg").html('<div class="central"><h4>Slots still available</h4></div>');
+                        i = 0;
                         guests.forEach(function (doc) {
+                            i++;
                             guest = doc.data();
-                            context = { "guest": guest };
+                            context = { "guest": guest, "guestnum": i };
                             html = template(context);
                             $("#guestsbooked").append(html);
                         });
